@@ -16,6 +16,7 @@ public class JanelaTeste extends javax.swing.JFrame {
      */
     public JanelaTeste() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -30,6 +31,7 @@ public class JanelaTeste extends javax.swing.JFrame {
         uJPanelImagem1 = new componentes.UJPanelImagem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
         uJPanelImagem1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 0)));
         uJPanelImagem1.setImagem(new java.io.File("C:\\Users\\Programação\\Documents\\NetBeansProjects\\BancoIdeias\\BancoIdeias\\src\\imagens\\tecnologia.jpg"));

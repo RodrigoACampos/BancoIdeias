@@ -5,6 +5,8 @@
  */
 package bancoideias;
 
+import view.JanelaTeste;
+
 /**
  *
  * @author andre ulisses
@@ -15,6 +17,9 @@ public class BancoIdeias {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        JanelaTeste Jan = new JanelaTeste();
+        Jan.setVisible(true);
         // TODO code application logic here
         //ALAHU AKBAR
         //JUCABECINHA_ROXA
@@ -23,6 +28,7 @@ public class BancoIdeias {
         //PAULA TEJANO
         //DORALINO REGO
         //CREMOSA SANTOS
+        //CHUP CHUP DE UVA
     }
     
 }
