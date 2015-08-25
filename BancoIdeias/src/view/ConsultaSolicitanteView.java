@@ -10,12 +10,12 @@ package view;
  *
  * @author joao_petri
  */
-public class ConsultaSolicitante extends javax.swing.JPanel {
+public class ConsultaSolicitanteView extends javax.swing.JPanel {
 
     /**
      * Creates new form ConsultaSolicitante
      */
-    public ConsultaSolicitante() {
+    public ConsultaSolicitanteView() {
         initComponents();
     }
 
