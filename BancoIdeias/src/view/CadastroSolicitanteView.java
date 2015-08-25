@@ -5,9 +5,12 @@
  */
 package view;
 
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
 /**
  *
- * @author Gustavo
+ * @author joao_petri
  */
 public class CadastroSolicitanteView extends javax.swing.JPanel {
 
@@ -16,6 +19,22 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
      */
     public CadastroSolicitanteView() {
         initComponents();
+    }
+
+    public JButton getBtnCancelarSolicitante() {
+        return btnCancelarSolicitante;
+    }
+
+    public JButton getBtnSalvarSolicitante() {
+        return btnSalvarSolicitante;
+    }
+
+    public JTextField getTfEmailSolicitante() {
+        return tfEmailSolicitante;
+    }
+
+    public JTextField getTfNomeSolicitante() {
+        return tfNomeSolicitante;
     }
 
     /**
@@ -27,7 +46,6 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -115,17 +133,21 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 534, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 360, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -134,7 +156,7 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,7 +169,6 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarSolicitante;
-    private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JButton btnSalvarSolicitante;
     private javax.swing.JFormattedTextField ftfTelefoneSolicitante;
     private javax.swing.JLabel jLabel1;
@@ -158,4 +179,5 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
     private javax.swing.JTextField tfEmailSolicitante;
     private javax.swing.JTextField tfNomeSolicitante;
     // End of variables declaration//GEN-END:variables
+
 }
