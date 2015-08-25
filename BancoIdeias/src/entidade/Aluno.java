@@ -1,4 +1,4 @@
-package entity;
+package entidade;
 
 public class Aluno {
     
