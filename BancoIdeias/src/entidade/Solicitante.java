@@ -4,9 +4,8 @@ public class Solicitante {
    private Integer Id; 
    private String Nome;
    private String Email;
-   private String Fone;
-   private Integer Celular;
-   private String Sexo;
+   private String Telefone;
+   
 
     public String getNome() {
         return Nome;
@@ -24,29 +23,15 @@ public class Solicitante {
         this.Email = Email;
     }
 
-    public String getFone() {
-        return Fone;
+    public String getTelefone() {
+        return Telefone;
     }
 
-    public void setFone(String Fone) {
-        this.Fone = Fone;
+    public void setTelefone(String Telefone) {
+        this.Telefone = Telefone;
     }
-
-    public Integer getCelular() {
-        return Celular;
-    }
-
-    public void setCelular(Integer Celular) {
-        this.Celular = Celular;
-    }
-
-    public String getSexo() {
-        return Sexo;
-    }
-
-    public void setSexo(String Sexo) {
-        this.Sexo = Sexo;
-    }
+    
+    
    
    
 }
