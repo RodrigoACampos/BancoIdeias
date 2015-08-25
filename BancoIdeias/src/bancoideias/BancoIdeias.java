@@ -32,7 +32,7 @@ public class BancoIdeias {
         //MATEI_O_BALAN_NA_FAQUINHA
         //TEST MARCELO
         //rodrigo
-        String teste;
+        String teste2;
     }
     
 }
