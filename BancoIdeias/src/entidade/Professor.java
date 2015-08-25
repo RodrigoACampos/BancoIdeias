@@ -1,9 +1,10 @@
 package entidade;
 
 
-public class EntidadeProfessor {
+public class Professor {
    private String Nome;
    private String Email;
+   private String Sexo;
    private Integer Fone;
    private Integer Celular;
 
@@ -23,6 +24,14 @@ public class EntidadeProfessor {
         this.Email = Email;
     }
 
+    public String getSexo() {
+        return Sexo;
+    }
+
+    public void setSexo(String Sexo) {
+        this.Sexo = Sexo;
+    }
+
     public Integer getFone() {
         return Fone;
     }
@@ -38,14 +47,7 @@ public class EntidadeProfessor {
     public void setCelular(Integer Celular) {
         this.Celular = Celular;
     }
+   
 
-    public String getSexo() {
-        return Sexo;
-    }
-
-    public void setSexo(String Sexo) {
-        this.Sexo = Sexo;
-    }
-   private String Sexo;
-    
+  
 }
