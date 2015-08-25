@@ -5,7 +5,7 @@
  */
 package bancoideias;
 
-import view.JanelaTeste;
+import prototipos.JanelaTeste;
 
 /**
  *
