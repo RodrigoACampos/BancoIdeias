@@ -2,7 +2,7 @@ package entidade;
 
 public class Aluno {
 
-    private int id;
+    private Integer id;
     private String nome;
     private String telefone;
     private String email;
@@ -17,11 +17,11 @@ public class Aluno {
         this.email = email;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
