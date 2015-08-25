@@ -30,13 +30,10 @@ public class BancoIdeias {
         //CREMOSA SANTOS
         //CHUP CHUP DE UVA
         //MATEI_O_BALAN_NA_FAQUINHA
+        //OK_OK_O_BALAN_ME_DEU_UNS_HEADSHOTS_DE_DEAGLE
         //TEST MARCELO
         //rodrigo
-        String teste1;
-        //PAULA FORA
-        
-        
-        
+        String teste2;
     }
     
 }
