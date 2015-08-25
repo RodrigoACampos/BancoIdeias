@@ -1,13 +1,25 @@
 package entidade;
 
-
 public class Professor {
-   private Integer id;
-   private String Nome;
-   private String Email;
-   private String Sexo;
-   private Integer Fone;
-   private Integer Celular;
+
+    private Integer id;
+    private String nome;
+    private String email;
+    private String sexo;
+    private String telefone;
+    private String celular;
+
+    public Professor() {
+    }
+
+    public Professor(int id, String nome, String email, String sexo, String telefone, String celular) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.sexo = sexo;
+        this.telefone = telefone;
+        this.celular = celular;
+    }
 
     public Integer getId() {
         return id;
@@ -18,45 +30,43 @@ public class Professor {
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
-    public void setNome(String Nome) {
-        this.Nome = Nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSexo() {
-        return Sexo;
+        return sexo;
     }
 
-    public void setSexo(String Sexo) {
-        this.Sexo = Sexo;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
-    public Integer getFone() {
-        return Fone;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setFone(Integer Fone) {
-        this.Fone = Fone;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    public Integer getCelular() {
-        return Celular;
+    public String getCelular() {
+        return celular;
     }
 
-    public void setCelular(Integer Celular) {
-        this.Celular = Celular;
+    public void setCelular(String celular) {
+        this.celular = celular;
     }
-   
 
-  
 }
