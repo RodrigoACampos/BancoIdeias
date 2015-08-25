@@ -39,6 +39,8 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
         btnSalvarSolicitante = new javax.swing.JButton();
         btnCancelarSolicitante = new javax.swing.JButton();
 
+        jPanel1.setPreferredSize(new java.awt.Dimension(534, 360));
+
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro Solicitante", 2, 0, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 255))); // NOI18N
 
         jLabel1.setText("*Nome Completo:");
@@ -68,7 +70,7 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(368, 413, Short.MAX_VALUE))
+                        .addGap(368, 407, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(0, 0, Short.MAX_VALUE))
