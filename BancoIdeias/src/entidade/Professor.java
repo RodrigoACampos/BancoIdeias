@@ -1,12 +1,21 @@
 package entidade;
 
-public class EntidadeSolicitante {
-    
+
+public class Professor {
+   private Integer id;
    private String Nome;
    private String Email;
+   private String Sexo;
    private Integer Fone;
    private Integer Celular;
-   private String Sexo;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return Nome;
@@ -24,6 +33,14 @@ public class EntidadeSolicitante {
         this.Email = Email;
     }
 
+    public String getSexo() {
+        return Sexo;
+    }
+
+    public void setSexo(String Sexo) {
+        this.Sexo = Sexo;
+    }
+
     public Integer getFone() {
         return Fone;
     }
@@ -39,14 +56,7 @@ public class EntidadeSolicitante {
     public void setCelular(Integer Celular) {
         this.Celular = Celular;
     }
-
-    public String getSexo() {
-        return Sexo;
-    }
-
-    public void setSexo(String Sexo) {
-        this.Sexo = Sexo;
-    }
    
-   
+
+  
 }
