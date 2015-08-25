@@ -12,4 +12,6 @@ package dao;
  */
 public class SolicitanteDAO {
     
+    
+    
 }
