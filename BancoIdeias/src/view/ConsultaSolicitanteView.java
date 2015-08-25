@@ -6,6 +6,10 @@
 
 package view;
 
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author joao_petri
@@ -145,6 +149,26 @@ public class ConsultaSolicitanteView extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public JButton getBtnAlterarSolicitante() {
+        return btnAlterarSolicitante;
+    }
+
+    public JButton getBtnConsultarSolicitante() {
+        return btnConsultarSolicitante;
+    }
+
+    public JButton getBtnExcluirSolicitante() {
+        return btnExcluirSolicitante;
+    }
+
+    public JTable getTbPesquisaAluno() {
+        return tbPesquisaAluno;
+    }
+
+    public JTextField getTfConsultaSolicitante() {
+        return tfConsultaSolicitante;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
