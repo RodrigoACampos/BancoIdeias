@@ -5,7 +5,14 @@ public class Solicitante {
    private String Nome;
    private String Email;
    private String Telefone;
-   
+
+    public Integer getId() {
+        return Id;
+    }
+
+    public void setId(Integer Id) {
+        this.Id = Id;
+    }
 
     public String getNome() {
         return Nome;
@@ -30,8 +37,6 @@ public class Solicitante {
     public void setTelefone(String Telefone) {
         this.Telefone = Telefone;
     }
-    
-    
    
    
 }

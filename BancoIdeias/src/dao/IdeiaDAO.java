@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package dao;
 
 /**
  *
- * @author bruno_balan
+ * @author Programação
  */
-public class SolicitanteDAO {
-    
-    
+public class IdeiaDAO {
     
 }
