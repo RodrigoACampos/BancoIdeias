@@ -28,7 +28,12 @@ public class BancoIdeias {
         //PAULA TEJANO
         //DORALINO REGO
         //CREMOSA SANTOS
-        //CHUP CHUP DE UVA
+        //CHUP CHUP DE UVA]
+        //PAULA DENTRO
+        //PAULA FORA
+        //FILHA DO HASSUM
+        //GOSTOSA PRA CHUCHU
+        //PROIBIDA1 DU FUNK
         //MATEI_O_BALAN_NA_FAQUINHA
         //OK_OK_O_BALAN_ME_DEU_UNS_HEADSHOTS_DE_DEAGLE
         //TEST MARCELO
