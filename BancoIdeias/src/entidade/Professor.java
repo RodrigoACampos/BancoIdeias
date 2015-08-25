@@ -2,11 +2,20 @@ package entidade;
 
 
 public class Professor {
+   private Integer id;
    private String Nome;
    private String Email;
    private String Sexo;
    private Integer Fone;
    private Integer Celular;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return Nome;
