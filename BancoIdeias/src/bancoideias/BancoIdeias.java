@@ -40,6 +40,7 @@ public class BancoIdeias {
         //rodrigo
         //LucasFurlani
         String teste2;
+        String nome1;
     }
     
 }
