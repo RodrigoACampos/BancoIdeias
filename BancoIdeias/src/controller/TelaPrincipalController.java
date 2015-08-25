@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import view.CadastroAlunoView;
-import view.ConsultaAluno;
+import view.ConsultaAlunoView;
 import view.TelaPrincipalView;
 
 /**
@@ -21,7 +21,7 @@ public class TelaPrincipalController implements ActionListener {
 
     TelaPrincipalView tpv;
     CadastroAlunoView cadastroAluno;
-    ConsultaAluno consultaAluno;
+    ConsultaAlunoView consultaAluno;
 
     public TelaPrincipalController(TelaPrincipalView tpv) {
         this.tpv = tpv;
@@ -60,7 +60,7 @@ public class TelaPrincipalController implements ActionListener {
         }
         if (e.getActionCommand().equals("consultaAluno")) {
             tpv.getJpfundo().removeAll();
-            consultaAluno = new ConsultaAluno();
+            consultaAluno = new ConsultaAlunoView();
             tpv.getJpfundo().add(consultaAluno);
             consultaAluno.setVisible(true);
             repintarTela();
@@ -79,7 +79,7 @@ public class TelaPrincipalController implements ActionListener {
         }
         if (e.getActionCommand().equals("menuConAluno")) {
             tpv.getJpfundo().removeAll();
-            consultaAluno = new ConsultaAluno();
+            consultaAluno = new ConsultaAlunoView();
             tpv.getJpfundo().add(consultaAluno);
             consultaAluno.setVisible(true);
             repintarTela();
