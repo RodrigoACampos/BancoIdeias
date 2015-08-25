@@ -3,7 +3,10 @@ package entidade;
 
 
 public class Professor {
-
+    private Integer id;
+    private String nome;
+    private String email; 
+    
     public Integer getId() {
         return id;
     }
@@ -27,7 +30,5 @@ public class Professor {
     public void setEmail(String email) {
         this.email = email;
     }
-    private Integer id;
-    private String nome;
-    private String email; 
+    
 }
