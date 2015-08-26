@@ -180,12 +180,26 @@ public class TelaPrincipalController implements ActionListener {
             repintarTela(); 
         }       
         if (e.getActionCommand().equals("sair")) {
-            JOptionPane.showMessageDialog(null, "Você saiu do Banco de Ideias!");
-            System.exit(0);
+            Object[] options = { "Sim", "Não" };  
+            int i = JOptionPane.showOptionDialog(null,  
+                "Tem certeza que deseja sair?", "Saída",  
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,  
+                options, options[0]);  
+            if (i == JOptionPane.YES_OPTION) {  
+                JOptionPane.showMessageDialog(null, "Você saiu do Banco de Ideias!");
+                System.exit(0);  
+            }
         }    
         if (e.getActionCommand().equals("menuSair")) {
-            JOptionPane.showMessageDialog(null, "Você saiu do Banco de Ideias!");
-            System.exit(0);            
+            Object[] options = { "Sim", "Não" };  
+            int i = JOptionPane.showOptionDialog(null,  
+                "Tem certeza que deseja sair?", "Saída",  
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,  
+                options, options[0]);  
+            if (i == JOptionPane.YES_OPTION) {  
+                JOptionPane.showMessageDialog(null, "Você saiu do Banco de Ideias!");
+                System.exit(0);  
+            }            
         }
     }
 }
