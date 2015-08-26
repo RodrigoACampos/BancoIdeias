@@ -6,6 +6,7 @@
 package view;
 
 import javax.swing.JButton;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
@@ -37,13 +38,13 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnCadastroProfessor = new javax.swing.JButton();
+        btnConsultaProfessor = new javax.swing.JButton();
+        btnCadastroSolicitante = new javax.swing.JButton();
+        btnConsultaSolicitante = new javax.swing.JButton();
         btnCadastroAluno = new javax.swing.JButton();
         btnConsultaAluno = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnConsultaIdeias = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
         btnSair = new javax.swing.JButton();
@@ -53,23 +54,29 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         aluno = new javax.swing.JMenu();
         menuCadastroAluno = new javax.swing.JMenuItem();
         menuConsultaAluno = new javax.swing.JMenuItem();
         professor = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        menuCadastroProfessor = new javax.swing.JMenuItem();
+        menuConsultaProfessor = new javax.swing.JMenuItem();
         solicitante = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        menuCadastroSolicitante = new javax.swing.JMenuItem();
+        menuConsultaSolicitante = new javax.swing.JMenuItem();
         ideias = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        sair = new javax.swing.JMenu();
+        menuConsultaIdeia = new javax.swing.JMenuItem();
+        Sair = new javax.swing.JMenu();
+        menuSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Banco de Idéias");
+        setPreferredSize(new java.awt.Dimension(900, 725));
 
         jpfundo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jpfundo.setLayout(new java.awt.CardLayout());
@@ -80,31 +87,39 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Aluno");
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Professor");
 
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Solicitante");
 
-        jLabel4.setText("Idéias");
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Ideias");
 
-        jButton3.setText("cadastro");
+        btnCadastroProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/professor.png"))); // NOI18N
+        btnCadastroProfessor.setActionCommand("cadastroProfessor");
 
-        jButton4.setText("consulta");
+        btnConsultaProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Consulta.png"))); // NOI18N
+        btnConsultaProfessor.setActionCommand("consultaProfessor");
 
-        jButton5.setText("cadastro");
+        btnCadastroSolicitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/solic.png"))); // NOI18N
+        btnCadastroSolicitante.setActionCommand("cadastroSolicitante");
 
-        jButton6.setText("consulta");
+        btnConsultaSolicitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Consulta.png"))); // NOI18N
+        btnConsultaSolicitante.setActionCommand("consultaSolicitante");
 
-        btnCadastroAluno.setText("+Aluno");
-        btnCadastroAluno.setActionCommand("+aluno");
+        btnCadastroAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/alunos.png"))); // NOI18N
+        btnCadastroAluno.setActionCommand("cadastroAluno");
         btnCadastroAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastroAlunoActionPerformed(evt);
             }
         });
 
-        btnConsultaAluno.setText("consulta");
+        btnConsultaAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Consulta.png"))); // NOI18N
         btnConsultaAluno.setActionCommand("consultaAluno");
         btnConsultaAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,61 +127,57 @@ public class TelaPrincipalView extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("consulta");
+        btnConsultaIdeias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Consulta.png"))); // NOI18N
+        btnConsultaIdeias.setActionCommand("consultaIdeias");
 
-        jButton8.setText("cadastro");
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/jabber.png"))); // NOI18N
+        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        btnSair.setText("sair");
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/turn_off.png"))); // NOI18N
+        btnSair.setActionCommand("sair");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(10, 10, 10)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnCadastroAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCadastroAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnConsultaAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(jLabel1)))
+                        .addComponent(btnConsultaAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(btnCadastroProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(64, 64, 64)))
+                        .addComponent(btnConsultaProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5)
+                        .addComponent(btnCadastroSolicitante, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10)
+                        .addComponent(btnConsultaSolicitante, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton8)
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnConsultaIdeias, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,9 +196,9 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnConsultaIdeias, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -201,10 +212,10 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(btnCadastroProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnConsultaProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnCadastroSolicitante, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnConsultaSolicitante, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -214,13 +225,27 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         jLabel5.setText("quantidade de cadastros:");
 
-        jLabel6.setText("Aluno: 57");
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/alunos32x32.png"))); // NOI18N
 
-        jLabel7.setText("Professor: 10");
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/professor32x32.png"))); // NOI18N
 
-        jLabel8.setText("Solicitante: 42");
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/solic32x32.png"))); // NOI18N
 
-        jLabel9.setText("Idéias: 29");
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ideia24x24.png"))); // NOI18N
+        jLabel9.setToolTipText("");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel10.setText(": 33");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel11.setText(": 33");
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel12.setText(": 33");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel13.setText(": 33");
 
         aluno.setText("Aluno");
 
@@ -241,36 +266,46 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         professor.setText("Professor");
 
-        jMenuItem5.setText("Cadastro");
-        professor.add(jMenuItem5);
+        menuCadastroProfessor.setText("Cadastro");
+        menuCadastroProfessor.setActionCommand("menuCadProfessor");
+        professor.add(menuCadastroProfessor);
 
-        jMenuItem6.setText("Consulta");
-        professor.add(jMenuItem6);
+        menuConsultaProfessor.setText("Consulta");
+        menuConsultaProfessor.setActionCommand("menuConProfessor");
+        professor.add(menuConsultaProfessor);
 
         jMenuBar1.add(professor);
 
         solicitante.setText("Solicitante");
 
-        jMenuItem3.setText("Cadastro");
-        solicitante.add(jMenuItem3);
+        menuCadastroSolicitante.setText("Cadastro");
+        menuCadastroSolicitante.setActionCommand("menuCadSolicitante");
+        solicitante.add(menuCadastroSolicitante);
 
-        jMenuItem4.setText("Consulta");
-        solicitante.add(jMenuItem4);
+        menuConsultaSolicitante.setText("Consulta");
+        menuConsultaSolicitante.setActionCommand("menuConSolicitante");
+        solicitante.add(menuConsultaSolicitante);
 
         jMenuBar1.add(solicitante);
 
-        ideias.setText("Idéias");
+        ideias.setText("Ideias");
 
         jMenuItem7.setText("Cadastro");
         ideias.add(jMenuItem7);
 
-        jMenuItem8.setText("Consulta");
-        ideias.add(jMenuItem8);
+        menuConsultaIdeia.setText("Consulta");
+        menuConsultaIdeia.setActionCommand("menuConIdeia");
+        ideias.add(menuConsultaIdeia);
 
         jMenuBar1.add(ideias);
 
-        sair.setText("Sair");
-        jMenuBar1.add(sair);
+        Sair.setText("Sair");
+
+        menuSair.setText("Sair");
+        menuSair.setActionCommand("menuSair");
+        Sair.add(menuSair);
+
+        jMenuBar1.add(Sair);
 
         setJMenuBar(jMenuBar1);
 
@@ -283,10 +318,22 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel10))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpfundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -300,17 +347,28 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 349, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 462, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(jLabel5)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel6))
+                                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel7))
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8))
+                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9)
-                        .addGap(131, 131, 131))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))
+                        .addGap(123, 123, 123))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jpfundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -369,46 +427,92 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 //        });
 //    }
 
-    public JPanel getJpfundo() {
-        return jpfundo;
-    }
-
     public JButton getBtnCadastroAluno() {
         return btnCadastroAluno;
+    }
+
+    public JButton getBtnCadastroProfessor() {
+        return btnCadastroProfessor;
+    }
+
+    public JButton getBtnCadastroSolicitante() {
+        return btnCadastroSolicitante;
     }
 
     public JButton getBtnConsultaAluno() {
         return btnConsultaAluno;
     }
 
+    public JButton getBtnConsultaIdeias() {
+        return btnConsultaIdeias;
+    }
+
+    public JButton getBtnConsultaProfessor() {
+        return btnConsultaProfessor;
+    }
+
+    public JButton getBtnConsultaSolicitante() {
+        return btnConsultaSolicitante;
+    }
+
     public JButton getBtnSair() {
         return btnSair;
+    }
+
+    public JPanel getJpfundo() {
+        return jpfundo;
     }
 
     public JMenuItem getMenuCadastroAluno() {
         return menuCadastroAluno;
     }
 
+    public JMenuItem getMenuCadastroProfessor() {
+        return menuCadastroProfessor;
+    }
+
+    public JMenuItem getMenuCadastroSolicitante() {
+        return menuCadastroSolicitante;
+    }
+
     public JMenuItem getMenuConsultaAluno() {
         return menuConsultaAluno;
     }
-    
-    
-     
 
+    public JMenuItem getMenuConsultaIdeia() {
+        return menuConsultaIdeia;
+    }
+
+    public JMenuItem getMenuConsultaProfessor() {
+        return menuConsultaProfessor;
+    }
+
+    public JMenuItem getMenuConsultaSolicitante() {
+        return menuConsultaSolicitante;
+    }
+
+    public JMenuItem getMenuSair() {
+        return menuSair;
+    }
+                
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu Sair;
     private javax.swing.JMenu aluno;
     private javax.swing.JButton btnCadastroAluno;
+    private javax.swing.JButton btnCadastroProfessor;
+    private javax.swing.JButton btnCadastroSolicitante;
     private javax.swing.JButton btnConsultaAluno;
+    private javax.swing.JButton btnConsultaIdeias;
+    private javax.swing.JButton btnConsultaProfessor;
+    private javax.swing.JButton btnConsultaSolicitante;
     private javax.swing.JButton btnSair;
     private javax.swing.JMenu ideias;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -418,12 +522,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -432,9 +531,14 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JPanel jpfundo;
     private javax.swing.JMenuItem menuCadastroAluno;
+    private javax.swing.JMenuItem menuCadastroProfessor;
+    private javax.swing.JMenuItem menuCadastroSolicitante;
     private javax.swing.JMenuItem menuConsultaAluno;
+    private javax.swing.JMenuItem menuConsultaIdeia;
+    private javax.swing.JMenuItem menuConsultaProfessor;
+    private javax.swing.JMenuItem menuConsultaSolicitante;
+    private javax.swing.JMenuItem menuSair;
     private javax.swing.JMenu professor;
-    private javax.swing.JMenu sair;
     private javax.swing.JMenu solicitante;
     // End of variables declaration//GEN-END:variables
 }

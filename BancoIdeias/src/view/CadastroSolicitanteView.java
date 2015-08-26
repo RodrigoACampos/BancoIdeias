@@ -6,6 +6,8 @@
 package view;
 
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -21,22 +23,7 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
         initComponents();
     }
 
-    public JButton getBtnCancelarSolicitante() {
-        return btnCancelarSolicitante;
-    }
-
-    public JButton getBtnSalvarSolicitante() {
-        return btnSalvarSolicitante;
-    }
-
-    public JTextField getTfEmailSolicitante() {
-        return tfEmailSolicitante;
-    }
-
-    public JTextField getTfNomeSolicitante() {
-        return tfNomeSolicitante;
-    }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,13 +36,13 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        tfNomeSolicitante = new javax.swing.JTextField();
-        ftfTelefoneSolicitante = new javax.swing.JFormattedTextField();
+        tfNome = new javax.swing.JTextField();
+        ftfTelefone = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        tfEmailSolicitante = new javax.swing.JTextField();
+        tfEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        btnSalvarSolicitante = new javax.swing.JButton();
-        btnCancelarSolicitante = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbIdeia = new javax.swing.JTable();
         btnIdeia = new javax.swing.JButton();
@@ -76,7 +63,7 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
         jLabel1.setText("Nome Completo:");
 
         try {
-            ftfTelefoneSolicitante.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+            ftfTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -85,14 +72,25 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
 
         jLabel5.setText("Telefone:");
 
-        btnSalvarSolicitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Save.png"))); // NOI18N
-        btnSalvarSolicitante.setText("Salvar");
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Save.png"))); // NOI18N
+        btnSalvar.setText("Salvar");
 
-        btnCancelarSolicitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Cancel.png"))); // NOI18N
-        btnCancelarSolicitante.setText("Cancelar");
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Cancel.png"))); // NOI18N
+        btnCancelar.setText("Cancelar");
 
         tbIdeia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
                 {null},
                 {null},
                 {null},
@@ -121,19 +119,19 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfEmailSolicitante)
-                            .addComponent(tfNomeSolicitante)
+                            .addComponent(tfEmail)
+                            .addComponent(tfNome)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(btnIdeia)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSalvarSolicitante)
+                                .addComponent(btnIdeia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(238, 238, 238)
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCancelarSolicitante))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
-                                    .addComponent(ftfTelefoneSolicitante, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(ftfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
@@ -143,22 +141,22 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfNomeSolicitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfEmailSolicitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ftfTelefoneSolicitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ftfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelarSolicitante)
-                    .addComponent(btnSalvarSolicitante)
-                    .addComponent(btnIdeia))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnIdeia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -180,12 +178,41 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getBtnCancelar() {
+        return btnCancelar;
+    }
+
+    public JButton getBtnIdeia() {
+        return btnIdeia;
+    }
+
+    public JButton getBtnSalvar() {
+        return btnSalvar;
+    }
+
+    public JFormattedTextField getFtfTelefone() {
+        return ftfTelefone;
+    }
+
+    public JTable getTbIdeia() {
+        return tbIdeia;
+    }
+
+    public JTextField getTfEmail() {
+        return tfEmail;
+    }
+
+    public JTextField getTfNome() {
+        return tfNome;
+    }
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelarSolicitante;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnIdeia;
-    private javax.swing.JButton btnSalvarSolicitante;
-    private javax.swing.JFormattedTextField ftfTelefoneSolicitante;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JFormattedTextField ftfTelefone;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -193,8 +220,8 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbIdeia;
-    private javax.swing.JTextField tfEmailSolicitante;
-    private javax.swing.JTextField tfNomeSolicitante;
+    private javax.swing.JTextField tfEmail;
+    private javax.swing.JTextField tfNome;
     // End of variables declaration//GEN-END:variables
 
 }

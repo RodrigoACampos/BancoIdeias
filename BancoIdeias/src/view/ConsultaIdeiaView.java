@@ -35,20 +35,25 @@ public class ConsultaIdeiaView extends javax.swing.JPanel {
 
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbPesquisaAluno = new javax.swing.JTable();
+        tbPesquisa = new javax.swing.JTable();
         btnExcluir = new javax.swing.JButton();
-        tfConsultaAluno = new javax.swing.JTextField();
+        tfConsulta = new javax.swing.JTextField();
         btnConsultar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        taDescricaoIdeia = new javax.swing.JTextArea();
+        taDescricao = new javax.swing.JTextArea();
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consulta Ideia", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 255))); // NOI18N
 
-        tbPesquisaAluno.setModel(new javax.swing.table.DefaultTableModel(
+        tbPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -66,7 +71,7 @@ public class ConsultaIdeiaView extends javax.swing.JPanel {
                 "Código", "Solicitante", "Tema da Ideia"
             }
         ));
-        jScrollPane1.setViewportView(tbPesquisaAluno);
+        jScrollPane1.setViewportView(tbPesquisa);
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Trash.png"))); // NOI18N
         btnExcluir.setText("Excluir");
@@ -80,9 +85,9 @@ public class ConsultaIdeiaView extends javax.swing.JPanel {
 
         jLabel2.setText("Descrição da Ideia:");
 
-        taDescricaoIdeia.setColumns(20);
-        taDescricaoIdeia.setRows(5);
-        jScrollPane2.setViewportView(taDescricaoIdeia);
+        taDescricao.setColumns(20);
+        taDescricao.setRows(5);
+        jScrollPane2.setViewportView(taDescricao);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -96,14 +101,14 @@ public class ConsultaIdeiaView extends javax.swing.JPanel {
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnAlterar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnExcluir))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                        .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(335, 335, 335)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfConsultaAluno)
+                        .addComponent(tfConsulta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -114,19 +119,19 @@ public class ConsultaIdeiaView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tfConsultaAluno)
+                    .addComponent(tfConsulta)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAlterar)
-                    .addComponent(btnExcluir))
-                .addGap(27, 27, 27))
+                    .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -146,7 +151,7 @@ public class ConsultaIdeiaView extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 338, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -163,19 +168,19 @@ public class ConsultaIdeiaView extends javax.swing.JPanel {
         return btnExcluir;
     }
 
-    public JTextArea getTaDescricaoIdeia() {
-        return taDescricaoIdeia;
+    public JTextArea getTaDescricao() {
+        return taDescricao;
     }
 
-    public JTable getTbPesquisaAluno() {
-        return tbPesquisaAluno;
+    public JTable getTbPesquisa() {
+        return tbPesquisa;
     }
 
-    public JTextField getTfConsultaAluno() {
-        return tfConsultaAluno;
+    public JTextField getTfConsulta() {
+        return tfConsulta;
     }
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnConsultar;
@@ -185,8 +190,8 @@ public class ConsultaIdeiaView extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea taDescricaoIdeia;
-    private javax.swing.JTable tbPesquisaAluno;
-    private javax.swing.JTextField tfConsultaAluno;
+    private javax.swing.JTextArea taDescricao;
+    private javax.swing.JTable tbPesquisa;
+    private javax.swing.JTextField tfConsulta;
     // End of variables declaration//GEN-END:variables
 }
