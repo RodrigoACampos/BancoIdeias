@@ -45,7 +45,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         btnCadastroAluno = new javax.swing.JButton();
         btnConsultaAluno = new javax.swing.JButton();
         btnConsultaIdeias = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnCadastroIdeia = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
         btnSair = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -69,7 +69,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         menuCadastroSolicitante = new javax.swing.JMenuItem();
         menuConsultaSolicitante = new javax.swing.JMenuItem();
         ideias = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        menuCadastroIdeia = new javax.swing.JMenuItem();
         menuConsultaIdeia = new javax.swing.JMenuItem();
         Sair = new javax.swing.JMenu();
         menuSair = new javax.swing.JMenuItem();
@@ -130,8 +130,9 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         btnConsultaIdeias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Consulta.png"))); // NOI18N
         btnConsultaIdeias.setActionCommand("consultaIdeias");
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/jabber.png"))); // NOI18N
-        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCadastroIdeia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/jabber.png"))); // NOI18N
+        btnCadastroIdeia.setActionCommand("cadastroIdeia");
+        btnCadastroIdeia.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -155,7 +156,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnCadastroProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                        .addComponent(btnCadastroProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnConsultaProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
@@ -173,7 +174,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCadastroIdeia, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnConsultaIdeias, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -196,9 +197,9 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnConsultaIdeias, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(btnCadastroIdeia, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -211,9 +212,9 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(btnCadastroProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnConsultaProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(btnConsultaProfessor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnCadastroProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(btnCadastroSolicitante, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnConsultaSolicitante, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -290,8 +291,9 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         ideias.setText("Ideias");
 
-        jMenuItem7.setText("Cadastro");
-        ideias.add(jMenuItem7);
+        menuCadastroIdeia.setText("Cadastro");
+        menuCadastroIdeia.setActionCommand("menuCadIdeia");
+        ideias.add(menuCadastroIdeia);
 
         menuConsultaIdeia.setText("Consulta");
         menuConsultaIdeia.setActionCommand("menuConIdeia");
@@ -494,11 +496,22 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     public JMenuItem getMenuSair() {
         return menuSair;
     }
+
+    public JButton getBtnCadastroIdeia() {
+        return btnCadastroIdeia;
+    }
+
+    public JMenuItem getMenuCadastroIdeia() {
+        return menuCadastroIdeia;
+    }
+    
+    
                 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Sair;
     private javax.swing.JMenu aluno;
     private javax.swing.JButton btnCadastroAluno;
+    private javax.swing.JButton btnCadastroIdeia;
     private javax.swing.JButton btnCadastroProfessor;
     private javax.swing.JButton btnCadastroSolicitante;
     private javax.swing.JButton btnConsultaAluno;
@@ -507,7 +520,6 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     private javax.swing.JButton btnConsultaSolicitante;
     private javax.swing.JButton btnSair;
     private javax.swing.JMenu ideias;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -522,7 +534,6 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -531,6 +542,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JPanel jpfundo;
     private javax.swing.JMenuItem menuCadastroAluno;
+    private javax.swing.JMenuItem menuCadastroIdeia;
     private javax.swing.JMenuItem menuCadastroProfessor;
     private javax.swing.JMenuItem menuCadastroSolicitante;
     private javax.swing.JMenuItem menuConsultaAluno;
