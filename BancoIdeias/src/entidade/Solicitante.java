@@ -1,11 +1,11 @@
 package entidade;
 
 public class Solicitante {
-    
-   private Integer Id; 
-   private String Nome;
-   private String Email;
-   private String Telefone;
+
+    private Integer Id;
+    private String Nome;
+    private String Email;
+    private String Telefone;
 
     public Integer getId() {
         return Id;
@@ -38,6 +38,5 @@ public class Solicitante {
     public void setTelefone(String Telefone) {
         this.Telefone = Telefone;
     }
-   
-   
+
 }

@@ -4,10 +4,10 @@ public class Aluno {
 
     private Integer id;
     private String nome;
-    private String telefone;
     private String email;
+    private String telefone;
 
-   public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -23,6 +23,14 @@ public class Aluno {
         this.nome = nome;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getTelefone() {
         return telefone;
     }
@@ -31,12 +39,6 @@ public class Aluno {
         this.telefone = telefone;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+   
 
 }
