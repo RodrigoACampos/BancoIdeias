@@ -44,7 +44,7 @@ public class CadastroAlunoView extends javax.swing.JPanel {
         tbIdeia = new javax.swing.JTable();
         btnIdeia = new javax.swing.JButton();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro Aluno", 2, 0, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro Aluno", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 255))); // NOI18N
 
         jLabel1.setText("Nome Completo:");
 
@@ -77,7 +77,7 @@ public class CadastroAlunoView extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tbIdeia);
 
-        btnIdeia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ideia24x24.png"))); // NOI18N
+        btnIdeia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ideia16x16.png"))); // NOI18N
         btnIdeia.setText("Ideia");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -131,7 +131,7 @@ public class CadastroAlunoView extends javax.swing.JPanel {
                     .addComponent(btnCancelar)
                     .addComponent(btnSalvar)
                     .addComponent(btnIdeia, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

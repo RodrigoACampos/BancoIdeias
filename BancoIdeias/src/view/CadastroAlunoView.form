@@ -104,9 +104,9 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnIdeia" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnIdeia" alignment="3" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -175,7 +175,7 @@
         <Component class="javax.swing.JButton" name="btnIdeia">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/image/ideia24x24.png"/>
+              <Image iconType="3" name="/image/ideia16x16.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Ideia"/>
           </Properties>
