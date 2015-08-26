@@ -1,72 +1,42 @@
 package entidade;
 
 public class Solicitante {
-
-    private Integer id;
-    private String nome;
-    private String email;
-    private String sexo;
-    private String telefone;
-    private String celular;
-
-    public Solicitante() {
-    }
-
-    public Solicitante(int id, String nome, String email, String sexo, String telefone, String celular) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.sexo = sexo;
-        this.telefone = telefone;
-        this.celular = celular;
-    }
+   private Integer Id; 
+   private String Nome;
+   private String Email;
+   private String Telefone;
 
     public Integer getId() {
-        return id;
+        return Id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer Id) {
+        this.Id = Id;
     }
 
     public String getNome() {
-        return nome;
+        return Nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String Nome) {
+        this.Nome = Nome;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
 
     public String getTelefone() {
-        return telefone;
+        return Telefone;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setTelefone(String Telefone) {
+        this.Telefone = Telefone;
     }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
+   
+   
 }
