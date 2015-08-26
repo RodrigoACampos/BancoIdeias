@@ -24,6 +24,7 @@ public class SolicitanteDAOTest {
     
     @Before
     public void setUp() {
+        
     }
     
     @After
