@@ -1,22 +1,12 @@
+
 package entidade;
 
-public class Aluno {
 
+public class Professor {
     private Integer id;
     private String nome;
-    private String telefone;
-    private String email;
-
-    public Aluno() {
-    }
-
-    public Aluno(int id, String nome, String telefone, String email) {
-        this.id = id;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
-    }
-
+    private String email; 
+    
     public Integer getId() {
         return id;
     }
@@ -33,14 +23,6 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -48,5 +30,5 @@ public class Aluno {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    
 }
