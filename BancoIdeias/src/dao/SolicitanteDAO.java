@@ -21,15 +21,14 @@ import javax.swing.JOptionPane;
 public class SolicitanteDAO {
 
     public boolean salvar(Solicitante solicitante) {
+        
         boolean resultado = false;
         try {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
-            String QUERY_INSERT = "inster into solicitante (nome,email,telefone)"
-                    + " values (?,?,?)";
-            String QUERY_UPDATE = "update into solicitante nome = ?, email = ?, "
-                    + "telefone = ? where idsolicitante = ?";
+            String QUERY_INSERT = "insert into solicitante (nome, email, telefone) values (?, ?, ?)";
+            String QUERY_UPDATE = "update solicitante set nome = ?, email = ?, telefone = ? where idsolicitante = ? ";
 
             if (solicitante.getId() == null) {
                 stmt = conn.prepareStatement(QUERY_INSERT);
@@ -41,12 +40,14 @@ public class SolicitanteDAO {
                 stmt.setString(1, solicitante.getNome());
                 stmt.setString(2, solicitante.getEmail());
                 stmt.setString(3, solicitante.getTelefone());
+                stmt.setInt(4, solicitante.getId());
             }
 
             stmt.executeUpdate();
             conn.close();
 
             JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
+            
             resultado = true;
 
         } catch (Exception ex) {
