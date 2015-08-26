@@ -59,7 +59,6 @@ public class AlunoDAOTest {
         boolean result = instance.salvar(aluno);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
         
         System.out.println("Teste - Salvar novo Aluno");
         aluno = new Aluno();
@@ -95,7 +94,6 @@ public class AlunoDAOTest {
         Aluno result = instance.GetById(id);
         assertNotNull(result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -108,7 +106,6 @@ public class AlunoDAOTest {
         List<Aluno> result = instance.listar();
         assertNotNull(result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }  
     
      /**
@@ -124,7 +121,6 @@ public class AlunoDAOTest {
         boolean expResult = true;
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
