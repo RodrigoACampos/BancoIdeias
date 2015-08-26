@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import view.CadastroAlunoView;
+import view.CadastroIdeiaView;
 import view.CadastroProfessorView;
 import view.CadastroSolicitanteView;
 import view.ConsultaAlunoView;
@@ -31,7 +32,9 @@ public class TelaPrincipalController implements ActionListener {
     ConsultaProfessorView consultaProfessor;
     CadastroSolicitanteView cadastroSolicitante;
     ConsultaSolicitanteView consultaSolicitante;
+    CadastroIdeiaView cadastroIdeia;
     ConsultaIdeiaView consultaIdeia;
+   
 
     public TelaPrincipalController(TelaPrincipalView tpv) {
         this.tpv = tpv;
@@ -51,6 +54,7 @@ public class TelaPrincipalController implements ActionListener {
         tpv.getBtnConsultaProfessor().addActionListener(this);
         tpv.getBtnCadastroSolicitante().addActionListener(this);
         tpv.getBtnConsultaSolicitante().addActionListener(this);
+        tpv.getBtnCadastroIdeia().addActionListener(this);
         tpv.getBtnConsultaIdeias().addActionListener(this);
         tpv.getMenuCadastroAluno().addActionListener(this);
         tpv.getMenuConsultaAluno().addActionListener(this);
@@ -58,6 +62,7 @@ public class TelaPrincipalController implements ActionListener {
         tpv.getMenuConsultaProfessor().addActionListener(this);
         tpv.getMenuCadastroSolicitante().addActionListener(this);
         tpv.getMenuConsultaSolicitante().addActionListener(this);
+        tpv.getMenuCadastroIdeia().addActionListener(this);
         tpv.getMenuConsultaIdeia().addActionListener(this);
         tpv.getBtnSair().addActionListener(this);
         tpv.getMenuSair().addActionListener(this);                
@@ -154,12 +159,26 @@ public class TelaPrincipalController implements ActionListener {
             consultaSolicitante.setVisible(true);
             repintarTela(); 
         }
+        if (e.getActionCommand().equals("cadastroIdeia")) {
+            tpv.getJpfundo().removeAll();
+            cadastroIdeia = new CadastroIdeiaView();
+            tpv.getJpfundo().add(cadastroIdeia);
+            cadastroIdeia.setVisible(true);
+            repintarTela();            
+        }
         if (e.getActionCommand().equals("consultaIdeias")) {
             tpv.getJpfundo().removeAll();
             consultaIdeia = new ConsultaIdeiaView();
             tpv.getJpfundo().add(consultaIdeia);
             consultaIdeia.setVisible(true);
             repintarTela(); 
+        }
+        if (e.getActionCommand().equals("menuCadIdeia")) {
+            tpv.getJpfundo().removeAll();
+            cadastroIdeia = new CadastroIdeiaView();
+            tpv.getJpfundo().add(cadastroIdeia);
+            cadastroIdeia.setVisible(true);
+            repintarTela();
         }
         if (e.getActionCommand().equals("menuConIdeia")) {
             tpv.getJpfundo().removeAll();
