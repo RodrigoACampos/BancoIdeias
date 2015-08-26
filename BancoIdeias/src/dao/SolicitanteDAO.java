@@ -85,6 +85,40 @@ public class SolicitanteDAO {
         return resultado;
     }
 
+    public Solicitante GetById(int id) {
+
+        Solicitante solicitante = new Solicitante();
+        
+        try {
+
+            String QUERY_DETALHE = "select * from solicitante where idsolicitante = ?";
+            PreparedStatement stmt = null;
+            Connection conn = ConnectionManager.getConnection();
+
+            ResultSet rs = null;
+
+            stmt = conn.prepareStatement(QUERY_DETALHE);
+            stmt.setInt(1, id);
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                solicitante = new Solicitante();
+                solicitante.setId(rs.getInt("idSolicitante"));
+                solicitante.setNome(rs.getString("nome"));
+                solicitante.setEmail(rs.getString("email"));
+                solicitante.setTelefone(rs.getString("telefone"));
+            }
+            conn.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            solicitante = null;
+        }
+        
+        return solicitante;
+    }
+
     public List<Solicitante> listar() {
         List<Solicitante> lista = new ArrayList<Solicitante>();
         try {

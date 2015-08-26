@@ -1,6 +1,7 @@
 package entidade;
 
 public class Solicitante {
+    
    private Integer Id; 
    private String Nome;
    private String Email;

@@ -10,17 +10,6 @@ public class Ideia {
     private Date dtcadastro;
     private Solicitante solicitante;
     
-    public Ideia() {
-    }
-
-    public Ideia(int id, String tema, String descricao, Date dtcadastro, Solicitante solicitatnte) {
-        this.id = id;
-        this.tema = tema;
-        this.descricao = descricao;
-        this.dtcadastro = dtcadastro;
-        this.solicitante = solicitante;
-    }    
-
     public Integer getId() {
         return id;
     }

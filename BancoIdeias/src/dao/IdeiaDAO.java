@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import conexao.ConnectionManager;
 import entidade.Ideia;
+import entidade.Solicitante;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,8 +24,8 @@ public class IdeiaDAO {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
-            String QUERY_INSERT = "insert into ideia (tema, descricao, dt_cadastro) values(?,?,?)";
-            String QUERY_UPDATE = "update ideia set tema = ?, descricao = ?, dt_cadastro = ? where id = ?";
+            String QUERY_INSERT = "insert into ideia (tema, descricao, dt_cadastro, idsolicitante) values(?,?,?,?)";
+            String QUERY_UPDATE = "update ideia set tema = ?, descricao = ?, dt_cadastro = ?, idsolicitante = ? where idideia = ?";
 
             if (ideia.getId() == null) {
 
@@ -37,6 +33,7 @@ public class IdeiaDAO {
                 stmt.setString(1, ideia.getTema());
                 stmt.setString(2, ideia.getDescricao());
                 stmt.setDate(3, ideia.getDtcadastro());
+                stmt.setInt(4, ideia.getSolicitante().getId());
 
             } else {
 
@@ -44,7 +41,8 @@ public class IdeiaDAO {
                 stmt.setString(1, ideia.getTema());
                 stmt.setString(2, ideia.getDescricao());
                 stmt.setDate(3, ideia.getDtcadastro());
-                //stmt.setInt(4, usuario.getIdUsuario());
+                stmt.setInt(4, ideia.getSolicitante().getId());
+                stmt.setInt(5, ideia.getId());
 
             }
 
@@ -70,7 +68,7 @@ public class IdeiaDAO {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
-            String QUERY_DELETE = "delete from ideia where idIdeia = ?";
+            String QUERY_DELETE = "delete from ideia where idideia = ?";
 
             stmt = conn.prepareStatement(QUERY_DELETE);
             stmt.setInt(1, ideia.getId());
@@ -89,6 +87,42 @@ public class IdeiaDAO {
         return resultado;
     }
 
+    public Ideia GetById(int id) {
+        
+        Ideia ideia = new Ideia();
+
+        try {
+            String QUERY_DETALHE = "select * from ideia where idideia = ?";
+
+            PreparedStatement stmt = null;
+            Connection conn = ConnectionManager.getConnection();
+
+            ResultSet rs = null;
+
+            stmt = conn.prepareStatement(QUERY_DETALHE);
+                stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                ideia.setId(rs.getInt("idideia"));
+                ideia.setTema(rs.getString("tema"));
+                ideia.setDescricao(rs.getString("descricao"));
+                ideia.setDtcadastro(rs.getDate("dt_cadastro"));
+                SolicitanteDAO solicitanteDAO = new SolicitanteDAO();
+                ideia.setSolicitante(solicitanteDAO.GetById(rs.getInt("idsolicitante")));              
+            }
+            
+            conn.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            ideia = null;
+        }
+        
+        return ideia;
+        
+    }
+    
     public List<Ideia> listar() {
 
         List<Ideia> lista = new ArrayList<Ideia>();
@@ -106,12 +140,15 @@ public class IdeiaDAO {
 
             while (rs.next()) {
                 Ideia ideia = new Ideia();
-                ideia.setId(rs.getInt("idIdeia"));
+                ideia.setId(rs.getInt("idideia"));
                 ideia.setTema(rs.getString("tema"));
                 ideia.setDescricao(rs.getString("descricao"));
                 ideia.setDtcadastro(rs.getDate("dt_cadastro"));
+                SolicitanteDAO solicitanteDAO = new SolicitanteDAO();
+                ideia.setSolicitante(solicitanteDAO.GetById(rs.getInt("idsolicitante")));              
                 lista.add(ideia);
             }
+            
             conn.close();
 
         } catch (Exception ex) {
