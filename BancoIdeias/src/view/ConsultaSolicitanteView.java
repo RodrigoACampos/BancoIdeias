@@ -71,7 +71,7 @@ public class ConsultaSolicitanteView extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Ideia"
+                "Código", "Nome", "E-mail"
             }
         ));
         jScrollPane2.setViewportView(tbPesquisa);
