@@ -8,7 +8,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SolicitanteDAOTest {
     
     public SolicitanteDAOTest() {
@@ -35,7 +38,7 @@ public class SolicitanteDAOTest {
      * Test of salvar method, of class SolicitanteDAO.
      */
     @Test
-    public void testSalvar() {
+    public void test01_Salvar() {
         
         System.out.println("Teste - Salvar novo Solicitante");
         Solicitante solicitante = new Solicitante();
@@ -65,7 +68,7 @@ public class SolicitanteDAOTest {
      * Test of GetById method, of class SolicitanteDAO.
      */
     @Test
-    public void testGetById() {
+    public void test02_GetById() {
         System.out.println("Teste - GetById solicitante");
         int id = 1;
         SolicitanteDAO instance = new SolicitanteDAO();
@@ -77,7 +80,7 @@ public class SolicitanteDAOTest {
      * Test of listar method, of class SolicitanteDAO.
      */
     @Test
-    public void testListar() {
+    public void test03_Listar() {
         System.out.println("Teste - listar solicitante");
         SolicitanteDAO instance = new SolicitanteDAO();
         List<Solicitante> result = instance.listar();
@@ -88,7 +91,7 @@ public class SolicitanteDAOTest {
      * Test of deletar method, of class SolicitanteDAO.
      */
     @Test
-    public void testDeletar() {
+    public void test04_Deletar() {
         System.out.println("Teste - deletar solicitante");
         Solicitante solicitante = new Solicitante();
         solicitante.setId(1);
