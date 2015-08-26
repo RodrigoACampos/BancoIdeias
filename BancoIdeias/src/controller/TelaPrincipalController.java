@@ -180,7 +180,7 @@ public class TelaPrincipalController implements ActionListener {
             repintarTela(); 
         }       
         if (e.getActionCommand().equals("sair")) {
-            Object[] options = { "Sim", "Não" };  
+            String[] options = { "Sim", "Não" };  
             int i = JOptionPane.showOptionDialog(null,  
                 "Tem certeza que deseja sair?", "Saída",  
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,  
@@ -191,7 +191,7 @@ public class TelaPrincipalController implements ActionListener {
             }
         }    
         if (e.getActionCommand().equals("menuSair")) {
-            Object[] options = { "Sim", "Não" };  
+            String[] options = { "Sim", "Não" };  
             int i = JOptionPane.showOptionDialog(null,  
                 "Tem certeza que deseja sair?", "Saída",  
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,  
