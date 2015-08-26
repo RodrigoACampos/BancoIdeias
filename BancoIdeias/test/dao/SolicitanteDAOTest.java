@@ -50,10 +50,21 @@ public class SolicitanteDAOTest {
         boolean expResult = true;
         boolean result = instance.salvar(solicitante);
         assertEquals(expResult, result);
+        
+        System.out.println("Teste - Salvar novo Solicitante");
+        solicitante = new Solicitante();
+        solicitante.setId(null);
+        solicitante.setNome("Ana");
+        solicitante.setTelefone("21 99887766");
+        solicitante.setEmail("ana@contato.com");
+        instance = new SolicitanteDAO();
+        expResult = true;
+        result = instance.salvar(solicitante);
+        assertEquals(expResult, result);        
 
         System.out.println("Teste - Salvar um Solicitante já existente");
         solicitante = new Solicitante();
-        solicitante.setId(1);
+        solicitante.setId(2);
         solicitante.setNome("Maria");
         solicitante.setTelefone("47 99887766");
         solicitante.setEmail("maria@contato.com");
@@ -70,7 +81,7 @@ public class SolicitanteDAOTest {
     @Test
     public void test02_GetById() {
         System.out.println("Teste - GetById solicitante");
-        int id = 1;
+        int id = 2;
         SolicitanteDAO instance = new SolicitanteDAO();
         Solicitante result = instance.GetById(id);
         assertNotNull(result);
