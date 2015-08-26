@@ -35,7 +35,6 @@ public class ConsultaAlunoView extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbPesquisa = new javax.swing.JTable();
         btnExcluir = new javax.swing.JButton();
-        btnDetalhes = new javax.swing.JButton();
         tfConsulta = new javax.swing.JTextField();
         btnConsultar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
@@ -71,16 +70,13 @@ public class ConsultaAlunoView extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Idéia"
+                "Código", "Nome", "Email"
             }
         ));
         jScrollPane1.setViewportView(tbPesquisa);
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Trash.png"))); // NOI18N
         btnExcluir.setText("Excluir");
-
-        btnDetalhes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Info.png"))); // NOI18N
-        btnDetalhes.setText("Ver Idéia");
 
         btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Find.png"))); // NOI18N
 
@@ -105,9 +101,7 @@ public class ConsultaAlunoView extends javax.swing.JPanel {
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(121, 121, 121)
-                        .addComponent(btnDetalhes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(119, 119, 119)
+                        .addGap(344, 344, 344)
                         .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -123,7 +117,6 @@ public class ConsultaAlunoView extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDetalhes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -155,10 +148,6 @@ public class ConsultaAlunoView extends javax.swing.JPanel {
         return btnConsultar;
     }
 
-    public JButton getBtnDetalhes() {
-        return btnDetalhes;
-    }
-
     public JButton getBtnExcluir() {
         return btnExcluir;
     }
@@ -171,11 +160,10 @@ public class ConsultaAlunoView extends javax.swing.JPanel {
         return tfConsulta;
     }
 
-        
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnConsultar;
-    private javax.swing.JButton btnDetalhes;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
