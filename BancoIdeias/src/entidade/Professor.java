@@ -6,7 +6,7 @@ public class Professor {
     private Integer id;
     private String nome;
     private String email; 
-    private String telefone;
+    
 
     public Integer getId() {
         return id;
@@ -32,13 +32,7 @@ public class Professor {
         this.email = email;
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+   
     
     
 }
