@@ -2,6 +2,7 @@ package conexao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import javax.swing.JOptionPane;
 
 public class ConnectionManager {
 
@@ -19,6 +20,7 @@ public class ConnectionManager {
             conn = DriverManager.getConnection(STR_CONEX, USER, PASSWORD);
         } catch (Exception ex) {
             ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro de connexão com o banco de dado!");
         }
 
         return conn;
