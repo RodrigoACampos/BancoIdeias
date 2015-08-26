@@ -20,7 +20,7 @@ public class ConnectionManager {
             conn = DriverManager.getConnection(STR_CONEX, USER, PASSWORD);
         } catch (Exception ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Erro de connexão com o banco de dado!");
+            JOptionPane.showMessageDialog(null, "Erro de conexão com o banco de dados!");
         }
 
         return conn;
