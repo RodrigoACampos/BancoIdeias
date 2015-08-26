@@ -113,6 +113,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         btnCadastroAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/alunos.png"))); // NOI18N
         btnCadastroAluno.setActionCommand("cadastroAluno");
+        btnCadastroAluno.setBorderPainted(false);
+        btnCadastroAluno.setContentAreaFilled(false);
         btnCadastroAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastroAlunoActionPerformed(evt);
@@ -121,6 +123,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         btnConsultaAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Consulta.png"))); // NOI18N
         btnConsultaAluno.setActionCommand("consultaAluno");
+        btnConsultaAluno.setContentAreaFilled(false);
         btnConsultaAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultaAlunoActionPerformed(evt);
@@ -148,8 +151,9 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnCadastroAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnConsultaAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                        .addGap(0, 0, 0)
+                        .addComponent(btnConsultaAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(6, 6, 6))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
