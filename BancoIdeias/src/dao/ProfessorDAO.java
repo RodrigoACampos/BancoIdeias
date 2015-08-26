@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import conexao.ConnectionManager;
-import entidade.Aluno;
+import entidade.Professor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,33 +9,29 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author bruno_balan
- */
-public class AlunoDAO {
+public class ProfessorDAO {
 
-    public boolean salvar(Aluno aluno) {
+    public boolean salvar(Professor professor) {
         
         boolean resultado = false;
         try {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
-            String QUERY_INSERT = "insert into aluno (nome, email, telefone) values (?, ?, ?)";
-            String QUERY_UPDATE = "update aluno set nome = ?, email = ?, telefone = ? where idaluno = ? ";
+            String QUERY_INSERT = "insert into professor (nome, email, telefone) values (?, ?, ?)";
+            String QUERY_UPDATE = "update professor set nome = ?, email = ?, telefone = ? where idprofessor = ? ";
 
-            if (aluno.getId() == null) {
+            if (professor.getId() == null) {
                 stmt = conn.prepareStatement(QUERY_INSERT);
-                stmt.setString(1, aluno.getNome());
-                stmt.setString(2, aluno.getEmail());
-                stmt.setString(3, aluno.getTelefone());
+                stmt.setString(1, professor.getNome());
+                stmt.setString(2, professor.getEmail());
+                stmt.setString(3, professor.getTelefone());
             } else {
                 stmt = conn.prepareStatement(QUERY_UPDATE);
-                stmt.setString(1, aluno.getNome());
-                stmt.setString(2, aluno.getEmail());
-                stmt.setString(3, aluno.getTelefone());
-                stmt.setInt(4, aluno.getId());
+                stmt.setString(1, professor.getNome());
+                stmt.setString(2, professor.getEmail());
+                stmt.setString(3, professor.getTelefone());
+                stmt.setInt(4, professor.getId());
             }
 
             stmt.executeUpdate();
@@ -58,7 +49,7 @@ public class AlunoDAO {
         return resultado;
     }
 
-    public boolean deletar(Aluno aluno) {
+    public boolean deletar(Professor professor) {
 
         boolean resultado = false;
 
@@ -66,10 +57,10 @@ public class AlunoDAO {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
-            String QUERY_DELETE = "delete from aluno where idaluno = ?";
+            String QUERY_DELETE = "delete from professor where idprofessor = ?";
 
             stmt = conn.prepareStatement(QUERY_DELETE);
-            stmt.setInt(1, aluno.getId());
+            stmt.setInt(1, professor.getId());
 
             stmt.executeUpdate();
             conn.close();
@@ -86,13 +77,13 @@ public class AlunoDAO {
         return resultado;
     }
 
-    public Aluno GetById(int id) {
+    public Professor GetById(int id) {
 
-        Aluno aluno = new Aluno();
+        Professor professor = new Professor();
         
         try {
 
-            String QUERY_DETALHE = "select * from aluno where idaluno = ?";
+            String QUERY_DETALHE = "select * from professor where idprofessor = ?";
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
@@ -104,26 +95,26 @@ public class AlunoDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                aluno = new Aluno();
-                aluno.setId(rs.getInt("idAluno"));
-                aluno.setNome(rs.getString("nome"));
-                aluno.setEmail(rs.getString("email"));
-                aluno.setTelefone(rs.getString("telefone"));
+                professor = new Professor();
+                professor.setId(rs.getInt("idProfessor"));
+                professor.setNome(rs.getString("nome"));
+                professor.setEmail(rs.getString("email"));
+                professor.setTelefone(rs.getString("telefone"));
             }
             conn.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();
-            aluno = null;
+            professor = null;
         }
         
-        return aluno;
+        return professor;
     }
 
-    public List<Aluno> listar() {
-        List<Aluno> lista = new ArrayList<Aluno>();
+    public List<Professor> listar() {
+        List<Professor> lista = new ArrayList<Professor>();
         try {
-            String QUERY_DETALHE = "select * from aluno";
+            String QUERY_DETALHE = "select * from professor";
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
@@ -133,12 +124,12 @@ public class AlunoDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Aluno aluno = new Aluno();
-                aluno.setId(rs.getInt("idAluno"));
-                aluno.setNome(rs.getString("nome"));
-                aluno.setEmail(rs.getString("email"));
-                aluno.setTelefone(rs.getString("telefone"));
-                lista.add(aluno);
+                Professor professor = new Professor();
+                professor.setId(rs.getInt("idProfessor"));
+                professor.setNome(rs.getString("nome"));
+                professor.setEmail(rs.getString("email"));
+                professor.setTelefone(rs.getString("telefone"));
+                lista.add(professor);
             }
             conn.close();
 
