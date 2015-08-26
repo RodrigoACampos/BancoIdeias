@@ -7,17 +7,7 @@ public class Aluno {
     private String telefone;
     private String email;
 
-    public Aluno() {
-    }
-
-    public Aluno(int id, String nome, String telefone, String email) {
-        this.id = id;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
-    }
-
-    public Integer getId() {
+   public Integer getId() {
         return id;
     }
 
