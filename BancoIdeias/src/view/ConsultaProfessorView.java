@@ -40,7 +40,7 @@ public class ConsultaProfessorView extends javax.swing.JPanel {
         btnAlterar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consulta Professor", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 51, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consulta Professor", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 0, 0))); // NOI18N
 
         tbPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
