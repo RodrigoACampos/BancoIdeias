@@ -13,7 +13,7 @@ public class ConnectionManager {
         String STR_DRIVER = "org.gjt.mm.mysql.Driver";
         String STR_CONEX = "jdbc:mysql://localhost:3306/DBBANCODEIDEIAS";
         String USER = "root";
-        String PASSWORD = "1704";
+        String PASSWORD = "";
 
         try {
             Class.forName(STR_DRIVER);
