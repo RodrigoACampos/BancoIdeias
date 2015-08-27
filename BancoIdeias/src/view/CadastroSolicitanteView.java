@@ -5,7 +5,7 @@
  */
 package view;
 
-import controller.SolicitanteControllerP;
+
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
@@ -17,14 +17,13 @@ import javax.swing.JTextField;
  */
 public class CadastroSolicitanteView extends javax.swing.JPanel {
 
-    SolicitanteControllerP SolController = new SolicitanteControllerP();
+    
 
     /**
      * Creates new form CadastroSolicitanteView
      */
     public CadastroSolicitanteView() {
         initComponents();
-        SolController.carregarIdeias();
     }
 
     /**
@@ -194,7 +193,7 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        SolController.salvarSolicitante();
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     public JButton getBtnCancelar() {
