@@ -1,0 +1,31 @@
+CadastroSolicitanteView
+
+
+private TelaPrincipalController telaPrincipalController;
+
+    public TelaPrincipalController getTelaPrincipalController() {
+        return telaPrincipalController;
+    }
+
+    public void setTelaPrincipalController(TelaPrincipalController telaPrincipalController) {
+        this.telaPrincipalController = telaPrincipalController;
+    }
+
+
+
+SolicitanteCotroller linha 70
+
+cadSolicitanteView.getTelaPrincipalController().atualizarValores();
+
+
+TelaPrincipalController linha 85
+
+
+    public void atualizarValores() {
+        solicitanteDAO = new SolicitanteDAO();
+        tpv.getLblValorQtdeSolicitante().setText(Integer.toString(solicitanteDAO.listar().size()));
+    }
+
+linha 166
+
+            cadastroSolicitante.setTelaPrincipalController(this);
