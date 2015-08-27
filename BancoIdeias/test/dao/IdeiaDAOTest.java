@@ -54,7 +54,7 @@ public class IdeiaDAOTest {
      * Test of salvar method, of class IdeiaDAO.
      */
     @Test
-    public void testSalvar() throws ParseException {
+    public void testSalvar1() throws ParseException {
 
         int rs = 1;
         System.out.println("salvar");
@@ -76,10 +76,10 @@ public class IdeiaDAOTest {
      * Test of deletar method, of class IdeiaDAO.
      */
     @Test
-    public void testDeletar() {
+    public void testDeletar4() {
         System.out.println("deletar");
         Ideia ideia = new Ideia();
-        ideia.setId(1);
+        ideia.setId(2);
         IdeiaDAO instance = new IdeiaDAO();
         boolean expResult = true;
         boolean result = instance.deletar(ideia);
@@ -91,7 +91,7 @@ public class IdeiaDAOTest {
      * Test of GetById method, of class IdeiaDAO.
      */
     @Test
-    public void testGetById() {
+    public void testGetById2() {
         System.out.println("GetById");
         int id = 2;
         IdeiaDAO instance = new IdeiaDAO();
@@ -104,12 +104,11 @@ public class IdeiaDAOTest {
      * Test of listar method, of class IdeiaDAO.
      */
     @Test
-    public void testListar() {
+    public void testListar3() {
         System.out.println("listar");
         IdeiaDAO instance = new IdeiaDAO();
-        List<Ideia> expResult = null;
         List<Ideia> result = instance.listar();
-        assertEquals(expResult, result);
+        assertEquals(result, result);
         // TODO review the generated test code and remove the default call to fail.
     }
 
