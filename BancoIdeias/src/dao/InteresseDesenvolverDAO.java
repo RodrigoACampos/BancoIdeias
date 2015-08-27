@@ -32,14 +32,14 @@ public class InteresseDesenvolverDAO {
             String QUERY_INSERT = "insert into interesse_desenvolver (idideia, idaluno) values (?, ?)";
             String QUERY_UPDATE = "update aluno set idideia = ?, idaluno = ? where idaluno = ? and idideia = ?";
 
-            if (GetById(interesseDesenvolver) == null) {                      
+            if (GetById(interesseDesenvolver) == null) {
                 stmt = conn.prepareStatement(QUERY_INSERT);
                 stmt.setInt(1, interesseDesenvolver.getIdeia().getId());
                 stmt.setInt(2, interesseDesenvolver.getAluno().getId());
-            }else {
+            } else {
                 stmt = conn.prepareStatement(QUERY_UPDATE);
                 stmt.setInt(1, interesseDesenvolver.getIdeia().getId());
-                stmt.setInt(2, interesseDesenvolver.getAluno().getId());                
+                stmt.setInt(2, interesseDesenvolver.getAluno().getId());
                 stmt.setInt(3, interesseDesenvolver.getIdeia().getId());
                 stmt.setInt(4, interesseDesenvolver.getAluno().getId());
             }
@@ -123,7 +123,7 @@ public class InteresseDesenvolverDAO {
     }
 
     public List<InteresseDesenvolver> listarByIdeia(int id) {
-        
+
         List<InteresseDesenvolver> lista = new ArrayList<InteresseDesenvolver>();
         try {
             String QUERY_DETALHE = "select * from INTERESSE_DESENVOLVER where IDIDEIA = ?";
@@ -136,13 +136,13 @@ public class InteresseDesenvolverDAO {
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
-            while (rs.next()) {                
+            while (rs.next()) {
                 InteresseDesenvolver interesseDesenvolver = new InteresseDesenvolver();
                 IdeiaDAO ideiaDAO = new IdeiaDAO();
                 interesseDesenvolver.setIdeia(ideiaDAO.GetById(rs.getInt("IDIDEIA")));
                 AlunoDAO alunoDAO = new AlunoDAO();
                 interesseDesenvolver.setAluno(alunoDAO.GetById(rs.getInt("IDALUNO")));
-                lista.add(interesseDesenvolver);                
+                lista.add(interesseDesenvolver);
             }
             conn.close();
 

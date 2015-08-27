@@ -90,7 +90,7 @@ public class InteresseOrientarDAO {
     public InteresseOrientar GetById(InteresseOrientar pInteresseOrientar) {
 
         InteresseOrientar interesseOrientar = null;
-        try {           
+        try {
 
             String QUERY_DETALHE = "select * from INTERESSE_ORIENTAR where IDIDEIA = ? and IDPROFESSOR = ?";
             PreparedStatement stmt = null;
@@ -104,24 +104,24 @@ public class InteresseOrientarDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                
+
                 interesseOrientar = new InteresseOrientar();
                 IdeiaDAO ideiaDAO = new IdeiaDAO();
                 interesseOrientar.setIdeia(ideiaDAO.GetById(rs.getInt("IDIDEIA")));
                 ProfessorDAO professorDAO = new ProfessorDAO();
                 interesseOrientar.setProfessor(professorDAO.GetById(rs.getInt("IDPROFESSOR")));
-                
+
             }
             conn.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();
-        }        
+        }
         return interesseOrientar;
     }
-    
+
     public List<InteresseOrientar> listarByIdProfessor(int id) {
-        
+
         List<InteresseOrientar> lista = new ArrayList<InteresseOrientar>();
         try {
             String QUERY_DETALHE = "select * from INTERESSE_ORIENTAR where IDPROFESSOR = ?";
@@ -135,14 +135,14 @@ public class InteresseOrientarDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                
+
                 InteresseOrientar interesseOrientar = new InteresseOrientar();
                 IdeiaDAO ideiaDAO = new IdeiaDAO();
                 interesseOrientar.setIdeia(ideiaDAO.GetById(rs.getInt("IDIDEIA")));
                 ProfessorDAO professorDAO = new ProfessorDAO();
                 interesseOrientar.setProfessor(professorDAO.GetById(rs.getInt("IDPROFESSOR")));
                 lista.add(interesseOrientar);
-                
+
             }
             conn.close();
 
