@@ -30,7 +30,7 @@ public class InteresseDesenvolverDAO {
             Connection conn = ConnectionManager.getConnection();
 
             String QUERY_INSERT = "insert into interesse_desenvolver (idideia, idaluno) values (?, ?)";
-            String QUERY_UPDATE = "update aluno set idideia = ?, idaluno = ? where idaluno = ? and idideia = ?";
+            String QUERY_UPDATE = "update aluno set idideia = ?, idaluno = ? where idideia = ? and idaluno = ?";
 
             if (GetById(interesseDesenvolver) == null) {
                 stmt = conn.prepareStatement(QUERY_INSERT);
@@ -126,7 +126,7 @@ public class InteresseDesenvolverDAO {
 
         List<InteresseDesenvolver> lista = new ArrayList<InteresseDesenvolver>();
         try {
-            String QUERY_DETALHE = "select * from INTERESSE_DESENVOLVER where IDIDEIA = ?";
+            String QUERY_DETALHE = "select * from INTERESSE_DESENVOLVER where IDALUNO = ?";
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
