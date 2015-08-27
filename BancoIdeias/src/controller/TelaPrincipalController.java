@@ -86,7 +86,7 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
                 options, options[0]);
         if (i == JOptionPane.YES_OPTION) {
             tpv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            //System.exit(0);
+            System.exit(0);
         } else {
             tpv.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         }
