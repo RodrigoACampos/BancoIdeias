@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import view.CadastroAlunoView;
@@ -42,7 +44,12 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
     }
 
     public void montarEAssinar() {
-        tpv.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        tpv.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e){
+                    acaoSair();
+            }
+        });
+        tpv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tpv.setVisible(true);
         tpv.getBtnCadastroAluno().addActionListener(this);
         tpv.getBtnCadastroAluno().addMouseListener(this);
@@ -77,8 +84,10 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
                 options, options[0]);
         if (i == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(null, "Você saiu do Banco de Ideias!");
-            System.exit(0);
+            tpv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //System.exit(0);
+        } else {
+            tpv.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         }
     }
 
@@ -235,4 +244,6 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         tpv.getBtnCadastroAluno().setBorderPainted(false);
         tpv.getBtnCadastroAluno().setContentAreaFilled(false);
     }
+
+    
 }
