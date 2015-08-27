@@ -45,6 +45,7 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
 
     public void montarEAssinar() {
         tpv.addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent e){
                     acaoSair();
             }
