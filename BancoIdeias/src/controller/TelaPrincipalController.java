@@ -64,6 +64,18 @@ public class TelaPrincipalController implements ActionListener {
         tpv.repaint();
         tpv.revalidate();
     }
+    
+    private void acaoSair() {
+        String[] options = { " Sim ", " Não " };  
+        int i = JOptionPane.showOptionDialog(null,  
+            "Tem certeza que deseja sair?", "Saída",  
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,  
+            options, options[0]);  
+        if (i == JOptionPane.YES_OPTION) {  
+            JOptionPane.showMessageDialog(null, "Você saiu do Banco de Ideias!");
+            System.exit(0);  
+        }
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -180,26 +192,10 @@ public class TelaPrincipalController implements ActionListener {
             repintarTela(); 
         }       
         if (e.getActionCommand().equals("sair")) {
-            String[] options = { " Sim ", " Não " };  
-            int i = JOptionPane.showOptionDialog(null,  
-                "Tem certeza que deseja sair?", "Saída",  
-                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,  
-                options, options[0]);  
-            if (i == JOptionPane.YES_OPTION) {  
-                JOptionPane.showMessageDialog(null, "Você saiu do Banco de Ideias!");
-                System.exit(0);  
-            }
+            acaoSair();
         }    
         if (e.getActionCommand().equals("menuSair")) {
-            String[] options = { " Sim ", " Não " };  
-            int i = JOptionPane.showOptionDialog(null,  
-                "Tem certeza que deseja sair?", "Saída",  
-                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,  
-                options, options[0]);  
-            if (i == JOptionPane.YES_OPTION) {  
-                JOptionPane.showMessageDialog(null, "Você saiu do Banco de Ideias!");
-                System.exit(0);  
-            }            
+            acaoSair();            
         }
     }
 }
