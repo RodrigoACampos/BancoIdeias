@@ -2,6 +2,9 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import view.CadastroAlunoView;
@@ -15,7 +18,7 @@ import view.ConsultaProfessorView;
 import view.ConsultaSolicitanteView;
 import view.TelaPrincipalView;
 
-public class TelaPrincipalController implements ActionListener {
+public class TelaPrincipalController implements ActionListener, MouseListener {
 
     TelaPrincipalView tpv;
     CadastroAlunoView cadastroAluno;
@@ -26,7 +29,6 @@ public class TelaPrincipalController implements ActionListener {
     ConsultaSolicitanteView consultaSolicitante;
     CadastroIdeiaView cadastroIdeia;
     ConsultaIdeiaView consultaIdeia;
-   
 
     public TelaPrincipalController(TelaPrincipalView tpv) {
         this.tpv = tpv;
@@ -41,6 +43,7 @@ public class TelaPrincipalController implements ActionListener {
         tpv.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         tpv.setVisible(true);
         tpv.getBtnCadastroAluno().addActionListener(this);
+        tpv.getBtnCadastroAluno().addMouseListener(this);
         tpv.getBtnConsultaAluno().addActionListener(this);
         tpv.getBtnCadastroProfessor().addActionListener(this);
         tpv.getBtnConsultaProfessor().addActionListener(this);
@@ -57,23 +60,23 @@ public class TelaPrincipalController implements ActionListener {
         tpv.getMenuCadastroIdeia().addActionListener(this);
         tpv.getMenuConsultaIdeia().addActionListener(this);
         tpv.getBtnSair().addActionListener(this);
-        tpv.getMenuSair().addActionListener(this);                
+        tpv.getMenuSair().addActionListener(this);
     }
 
     private void repintarTela() {
         tpv.repaint();
         tpv.revalidate();
     }
-    
+
     private void acaoSair() {
-        String[] options = { " Sim ", " Não " };  
-        int i = JOptionPane.showOptionDialog(null,  
-            "Tem certeza que deseja sair?", "Saída",  
-            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,  
-            options, options[0]);  
-        if (i == JOptionPane.YES_OPTION) {  
+        String[] options = {" Sim ", " Não "};
+        int i = JOptionPane.showOptionDialog(null,
+                "Tem certeza que deseja sair?", "Saída",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
+                options, options[0]);
+        if (i == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(null, "Você saiu do Banco de Ideias!");
-            System.exit(0);  
+            System.exit(0);
         }
     }
 
@@ -92,7 +95,7 @@ public class TelaPrincipalController implements ActionListener {
             tpv.getJpfundo().add(consultaAluno);
             consultaAluno.setVisible(true);
             repintarTela();
-        }        
+        }
         if (e.getActionCommand().equals("menuCadAluno")) {
             tpv.getJpfundo().removeAll();
             cadastroAluno = new CadastroAlunoView();
@@ -115,11 +118,11 @@ public class TelaPrincipalController implements ActionListener {
             repintarTela();
         }
         if (e.getActionCommand().equals("consultaProfessor")) {
-           tpv.getJpfundo().removeAll();
+            tpv.getJpfundo().removeAll();
             consultaProfessor = new ConsultaProfessorView();
             tpv.getJpfundo().add(consultaProfessor);
             consultaProfessor.setVisible(true);
-            repintarTela(); 
+            repintarTela();
         }
         if (e.getActionCommand().equals("menuCadProfessor")) {
             tpv.getJpfundo().removeAll();
@@ -133,7 +136,7 @@ public class TelaPrincipalController implements ActionListener {
             consultaProfessor = new ConsultaProfessorView();
             tpv.getJpfundo().add(consultaProfessor);
             consultaProfessor.setVisible(true);
-            repintarTela(); 
+            repintarTela();
         }
         if (e.getActionCommand().equals("cadastroSolicitante")) {
             tpv.getJpfundo().removeAll();
@@ -147,7 +150,7 @@ public class TelaPrincipalController implements ActionListener {
             consultaSolicitante = new ConsultaSolicitanteView();
             tpv.getJpfundo().add(consultaSolicitante);
             consultaSolicitante.setVisible(true);
-            repintarTela(); 
+            repintarTela();
         }
         if (e.getActionCommand().equals("menuCadSolicitante")) {
             tpv.getJpfundo().removeAll();
@@ -161,21 +164,21 @@ public class TelaPrincipalController implements ActionListener {
             consultaSolicitante = new ConsultaSolicitanteView();
             tpv.getJpfundo().add(consultaSolicitante);
             consultaSolicitante.setVisible(true);
-            repintarTela(); 
+            repintarTela();
         }
         if (e.getActionCommand().equals("cadastroIdeia")) {
             tpv.getJpfundo().removeAll();
             cadastroIdeia = new CadastroIdeiaView();
             tpv.getJpfundo().add(cadastroIdeia);
             cadastroIdeia.setVisible(true);
-            repintarTela();            
+            repintarTela();
         }
         if (e.getActionCommand().equals("consultaIdeias")) {
             tpv.getJpfundo().removeAll();
             consultaIdeia = new ConsultaIdeiaView();
             tpv.getJpfundo().add(consultaIdeia);
             consultaIdeia.setVisible(true);
-            repintarTela(); 
+            repintarTela();
         }
         if (e.getActionCommand().equals("menuCadIdeia")) {
             tpv.getJpfundo().removeAll();
@@ -189,13 +192,41 @@ public class TelaPrincipalController implements ActionListener {
             consultaIdeia = new ConsultaIdeiaView();
             tpv.getJpfundo().add(consultaIdeia);
             consultaIdeia.setVisible(true);
-            repintarTela(); 
-        }       
+            repintarTela();
+        }
         if (e.getActionCommand().equals("sair")) {
             acaoSair();
-        }    
-        if (e.getActionCommand().equals("menuSair")) {
-            acaoSair();            
         }
+        if (e.getActionCommand().equals("menuSair")) {
+            acaoSair();
+        }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        tpv.getBtnCadastroAluno().setBorderPainted(true);
+        tpv.getBtnCadastroAluno().setContentAreaFilled(true);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        tpv.getBtnCadastroAluno().setBorderPainted(true);
+        tpv.getBtnCadastroAluno().setContentAreaFilled(true);
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        tpv.getBtnCadastroAluno().setBorderPainted(true);
+        tpv.getBtnCadastroAluno().setContentAreaFilled(true);
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        tpv.getBtnCadastroAluno().setBorderPainted(false);
+        tpv.getBtnCadastroAluno().setContentAreaFilled(false);
     }
 }
