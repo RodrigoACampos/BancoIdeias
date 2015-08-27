@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.SolicitanteControllerP;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
@@ -16,14 +17,16 @@ import javax.swing.JTextField;
  */
 public class CadastroSolicitanteView extends javax.swing.JPanel {
 
+    SolicitanteControllerP SolController = new SolicitanteControllerP();
+
     /**
      * Creates new form CadastroSolicitanteView
      */
     public CadastroSolicitanteView() {
         initComponents();
+        SolController.carregarIdeias();
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,12 +62,17 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro Solicitante", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro Solicitante", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         jLabel1.setText("Nome Completo:");
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -187,6 +195,10 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        SolController.salvarSolicitante();
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
     public JButton getBtnCancelar() {
         return btnCancelar;
     }
@@ -215,7 +227,6 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
         return tfNome;
     }
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
