@@ -228,7 +228,7 @@
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="btnConsultaAluno" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jLabel1" min="-2" pref="160" max="-2" attributes="0"/>
+                      <Component id="jLabel1" pref="160" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="2" max="-2" attributes="0"/>
@@ -257,9 +257,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="btnCadastroIdeia" min="-2" pref="75" max="-2" attributes="0"/>
+                          <Component id="btnCadastroIdeia" pref="75" max="32767" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="btnConsultaIdeias" min="-2" pref="75" max="-2" attributes="0"/>
+                          <Component id="btnConsultaIdeias" pref="75" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jLabel4" max="32767" attributes="0"/>
                   </Group>
