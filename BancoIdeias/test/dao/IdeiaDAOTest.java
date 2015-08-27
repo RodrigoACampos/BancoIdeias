@@ -54,18 +54,17 @@ public class IdeiaDAOTest {
      * Test of salvar method, of class IdeiaDAO.
      */
     @Test
-    public void testSalvar1() throws ParseException {
+    public void test01_Salvar() throws ParseException {
 
-        int rs = 1;
         System.out.println("salvar");
         Ideia ideia = new Ideia();
-        ideia.setTema("O Leão Dourado");
         ideia.setId(null);
+        ideia.setTema("O Leão Dourado");
         ideia.setDescricao("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         ideia.setDtcadastro(new java.sql.Date(formato.parse("26/08/2015").getTime()));
         SolicitanteDAO solicitanteDAO = new SolicitanteDAO();
-        ideia.setSolicitante(solicitanteDAO.GetById(rs));
+        ideia.setSolicitante(solicitanteDAO.GetById(3));
         IdeiaDAO instance = new IdeiaDAO();
         boolean expResult = true;
         boolean result = instance.salvar(ideia);
@@ -73,25 +72,10 @@ public class IdeiaDAOTest {
     }
 
     /**
-     * Test of deletar method, of class IdeiaDAO.
-     */
-    @Test
-    public void testDeletar4() {
-        System.out.println("deletar");
-        Ideia ideia = new Ideia();
-        ideia.setId(2);
-        IdeiaDAO instance = new IdeiaDAO();
-        boolean expResult = true;
-        boolean result = instance.deletar(ideia);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-    }
-
-    /**
      * Test of GetById method, of class IdeiaDAO.
      */
     @Test
-    public void testGetById2() {
+    public void test02_GetById() {
         System.out.println("GetById");
         int id = 2;
         IdeiaDAO instance = new IdeiaDAO();
@@ -104,11 +88,26 @@ public class IdeiaDAOTest {
      * Test of listar method, of class IdeiaDAO.
      */
     @Test
-    public void testListar3() {
+    public void test03_Listar() {
         System.out.println("listar");
         IdeiaDAO instance = new IdeiaDAO();
         List<Ideia> result = instance.listar();
         assertEquals(result, result);
+        // TODO review the generated test code and remove the default call to fail.
+    }
+
+    /**
+     * Test of deletar method, of class IdeiaDAO.
+     */
+    @Test
+    public void test04_Deletar() {
+        System.out.println("deletar");
+        Ideia ideia = new Ideia();
+        ideia.setId(2);
+        IdeiaDAO instance = new IdeiaDAO();
+        boolean expResult = true;
+        boolean result = instance.deletar(ideia);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
     }
 
