@@ -74,9 +74,11 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.setActionCommand("salvar");
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.setActionCommand("cancelar");
 
         tbIdeia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,6 +106,7 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
 
         btnIdeia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ideia16x16.png"))); // NOI18N
         btnIdeia.setText("Ideia");
+        btnIdeia.setActionCommand("ideia");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

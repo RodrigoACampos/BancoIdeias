@@ -163,6 +163,7 @@
               <Image iconType="3" name="/image/Save.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Salvar"/>
+            <Property name="actionCommand" type="java.lang.String" value="salvar"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnCancelar">
@@ -171,6 +172,7 @@
               <Image iconType="3" name="/image/Cancel.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
+            <Property name="actionCommand" type="java.lang.String" value="cancelar"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -197,6 +199,7 @@
               <Image iconType="3" name="/image/ideia16x16.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Ideia"/>
+            <Property name="actionCommand" type="java.lang.String" value="ideia"/>
           </Properties>
         </Component>
       </SubComponents>

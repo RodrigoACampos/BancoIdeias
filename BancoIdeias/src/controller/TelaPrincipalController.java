@@ -26,6 +26,8 @@ public class TelaPrincipalController implements ActionListener {
     ConsultaSolicitanteView consultaSolicitante;
     CadastroIdeiaView cadastroIdeia;
     ConsultaIdeiaView consultaIdeia;
+    
+    SolicitanteCotroller sc;
    
 
     public TelaPrincipalController(TelaPrincipalView tpv) {
@@ -125,7 +127,11 @@ public class TelaPrincipalController implements ActionListener {
         }
         if (e.getActionCommand().equals("cadastroSolicitante")) {
             tpv.getJpfundo().removeAll();
-            cadastroSolicitante = new CadastroSolicitanteView();
+            
+            cadastroSolicitante = new CadastroSolicitanteView();            
+            sc = new SolicitanteCotroller(cadastroSolicitante);
+            sc.iniciar();
+            
             tpv.getJpfundo().add(cadastroSolicitante);
             cadastroSolicitante.setVisible(true);
             repintarTela();
