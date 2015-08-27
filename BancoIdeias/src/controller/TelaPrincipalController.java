@@ -38,7 +38,7 @@ public class TelaPrincipalController implements ActionListener {
     }
 
     public void montarEAssinar() {
-        tpv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        tpv.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         tpv.setVisible(true);
         tpv.getBtnCadastroAluno().addActionListener(this);
         tpv.getBtnConsultaAluno().addActionListener(this);
