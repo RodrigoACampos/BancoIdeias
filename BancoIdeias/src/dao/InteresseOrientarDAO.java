@@ -90,8 +90,7 @@ public class InteresseOrientarDAO {
     public InteresseOrientar GetById(InteresseOrientar pInteresseOrientar) {
 
         InteresseOrientar interesseOrientar = null;
-        try {
-            
+        try {           
 
             String QUERY_DETALHE = "select * from INTERESSE_ORIENTAR where IDIDEIA = ? and IDPROFESSOR = ?";
             PreparedStatement stmt = null;
