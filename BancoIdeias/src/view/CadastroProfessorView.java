@@ -56,7 +56,7 @@ public class CadastroProfessorView extends javax.swing.JPanel {
         ftfTelefone = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro Professor", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro Professor", 2, 0, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
         jPanel2.setPreferredSize(new java.awt.Dimension(535, 338));
 
         jLabel1.setText("Nome Completo:");
@@ -90,12 +90,15 @@ public class CadastroProfessorView extends javax.swing.JPanel {
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.setActionCommand("salvar");
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.setActionCommand("cancelar");
 
         btnIdeia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ideia16x16.png"))); // NOI18N
         btnIdeia.setText("Ideia");
+        btnIdeia.setActionCommand("ideia");
 
         jLabel3.setText("Email:");
 

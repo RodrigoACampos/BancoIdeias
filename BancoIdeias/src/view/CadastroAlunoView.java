@@ -56,7 +56,7 @@ public class CadastroAlunoView extends javax.swing.JPanel {
         btnIdeia = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro Aluno", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro Aluno", 2, 0, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         jLabel1.setText("Nome Completo:");
 
@@ -72,9 +72,11 @@ public class CadastroAlunoView extends javax.swing.JPanel {
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.setActionCommand("salvar");
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.setActionCommand("cancelar");
 
         tbIdeia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,6 +104,7 @@ public class CadastroAlunoView extends javax.swing.JPanel {
 
         btnIdeia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ideia16x16.png"))); // NOI18N
         btnIdeia.setText("Ideia");
+        btnIdeia.setActionCommand("ideia");
 
         jLabel2.setText("Ideias preferidas:");
 
