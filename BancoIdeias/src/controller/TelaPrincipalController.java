@@ -37,7 +37,7 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
     ConsultaIdeiaView consultaIdeia;
 
     SolicitanteDAO solicitanteDao;
-    SolicitanteCotroller sc;
+    SolicitanteController sc;
 
     AlunoDAO alunoDao;
 //    AlunoController ac;
@@ -191,7 +191,7 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
             tpv.getJpfundo().removeAll();
 
             cadastroSolicitante = new CadastroSolicitanteView();
-            sc = new SolicitanteCotroller(cadastroSolicitante);
+            sc = new SolicitanteController(cadastroSolicitante);
             sc.iniciar();
             cadastroSolicitante.setTelaPrincipalController(this);
             tpv.getJpfundo().add(cadastroSolicitante);
@@ -209,7 +209,7 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
             tpv.getJpfundo().removeAll();
             
             cadastroSolicitante = new CadastroSolicitanteView();
-            sc = new SolicitanteCotroller(cadastroSolicitante);
+            sc = new SolicitanteController(cadastroSolicitante);
             sc.iniciar();
             cadastroSolicitante.setTelaPrincipalController(this);
             tpv.getJpfundo().add(cadastroSolicitante);
