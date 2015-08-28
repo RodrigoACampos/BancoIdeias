@@ -1,6 +1,7 @@
 package controller;
 
 import dao.SolicitanteDAO;
+import entidade.Ideia;
 import entidade.Solicitante;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,18 +43,17 @@ public class ConsultaSolicitanteController implements ActionListener{
         SolicitanteTableModel model = (SolicitanteTableModel) consultaSolicitanteView.getTbPesquisa().getModel();
         solicitante = model.getListaSolicitantes().get(indice);
         System.out.println(solicitante.getId());
-        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(0).setMaxWidth(30);
-        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(1).setMaxWidth(300);
-        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(2).setMaxWidth(100);
-        consultaSolicitanteView.getTbPesquisa().getSelectedRows();
+        
     }
 
     public void atualizarTabelaSolicitante(List<Solicitante> solicitantes) {
         SolicitanteTableModel modelo = new SolicitanteTableModel();
         modelo.setListaSolicitantes(solicitanteLista);
         consultaSolicitanteView.getTbPesquisa().setModel(modelo);
-//        cadSolicitanteView.getTbIdeia().getColumnModel().getColumn(0).setPreferredWidth(300);
-//        cadSolicitanteView.getTbIdeia().getSelectedRows();
+        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(0).setPreferredWidth(10);
+        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(1).setPreferredWidth(300);
+        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(2).setPreferredWidth(200);
+       
 
     }
 
