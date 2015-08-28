@@ -13,7 +13,7 @@ import view.CadastroProfessorView;
 
 /**
  *
- * @author marceloP
+ * @author Willyam
  */
 public class ProfessorController implements ActionListener {
 
