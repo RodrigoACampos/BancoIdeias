@@ -1,12 +1,13 @@
 package controller;
 
 import dao.SolicitanteDAO;
-import entidade.Ideia;
 import entidade.Solicitante;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import model.SolicitanteTableModel;
 import view.ConsultaSolicitanteView;
 
@@ -20,6 +21,10 @@ public class ConsultaSolicitanteController implements ActionListener{
     ConsultaSolicitanteView consultaSolicitanteView;
     SolicitanteDAO solicitanteDAO = new SolicitanteDAO();    
     List<Solicitante> solicitanteLista = new ArrayList();
+    
+    DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
+
+    
 
     public ConsultaSolicitanteController(ConsultaSolicitanteView consultaSolicitanteView) {
         this.consultaSolicitanteView = consultaSolicitanteView;
@@ -47,13 +52,21 @@ public class ConsultaSolicitanteController implements ActionListener{
     }
 
     public void atualizarTabelaSolicitante(List<Solicitante> solicitantes) {
+        cellRender.setHorizontalAlignment(SwingConstants.CENTER); 
         SolicitanteTableModel modelo = new SolicitanteTableModel();
         modelo.setListaSolicitantes(solicitanteLista);
         consultaSolicitanteView.getTbPesquisa().setModel(modelo);
         consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(0).setPreferredWidth(10);
         consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(1).setPreferredWidth(300);
         consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(2).setPreferredWidth(200);
-       
+        
+        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(0).setHeaderRenderer(cellRender);
+        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(0).setCellRenderer(cellRender);
+        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(1).setHeaderRenderer(cellRender);
+        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(1).setCellRenderer(cellRender);
+        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(2).setHeaderRenderer(cellRender);
+        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(2).setCellRenderer(cellRender);
+               
 
     }
 
