@@ -41,10 +41,11 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
     ConsultaSolicitanteController csc;
 
     AlunoDAO alunoDao;
-//    AlunoController ac;
-
+    AlunoController ac;
+    
+    
     ProfessorDAO professorDao;
-//    ProfessorController pc;
+    ProfessorController pc;
 
     IdeiaDAO ideiaDao;
 //    IdeiaController ic;
@@ -139,8 +140,8 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
             tpv.getJpfundo().removeAll();
 
             cadastroAluno = new CadastroAlunoView();
-//            ac = new AlunoController(cadastroAluno);
-//            ac.iniciar();
+            ac = new AlunoController(cadastroAluno);
+            ac.iniciar();
 //            cadastroAluno.setTelaPrincipalController(this);            
             tpv.getJpfundo().add(cadastroAluno);
             cadastroAluno.setVisible(true);
@@ -157,8 +158,8 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
             tpv.getJpfundo().removeAll();
 
             cadastroAluno = new CadastroAlunoView();
-//            ac = new AlunoController(cadastroAluno);
-//            ac.iniciar();
+            ac = new AlunoController(cadastroAluno);
+            ac.iniciar();
 //            cadastroAluno.setTelaPrincipalController(this);  
             tpv.getJpfundo().add(cadastroAluno);
             cadastroAluno.setVisible(true);
@@ -175,8 +176,8 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
             tpv.getJpfundo().removeAll();
 
             cadastroProfessor = new CadastroProfessorView();
-//            pc = new ProfessorController(cadastroProfessor);
-//            pc.iniciar();
+            pc = new ProfessorController(cadastroProfessor);
+            pc.iniciar();
 //            cadastroProfessor.setTelaPrincipalController(this);            
             tpv.getJpfundo().add(cadastroProfessor);
             cadastroProfessor.setVisible(true);
@@ -193,8 +194,8 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
             tpv.getJpfundo().removeAll();
 
             cadastroProfessor = new CadastroProfessorView();
-//            pc = new ProfessorController(cadastroProfessor);
-//            pc.iniciar();
+            pc = new ProfessorController(cadastroProfessor);
+            pc.iniciar();
 //            cadastroProfessor.setTelaPrincipalController(this);   
             tpv.getJpfundo().add(cadastroProfessor);
             cadastroProfessor.setVisible(true);
