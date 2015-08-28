@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.TelaPrincipalController;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -20,6 +21,16 @@ public class CadastroAlunoView extends javax.swing.JPanel {
     public CadastroAlunoView() {
         initComponents();
 
+    }
+    
+     private TelaPrincipalController telaPrincipalController;
+
+    public TelaPrincipalController getTelaPrincipalController() {
+        return telaPrincipalController;
+    }
+
+    public void setTelaPrincipalController(TelaPrincipalController telaPrincipalController) {
+        this.telaPrincipalController = telaPrincipalController;
     }
 
     /**

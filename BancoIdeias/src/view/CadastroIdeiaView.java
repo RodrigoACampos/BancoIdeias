@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.TelaPrincipalController;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -23,6 +24,16 @@ public class CadastroIdeiaView extends javax.swing.JPanel {
      */
     public CadastroIdeiaView() {
         initComponents();
+    }
+    
+     private TelaPrincipalController telaPrincipalController;
+
+    public TelaPrincipalController getTelaPrincipalController() {
+        return telaPrincipalController;
+    }
+
+    public void setTelaPrincipalController(TelaPrincipalController telaPrincipalController) {
+        this.telaPrincipalController = telaPrincipalController;
     }
 
     /**

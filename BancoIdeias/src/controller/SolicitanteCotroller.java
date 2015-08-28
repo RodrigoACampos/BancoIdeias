@@ -66,6 +66,7 @@ public class SolicitanteCotroller implements ActionListener {
             
             if(solicitanteDAO.salvar(solicitante) == true){
                 System.out.println("Salvo");
+                cadSolicitanteView.getTelaPrincipalController().atualizarValores();
             }else{
                 System.out.println(" NAO SALVO! ");
             }

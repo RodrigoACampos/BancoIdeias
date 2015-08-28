@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.TelaPrincipalController;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -20,6 +21,16 @@ public class CadastroProfessorView extends javax.swing.JPanel {
      */
     public CadastroProfessorView() {
         initComponents();
+    }
+    
+     private TelaPrincipalController telaPrincipalController;
+
+    public TelaPrincipalController getTelaPrincipalController() {
+        return telaPrincipalController;
+    }
+
+    public void setTelaPrincipalController(TelaPrincipalController telaPrincipalController) {
+        this.telaPrincipalController = telaPrincipalController;
     }
 
     /**

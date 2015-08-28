@@ -1,5 +1,9 @@
 package controller;
 
+import dao.AlunoDAO;
+import dao.IdeiaDAO;
+import dao.ProfessorDAO;
+import dao.SolicitanteDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -31,8 +35,18 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
     ConsultaSolicitanteView consultaSolicitante;
     CadastroIdeiaView cadastroIdeia;
     ConsultaIdeiaView consultaIdeia;
-   
+
+    SolicitanteDAO solicitanteDao;
     SolicitanteCotroller sc;
+
+    AlunoDAO alunoDao;
+//    AlunoController ac;
+    
+    ProfessorDAO professorDao;
+//    ProfessorController pc;
+    
+    IdeiaDAO ideiaDao;
+//    IdeiaController ic;
 
     public TelaPrincipalController(TelaPrincipalView tpv) {
         this.tpv = tpv;
@@ -46,11 +60,11 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
     public void montarEAssinar() {
         tpv.addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent e){
-                    acaoSair();
+            public void windowClosing(WindowEvent e) {
+                acaoSair();
             }
         });
-        tpv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        tpv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tpv.setVisible(true);
         tpv.getBtnCadastroAluno().addActionListener(this);
         tpv.getBtnCadastroAluno().addMouseListener(this);
@@ -71,11 +85,18 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         tpv.getMenuConsultaIdeia().addActionListener(this);
         tpv.getBtnSair().addActionListener(this);
         tpv.getMenuSair().addActionListener(this);
+
+        atualizarValores();
     }
 
     private void repintarTela() {
         tpv.repaint();
         tpv.revalidate();
+    }
+
+    public void atualizarValores() {
+        solicitanteDao = new SolicitanteDAO();
+        tpv.getLblValorQtdeSolicitante().setText(Integer.toString(solicitanteDao.listar().size()));
     }
 
     private void acaoSair() {
@@ -96,7 +117,11 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("cadastroAluno")) {
             tpv.getJpfundo().removeAll();
-            cadastroAluno = new CadastroAlunoView();
+            
+            cadastroAluno = new CadastroAlunoView();            
+//            ac = new AlunoController(cadastroAluno);
+//            ac.iniciar();
+//            cadastroAluno.setTelaPrincipalController(this);            
             tpv.getJpfundo().add(cadastroAluno);
             cadastroAluno.setVisible(true);
             repintarTela();
@@ -110,7 +135,11 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         }
         if (e.getActionCommand().equals("menuCadAluno")) {
             tpv.getJpfundo().removeAll();
-            cadastroAluno = new CadastroAlunoView();
+            
+            cadastroAluno = new CadastroAlunoView();            
+//            ac = new AlunoController(cadastroAluno);
+//            ac.iniciar();
+//            cadastroAluno.setTelaPrincipalController(this);  
             tpv.getJpfundo().add(cadastroAluno);
             cadastroAluno.setVisible(true);
             repintarTela();
@@ -124,7 +153,11 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         }
         if (e.getActionCommand().equals("cadastroProfessor")) {
             tpv.getJpfundo().removeAll();
-            cadastroProfessor = new CadastroProfessorView();
+            
+            cadastroProfessor = new CadastroProfessorView();            
+//            pc = new ProfessorController(cadastroProfessor);
+//            pc.iniciar();
+//            cadastroProfessor.setTelaPrincipalController(this);            
             tpv.getJpfundo().add(cadastroProfessor);
             cadastroProfessor.setVisible(true);
             repintarTela();
@@ -138,7 +171,11 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         }
         if (e.getActionCommand().equals("menuCadProfessor")) {
             tpv.getJpfundo().removeAll();
-            cadastroProfessor = new CadastroProfessorView();
+            
+            cadastroProfessor = new CadastroProfessorView();            
+//            pc = new ProfessorController(cadastroProfessor);
+//            pc.iniciar();
+//            cadastroProfessor.setTelaPrincipalController(this);   
             tpv.getJpfundo().add(cadastroProfessor);
             cadastroProfessor.setVisible(true);
             repintarTela();
@@ -152,11 +189,11 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         }
         if (e.getActionCommand().equals("cadastroSolicitante")) {
             tpv.getJpfundo().removeAll();
-            
-            cadastroSolicitante = new CadastroSolicitanteView();            
+
+            cadastroSolicitante = new CadastroSolicitanteView();
             sc = new SolicitanteCotroller(cadastroSolicitante);
             sc.iniciar();
-            
+            cadastroSolicitante.setTelaPrincipalController(this);
             tpv.getJpfundo().add(cadastroSolicitante);
             cadastroSolicitante.setVisible(true);
             repintarTela();
@@ -170,7 +207,11 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         }
         if (e.getActionCommand().equals("menuCadSolicitante")) {
             tpv.getJpfundo().removeAll();
+            
             cadastroSolicitante = new CadastroSolicitanteView();
+            sc = new SolicitanteCotroller(cadastroSolicitante);
+            sc.iniciar();
+            cadastroSolicitante.setTelaPrincipalController(this);
             tpv.getJpfundo().add(cadastroSolicitante);
             cadastroSolicitante.setVisible(true);
             repintarTela();
@@ -184,7 +225,11 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         }
         if (e.getActionCommand().equals("cadastroIdeia")) {
             tpv.getJpfundo().removeAll();
-            cadastroIdeia = new CadastroIdeiaView();
+            
+            cadastroIdeia = new CadastroIdeiaView();            
+//            ic = new IdeiaController(cadastroIdeia);
+//            ic.iniciar();
+//            cadastroIdeia.setTelaPrincipalController(this);
             tpv.getJpfundo().add(cadastroIdeia);
             cadastroIdeia.setVisible(true);
             repintarTela();
@@ -198,7 +243,11 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         }
         if (e.getActionCommand().equals("menuCadIdeia")) {
             tpv.getJpfundo().removeAll();
-            cadastroIdeia = new CadastroIdeiaView();
+            
+            cadastroIdeia = new CadastroIdeiaView();            
+//            ic = new IdeiaController(cadastroIdeia);
+//            ic.iniciar();
+//            cadastroIdeia.setTelaPrincipalController(this);
             tpv.getJpfundo().add(cadastroIdeia);
             cadastroIdeia.setVisible(true);
             repintarTela();
@@ -246,5 +295,4 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         tpv.getBtnCadastroAluno().setContentAreaFilled(false);
     }
 
-    
 }
