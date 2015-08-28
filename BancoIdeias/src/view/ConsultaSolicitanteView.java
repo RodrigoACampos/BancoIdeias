@@ -41,7 +41,7 @@ public class ConsultaSolicitanteView extends javax.swing.JPanel {
         btnAlterar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consulta Solicitante", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consulta Solicitante", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         tbPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -78,11 +78,14 @@ public class ConsultaSolicitanteView extends javax.swing.JPanel {
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Trash.png"))); // NOI18N
         btnExcluir.setText("Excluir");
+        btnExcluir.setActionCommand("excluir");
 
         btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Find.png"))); // NOI18N
+        btnConsultar.setActionCommand("consultar");
 
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Sync.png"))); // NOI18N
         btnAlterar.setText("Alterar");
+        btnAlterar.setActionCommand("alterar");
 
         jLabel2.setText("Nome:");
 

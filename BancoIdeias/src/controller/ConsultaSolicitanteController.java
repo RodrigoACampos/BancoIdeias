@@ -1,7 +1,6 @@
 package controller;
 
 import dao.SolicitanteDAO;
-import entidade.Ideia;
 import entidade.Solicitante;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

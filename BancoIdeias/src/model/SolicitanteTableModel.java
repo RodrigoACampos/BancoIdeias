@@ -11,8 +11,7 @@ import javax.swing.table.AbstractTableModel;
 public class SolicitanteTableModel extends AbstractTableModel{
     
     Solicitante solicitante;
-    List<Solicitante> listaSolicitantes;    
-    Solicitante teste;
+    List<Solicitante> listaSolicitantes;
 
     @Override
     public int getRowCount() {

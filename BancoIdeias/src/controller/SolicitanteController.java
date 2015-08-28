@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.SolicitanteIdeiaTableModel;
 import view.CadastroSolicitanteView;
-
+import view.IdeiaSolicitanteView;
 /**
  *
  * @author marceloP
@@ -19,6 +19,7 @@ public class SolicitanteController implements ActionListener {
 
     Solicitante solicitante = new Solicitante();
     CadastroSolicitanteView cadSolicitanteView;
+    IdeiaSolicitanteView ideiaSolicitanteView;
     SolicitanteDAO solicitanteDAO = new SolicitanteDAO();
     IdeiaDAO ideiaDAO = new IdeiaDAO();
     Ideia ideia = new Ideia();
@@ -71,6 +72,12 @@ public class SolicitanteController implements ActionListener {
 //        cadSolicitanteView.getTbIdeia().getSelectedRows();
 
     }
+    
+    public void clearAll(){
+        cadSolicitanteView.getTfNome().setText(null);
+        cadSolicitanteView.getTfEmail().setText(null);
+        cadSolicitanteView.getFtfTelefone().setText(null);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -83,6 +90,7 @@ public class SolicitanteController implements ActionListener {
             if (solicitanteDAO.salvar(solicitante) == true) {
                 System.out.println("Salvo");
                 cadSolicitanteView.getTelaPrincipalController().atualizarValores();
+                clearAll();
             } else {
                 System.out.println(" NAO SALVO! ");
             }
@@ -94,6 +102,8 @@ public class SolicitanteController implements ActionListener {
 
         if (e.getActionCommand().equals("ideia")) {
             System.out.println(e.getActionCommand());
+//            ideiaSolicitanteView = new IdeiaSolicitanteView(null, true);
+//            ideiaSolicitanteView.setVisible(true);
         }
     }
 

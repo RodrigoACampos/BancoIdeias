@@ -46,7 +46,6 @@
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder justification="2" title="Consulta Solicitante">
               <Font PropertyName="font" name="Tahoma" size="14" style="0"/>
-              <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -147,6 +146,7 @@
               <Image iconType="3" name="/image/Trash.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Excluir"/>
+            <Property name="actionCommand" type="java.lang.String" value="excluir"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfConsulta">
@@ -156,6 +156,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/image/Find.png"/>
             </Property>
+            <Property name="actionCommand" type="java.lang.String" value="consultar"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnAlterar">
@@ -164,6 +165,7 @@
               <Image iconType="3" name="/image/Sync.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Alterar"/>
+            <Property name="actionCommand" type="java.lang.String" value="alterar"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
