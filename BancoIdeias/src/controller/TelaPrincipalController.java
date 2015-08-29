@@ -39,11 +39,11 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
     SolicitanteDAO solicitanteDao;
     SolicitanteController sc;
     ConsultaSolicitanteController csc;
+    ConsultaProfessorController cpc;
 
     AlunoDAO alunoDao;
     AlunoController ac;
-    
-    
+
     ProfessorDAO professorDao;
     ProfessorController pc;
 
@@ -184,7 +184,7 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
             cadastroProfessor = new CadastroProfessorView();
             pc = new ProfessorController(cadastroProfessor);
             pc.iniciar();
-            cadastroProfessor.setTelaPrincipalController(this);            
+            cadastroProfessor.setTelaPrincipalController(this);
             tpv.getJpfundo().add(cadastroProfessor);
             cadastroProfessor.setVisible(true);
             repintarTela();
@@ -192,6 +192,8 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         if (e.getActionCommand().equals("consultaProfessor")) {
             tpv.getJpfundo().removeAll();
             consultaProfessor = new ConsultaProfessorView();
+            cpc = new ConsultaProfessorController(consultaProfessor);
+            cpc.iniciar();
             tpv.getJpfundo().add(consultaProfessor);
             consultaProfessor.setVisible(true);
             repintarTela();
@@ -208,8 +210,10 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
             repintarTela();
         }
         if (e.getActionCommand().equals("menuConProfessor")) {
-            tpv.getJpfundo().removeAll();
+           tpv.getJpfundo().removeAll();
             consultaProfessor = new ConsultaProfessorView();
+            cpc = new ConsultaProfessorController(consultaProfessor);
+            cpc.iniciar();
             tpv.getJpfundo().add(consultaProfessor);
             consultaProfessor.setVisible(true);
             repintarTela();
@@ -249,6 +253,8 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         if (e.getActionCommand().equals("menuConSolicitante")) {
             tpv.getJpfundo().removeAll();
             consultaSolicitanteView = new ConsultaSolicitanteView();
+            csc = new ConsultaSolicitanteController(consultaSolicitanteView);
+            csc.iniciar();
             tpv.getJpfundo().add(consultaSolicitanteView);
             consultaSolicitanteView.setVisible(true);
             repintarTela();
@@ -300,7 +306,7 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         notSelectedAll();
-        botao = (JButton) e.getSource();       
+        botao = (JButton) e.getSource();
         botao.setSelected(true);
         botao.setBorderPainted(true);
         botao.setContentAreaFilled(true);
@@ -310,7 +316,7 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-       
+
     }
 
     @Override
@@ -320,7 +326,7 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        
+
         botao = (JButton) e.getSource();
         botao.setBorderPainted(true);
         botao.setContentAreaFilled(true);
@@ -337,13 +343,12 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
             botao.setContentAreaFilled(true);
 
         } else {
-            
-           botao.setBorderPainted(false);
-           botao.setContentAreaFilled(false);
+
+            botao.setBorderPainted(false);
+            botao.setContentAreaFilled(false);
         }
         repintarTela();
     }
-
 
     public void notSelectedAll() {
         tpv.getBtnSair().setBorderPainted(false);
@@ -381,10 +386,9 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         tpv.getBtnConsultaSolicitante().setBorderPainted(false);
         tpv.getBtnConsultaSolicitante().setContentAreaFilled(false);
         tpv.getBtnConsultaSolicitante().setSelected(false);
-        
+
         repintarTela();
 
     }
-
 
 }
