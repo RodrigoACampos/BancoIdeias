@@ -83,9 +83,9 @@ public class SolicitanteController implements ActionListener , FocusListener{
     }
 
     public void clearAll() {
-        cadSolicitanteView.getTfNome().setText(null);
-        cadSolicitanteView.getTfEmail().setText(null);
-        cadSolicitanteView.getFtfTelefone().setText(null);
+        cadSolicitanteView.getTfNome().setText("");
+        cadSolicitanteView.getTfEmail().setText("");
+        cadSolicitanteView.getFtfTelefone().setText("");
     }
 
     public Boolean verificaCampo() {
@@ -112,6 +112,7 @@ public class SolicitanteController implements ActionListener , FocusListener{
     public void actionPerformed(ActionEvent e) {
 
         if (e.getActionCommand().equals("salvar")) {
+            
 
             if (verificaCampo()) {
                 
@@ -120,6 +121,8 @@ public class SolicitanteController implements ActionListener , FocusListener{
                 System.out.println("Em Btanco? " + verificaCampo());
                 
             } else {
+                
+                atualizarViewParaSolicitante();
 
                 if (solicitanteDAO.salvar(solicitante) == true) {
                     System.out.println("Salvo Com Sucesso");
@@ -129,7 +132,6 @@ public class SolicitanteController implements ActionListener , FocusListener{
                     System.out.println(" NAO SALVO! ");
                 }
                 
-                atualizarViewParaSolicitante();
 
             }
         }
