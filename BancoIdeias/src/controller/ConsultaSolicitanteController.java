@@ -2,10 +2,12 @@ package controller;
 
 import dao.SolicitanteDAO;
 import entidade.Solicitante;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.SolicitanteTableModel;
@@ -23,6 +25,7 @@ public class ConsultaSolicitanteController implements ActionListener{
     List<Solicitante> solicitanteLista = new ArrayList();
     
     DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
+    DefaultTableCellRenderer cellRenderTitle = new DefaultTableCellRenderer();
 
     
 
@@ -39,6 +42,7 @@ public class ConsultaSolicitanteController implements ActionListener{
         consultaSolicitanteView.getBtnConsultar().addActionListener(this);
         consultaSolicitanteView.getBtnAlterar().addActionListener(this);
         consultaSolicitanteView.getBtnExcluir().addActionListener(this);
+        consultaSolicitanteView.getTbPesquisa().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         solicitanteLista = solicitanteDAO.listar();
     }  
@@ -52,19 +56,25 @@ public class ConsultaSolicitanteController implements ActionListener{
     }
 
     public void atualizarTabelaSolicitante(List<Solicitante> solicitantes) {
-        cellRender.setHorizontalAlignment(SwingConstants.CENTER); 
+        
+        cellRender.setHorizontalAlignment(SwingConstants.CENTER);
+        cellRenderTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        cellRenderTitle.setFont(cellRenderTitle.getFont().deriveFont(Font.BOLD)); // Não Funciona, Deveria deixar os Nomes das Colunas em Negrito;
+        
         SolicitanteTableModel modelo = new SolicitanteTableModel();
         modelo.setListaSolicitantes(solicitanteLista);
         consultaSolicitanteView.getTbPesquisa().setModel(modelo);
         consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(0).setPreferredWidth(10);
+        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(0).setPreferredWidth(10);
         consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(1).setPreferredWidth(300);
         consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(2).setPreferredWidth(200);
         
-        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(0).setHeaderRenderer(cellRender);
+        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(0).setHeaderRenderer(cellRenderTitle);
+        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(0).setHeaderRenderer(cellRenderTitle);
         consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(0).setCellRenderer(cellRender);
-        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(1).setHeaderRenderer(cellRender);
+        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(1).setHeaderRenderer(cellRenderTitle);
         consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(1).setCellRenderer(cellRender);
-        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(2).setHeaderRenderer(cellRender);
+        consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(2).setHeaderRenderer(cellRenderTitle);
         consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(2).setCellRenderer(cellRender);
                
 
@@ -86,4 +96,6 @@ public class ConsultaSolicitanteController implements ActionListener{
         }
         
     }
+    
+    
 }

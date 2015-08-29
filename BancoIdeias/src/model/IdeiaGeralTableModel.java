@@ -9,10 +9,10 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Marcelo
  */
-public class SolicitanteIdeiaTableModel extends AbstractTableModel{
+public class IdeiaGeralTableModel extends AbstractTableModel{
     
     private List<Ideia> listaIdeias;
-    private Solicitante solicitante;
+//    private Solicitante solicitante;
     
     public List<Ideia> getListaIdeia() {
         return listaIdeias;
@@ -56,12 +56,12 @@ public class SolicitanteIdeiaTableModel extends AbstractTableModel{
         return valor;
     }
 
-    public Solicitante getSolicitante() {
-        return solicitante;
-    }
-
-    public void setCandidato(Solicitante solicitante) {
-        this.solicitante = solicitante;
-    }
+//    public Solicitante getSolicitante() {
+//        return solicitante;
+//    }
+//
+//    public void setCandidato(Solicitante solicitante) {
+//        this.solicitante = solicitante;
+//    }
     
 }

@@ -10,7 +10,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.List;
-import model.SolicitanteIdeiaTableModel;
+import javax.swing.ListSelectionModel;
+import model.IdeiaGeralTableModel;
 import view.CadastroSolicitanteView;
 import view.IdeiaSolicitanteView;
 
@@ -44,6 +45,8 @@ public class SolicitanteController implements ActionListener , FocusListener{
         cadSolicitanteView.getTfNome().addFocusListener(this);
         cadSolicitanteView.getTfEmail().addFocusListener(this);
         cadSolicitanteView.getFtfTelefone().addFocusListener(this);
+        cadSolicitanteView.getTbIdeia().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+               
 
         listaIdeia = ideiaDAO.listar();
         atualizarTabelaIdeia(listaIdeia);
@@ -66,17 +69,16 @@ public class SolicitanteController implements ActionListener , FocusListener{
 
     public void selecionarDaTabelaSolicitantes() {
         int indice = cadSolicitanteView.getTbIdeia().getSelectedRow();
-        SolicitanteIdeiaTableModel model = (SolicitanteIdeiaTableModel) cadSolicitanteView.getTbIdeia().getModel();
+        IdeiaGeralTableModel model = (IdeiaGeralTableModel) cadSolicitanteView.getTbIdeia().getModel();
         ideia = model.getListaIdeia().get(indice);
         System.out.println(ideia.getId());
     }
 
     public void atualizarTabelaIdeia(List<Ideia> listaIdeias) {
-        SolicitanteIdeiaTableModel modelo = new SolicitanteIdeiaTableModel();
+        IdeiaGeralTableModel modelo = new IdeiaGeralTableModel();
         modelo.setListaIdeias(listaIdeias);
         cadSolicitanteView.getTbIdeia().setModel(modelo);
-//        cadSolicitanteView.getTbIdeia().getColumnModel().getColumn(0).setPreferredWidth(300);
-//        cadSolicitanteView.getTbIdeia().getSelectedRows();
+        
 
     }
 
@@ -133,7 +135,12 @@ public class SolicitanteController implements ActionListener , FocusListener{
         }
 
         if (e.getActionCommand().equals("cancelar")) {
-            System.out.println(e.getActionCommand());
+//            cadSolicitanteView.removeAll();
+//            cadSolicitanteView.repaint();
+//            cadSolicitanteView.revalidate();
+            clearAll();
+                   
+            
         }
 
         if (e.getActionCommand().equals("ideia")) {

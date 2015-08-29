@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ListSelectionModel;
+import model.IdeiaGeralTableModel;
 import view.CadastroProfessorView;
 
 
@@ -20,9 +22,9 @@ public class ProfessorController implements ActionListener {
     Professor professor = new Professor();
     CadastroProfessorView cadProfessorView;
     ProfessorDAO professorDAO = new ProfessorDAO();
-//    IdeiaDAO ideiaDAO = new IdeiaDAO();
-//    Ideia ideia = new Ideia();
-//    List<Ideia> listaIdeia = new ArrayList();
+    IdeiaDAO ideiaDAO = new IdeiaDAO();
+    Ideia ideia = new Ideia();
+    List<Ideia> listaIdeia = new ArrayList();
 
     public ProfessorController(CadastroProfessorView cadProfessorView) {
         this.cadProfessorView = cadProfessorView;
@@ -36,9 +38,10 @@ public class ProfessorController implements ActionListener {
         cadProfessorView.getBtnSalvar().addActionListener(this);
         cadProfessorView.getBtnCancelar().addActionListener(this);
         cadProfessorView.getBtnIdeia().addActionListener(this);
+        cadProfessorView.getTbIdeia().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-//        listaIdeia = ideiaDAO.listar();
-//        atualizarTabelaIdeia(listaIdeia);
+        listaIdeia = ideiaDAO.listar();
+        atualizarTabelaIdeia(listaIdeia);
     }
 
     public void atualizarViewParaProfessor() {
@@ -56,21 +59,17 @@ public class ProfessorController implements ActionListener {
 
     }
 
-//    public void selecionarDaTabelaProfessor() {
-//        int indice = cadProfessorView.getTbIdeia().getSelectedRow();
-//        ProfessorIdeiaTableModel model = (ProfessorIdeiaTableModel) cadProfessorView.getTbIdeia().getModel();
-//        ideia = model.getListaIdeia().get(indice);
-//        System.out.println(ideia.getId());
-//    }
+    public void selecionarDaTabelaProfessor() {
+        int indice = cadProfessorView.getTbIdeia().getSelectedRow();
+        IdeiaGeralTableModel model = (IdeiaGeralTableModel) cadProfessorView.getTbIdeia().getModel();
+        ideia = model.getListaIdeia().get(indice);
+    }
 
-//    public void atualizarTabelaIdeia(List<Ideia> listaIdeias) {
-//        SolicitanteIdeiaTableModel modelo = new SolicitanteIdeiaTableModel();
-//        modelo.setListaIdeias(listaIdeias);
-//        cadSolicitanteView.getTbIdeia().setModel(modelo);
-////        cadSolicitanteView.getTbIdeia().getColumnModel().getColumn(0).setPreferredWidth(300);
-////        cadSolicitanteView.getTbIdeia().getSelectedRows();
-//
-//    }
+    public void atualizarTabelaIdeia(List<Ideia> listaIdeias) {
+        IdeiaGeralTableModel modelo = new IdeiaGeralTableModel();
+        modelo.setListaIdeias(listaIdeias);
+        cadProfessorView.getTbIdeia().setModel(modelo);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
