@@ -39,5 +39,10 @@ public class Solicitante {
         this.telefone = telefone;
     }
 
+    @Override
+    public String toString() {
+        return nome;
+    }
+
     
 }

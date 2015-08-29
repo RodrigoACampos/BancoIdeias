@@ -1,7 +1,6 @@
 package model;
 
 import entidade.Solicitante;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
@@ -40,8 +39,8 @@ public class SolicitanteCBModel extends AbstractListModel implements ComboBoxMod
         return solicitante;
     }
     
-//    @Override
-//    public String toString() {
-//        return solicitante.getNome();
-//    }
+    @Override
+    public String toString() {
+        return solicitante.getNome();
+    }
 }
