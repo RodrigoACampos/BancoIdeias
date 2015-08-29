@@ -6,16 +6,19 @@ import entidade.Ideia;
 import entidade.Solicitante;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.List;
 import model.SolicitanteIdeiaTableModel;
 import view.CadastroSolicitanteView;
 import view.IdeiaSolicitanteView;
+
 /**
  *
  * @author marceloP
  */
-public class SolicitanteController implements ActionListener {
+public class SolicitanteController implements ActionListener , FocusListener{
 
     Solicitante solicitante = new Solicitante();
     CadastroSolicitanteView cadSolicitanteView;
@@ -37,6 +40,10 @@ public class SolicitanteController implements ActionListener {
         cadSolicitanteView.getBtnSalvar().addActionListener(this);
         cadSolicitanteView.getBtnCancelar().addActionListener(this);
         cadSolicitanteView.getBtnIdeia().addActionListener(this);
+        cadSolicitanteView.getLbObrigatorioInfo().setVisible(false);
+        cadSolicitanteView.getTfNome().addFocusListener(this);
+        cadSolicitanteView.getTfEmail().addFocusListener(this);
+        cadSolicitanteView.getFtfTelefone().addFocusListener(this);
 
         listaIdeia = ideiaDAO.listar();
         atualizarTabelaIdeia(listaIdeia);
@@ -72,27 +79,56 @@ public class SolicitanteController implements ActionListener {
 //        cadSolicitanteView.getTbIdeia().getSelectedRows();
 
     }
-    
-    public void clearAll(){
+
+    public void clearAll() {
         cadSolicitanteView.getTfNome().setText(null);
         cadSolicitanteView.getTfEmail().setText(null);
         cadSolicitanteView.getFtfTelefone().setText(null);
+    }
+
+    public Boolean verificaCampo() {
+        
+        Boolean emBranco = null;
+        String nome, email, telefone;
+        nome = cadSolicitanteView.getTfNome().getText();
+        email = cadSolicitanteView.getTfEmail().getText();
+        telefone = cadSolicitanteView.getFtfTelefone().getText().replaceAll("[ ()-]", "");       
+
+        if (nome.equals(null) || nome.equals("") || email.equals(null) || 
+                email.equals("") || telefone.equals(null) || telefone.equals("")) {
+            emBranco = true;
+            cadSolicitanteView.getLbObrigatorioInfo().setVisible(true);
+        }else{
+            cadSolicitanteView.getLbObrigatorioInfo().setVisible(false);
+            emBranco = false;
+        }
+
+        return emBranco;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getActionCommand().equals("salvar")) {
-            System.out.println(e.getActionCommand());
 
-            atualizarViewParaSolicitante();
-
-            if (solicitanteDAO.salvar(solicitante) == true) {
-                System.out.println("Salvo");
-                cadSolicitanteView.getTelaPrincipalController().atualizarValores();
-                clearAll();
+            if (verificaCampo()) {
+                
+                cadSolicitanteView.getLbObrigatorioInfo().setVisible(true);
+                
+                System.out.println("Em Btanco? " + verificaCampo());
+                
             } else {
-                System.out.println(" NAO SALVO! ");
+
+                if (solicitanteDAO.salvar(solicitante) == true) {
+                    System.out.println("Salvo Com Sucesso");
+                    cadSolicitanteView.getTelaPrincipalController().atualizarValores();
+                    clearAll();
+                } else {
+                    System.out.println(" NAO SALVO! ");
+                }
+                
+                atualizarViewParaSolicitante();
+
             }
         }
 
@@ -105,6 +141,16 @@ public class SolicitanteController implements ActionListener {
 //            ideiaSolicitanteView = new IdeiaSolicitanteView(null, true);
 //            ideiaSolicitanteView.setVisible(true);
         }
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        verificaCampo();
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        verificaCampo();
     }
 
 }
