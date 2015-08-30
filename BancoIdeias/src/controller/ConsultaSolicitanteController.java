@@ -88,10 +88,11 @@ public class ConsultaSolicitanteController implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Sem Solicitante selecionado, tente novamente...");
             } else {
                 selecionarDaTabelaSolicitantes();
-                solicitanteDao.deletar(solicitante);
-                atualizarTabelaSolicitante();
-                consultaSolicitanteView.getTelaPrincipalController().atualizarValores();
-//                JOptionPane.showMessageDialog(null, "Solicitante excluido com Sucesso!");
+                if (solicitanteDao.deletar(solicitante)) {
+                    atualizarTabelaSolicitante();
+                    consultaSolicitanteView.getTelaPrincipalController().atualizarValores();
+                    JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
+                }
             }
         }
     }

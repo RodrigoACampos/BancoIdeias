@@ -91,11 +91,11 @@ public class ConsultaProfessorController implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Sem Professor selecionado, tente novamente...");
             } else {
                 selecionarDaTabelaProfessores();
-                professorDao.deletar(professor);
-                atualizarTabelaProfessor();
-                consultaProfessorView.getTelaPrincipalController().atualizarValores();
-//                JOptionPane.showMessageDialog(null, "Professor excluido com Sucesso!");
-                
+                if (professorDao.deletar(professor)) {
+                    atualizarTabelaProfessor();
+                    consultaProfessorView.getTelaPrincipalController().atualizarValores();
+                    JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
+                }
             }
         }
     }

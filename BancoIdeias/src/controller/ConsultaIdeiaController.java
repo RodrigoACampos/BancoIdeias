@@ -100,9 +100,11 @@ public class ConsultaIdeiaController implements ActionListener, MouseListener {
                 JOptionPane.showMessageDialog(null, "Sem ideia selecionada, tente novamente...");
             } else {
                 selecionarDaTabelaIdeias();
-                ideiaDao.deletar(ideia);
-                atualizarTabelaIdeia(ideiaLista); //  rodar em thread separada
-                consultaIdeiaView.getTelaPrincipalController().atualizarValores(); // rodar em thread separada
+                if(ideiaDao.deletar(ideia)){
+                    atualizarTabelaIdeia(ideiaLista);
+                    consultaIdeiaView.getTelaPrincipalController().atualizarValores();
+                    JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
+                }
 
             }
 

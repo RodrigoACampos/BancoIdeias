@@ -94,11 +94,10 @@ public class ConsultaAlunoController implements ActionListener {
                 selecionarDaTabelaAlunos();
                 if (alunoDao.deletar(aluno)) {
                     atualizarTabelaAluno();
+                    consultaAlunoView.getTelaPrincipalController().atualizarValores();
                     JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
                 }
 
-                consultaAlunoView.getTelaPrincipalController().atualizarValores();
-//                JOptionPane.showMessageDialog(null, "Aluno excluido com Sucesso!");
             }
         }
     }
