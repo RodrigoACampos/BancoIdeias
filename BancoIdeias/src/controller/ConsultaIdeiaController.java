@@ -53,7 +53,7 @@ public class ConsultaIdeiaController implements ActionListener{
      public void selecionarDaTabelaIdeias() {
         int indice = consultaIdeiaView.getTbPesquisa().getSelectedRow();
         IdeiaTableModel model = (IdeiaTableModel) consultaIdeiaView.getTbPesquisa().getModel();
-        ideia = model.getListaIdeia().get(indice);
+        ideia = model.getListaIdeias().get(indice);
         System.out.println(ideia.getId());
     }
      
