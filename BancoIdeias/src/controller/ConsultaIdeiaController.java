@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -28,7 +29,7 @@ public class ConsultaIdeiaController implements ActionListener, MouseListener {
 
     Ideia ideia = new Ideia();
     ConsultaIdeiaView consultaIdeiaView;
-    IdeiaDAO listaDao = new IdeiaDAO();
+    IdeiaDAO ideiaDao = new IdeiaDAO();
     List<Ideia> ideiaLista = new ArrayList();
 
     DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
@@ -65,7 +66,7 @@ public class ConsultaIdeiaController implements ActionListener, MouseListener {
         cellRenderTitle.setFont(cellRenderTitle.getFont().deriveFont(Font.BOLD)); // Não Funciona, Deveria deixar os Nomes das Colunas em Negrito;
 
         IdeiaTableModel modelo = new IdeiaTableModel(ideias);
-        modelo.setListaIdeias(listaDao.listar());
+        modelo.setListaIdeias(ideiaDao.listar());
         consultaIdeiaView.getTbPesquisa().setModel(modelo);
         consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(0).setPreferredWidth(10);
         consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(1).setPreferredWidth(200);
@@ -93,8 +94,19 @@ public class ConsultaIdeiaController implements ActionListener, MouseListener {
             System.out.println(e.getActionCommand());
         }
 
-        if (e.getActionCommand().equals("excluir")) {
-            //solicitanteDAO.deletar(solicitante);
+        if (e.getActionCommand().equals("Excluir")) {
+
+            if (consultaIdeiaView.getTbPesquisa().getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, "Sem ideia selecionada, tente novamente...");
+            } else {
+                selecionarDaTabelaIdeias();
+                ideiaDao.deletar(ideia);
+                atualizarTabelaIdeia(ideiaLista); //  rodar em thread separada
+                consultaIdeiaView.getTelaPrincipalController().atualizarValores(); // rodar em thread separada
+//                JOptionPane.showMessageDialog(null, "Professor excluido com Sucesso!");
+
+            }
+
         }
     }
 

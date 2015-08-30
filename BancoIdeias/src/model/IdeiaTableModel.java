@@ -1,9 +1,7 @@
 package model;
 
 import entidade.Ideia;
-import entidade.Solicitante;
 import java.util.List;
-import javax.swing.event.EventListenerList;
 import javax.swing.table.AbstractTableModel;
 
 /**
