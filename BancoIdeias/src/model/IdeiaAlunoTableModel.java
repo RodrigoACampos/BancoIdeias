@@ -6,10 +6,10 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Marcelo
+ * @author Pegasus
  */
-public class IdeiaGeralTableModel extends AbstractTableModel{
-    
+public class IdeiaAlunoTableModel extends AbstractTableModel{
+
     private List<Ideia> listaIdeias;
 //    private Solicitante solicitante;
     
@@ -28,7 +28,7 @@ public class IdeiaGeralTableModel extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-        return 1;  
+        return 2;  
     }
 
      protected Ideia getObjetoAt(int rowIndex) {  
@@ -38,8 +38,10 @@ public class IdeiaGeralTableModel extends AbstractTableModel{
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
     String valor = "";
-    
         if (columnIndex == 0) {
+            valor = String.valueOf(listaIdeias.get(rowIndex).getId());
+        }
+        if (columnIndex == 1) {
             valor = listaIdeias.get(rowIndex).getTema();
         }
         
@@ -50,17 +52,13 @@ public class IdeiaGeralTableModel extends AbstractTableModel{
     public String getColumnName(int column) {
         String valor = "";
         if (column == 0) {
+            valor = "Código";            
+        }        
+        if (column == 1) {
             valor = "Tema";            
-        }  
+        }        
+
         return valor;
     }
-
-//    public Solicitante getSolicitante() {
-//        return solicitante;
-//    }
-//
-//    public void setCandidato(Solicitante solicitante) {
-//        this.solicitante = solicitante;
-//    }
     
 }

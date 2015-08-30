@@ -11,6 +11,7 @@ import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ListSelectionModel;
+import model.IdeiaAlunoTableModel;
 import model.IdeiaGeralTableModel;
 import view.CadastroSolicitanteView;
 import view.IdeiaSolicitanteView;
@@ -49,7 +50,7 @@ public class SolicitanteController implements ActionListener , FocusListener{
                
 
         listaIdeia = ideiaDAO.listar();
-        atualizarTabelaIdeia(listaIdeia);
+        atualizarTabelaIdeiasSolicitadas(listaIdeia);
     }
 
     public void atualizarViewParaSolicitante() {
@@ -74,12 +75,20 @@ public class SolicitanteController implements ActionListener , FocusListener{
         System.out.println(ideia.getId());
     }
 
-    public void atualizarTabelaIdeia(List<Ideia> listaIdeias) {
+    public void atualizarTabelaIdeiasSolicitadas(List<Ideia> listaIdeias) {
+        
         IdeiaGeralTableModel modelo = new IdeiaGeralTableModel();
         modelo.setListaIdeias(listaIdeias);
         cadSolicitanteView.getTbIdeia().setModel(modelo);
         
-
+    }
+    
+     public void atualizarTabelaIdeias(List<Ideia> listaIdeias) {
+//        
+//        IdeiaSolicTableModel ideiaAlunoModelo = new IdeiaAlunoTableModel();
+//        ideiaAlunoModelo.setListaIdeias(listaIdeias);
+//        cadSolicitanteView.getTbIdeia().setModel(ideiaAlunoModelo);
+        
     }
 
     public void clearAll() {

@@ -11,6 +11,7 @@ import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ListSelectionModel;
+import model.IdeiaAlunoTableModel;
 import model.IdeiaGeralTableModel;
 import view.CadastroAlunoView;
 import view.IdeiaAlunoView;
@@ -54,7 +55,7 @@ public class AlunoController implements ActionListener, FocusListener {
         ideiaAlunoView.getTbPesquisa().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         listaIdeia = ideiaDAO.listar();
-        atualizarTabelaIdeia(listaIdeia);
+        atualizarTabelaIdeiaFavoritas(listaIdeia);
     }
 
     public void atualizarViewParaAluno() {
@@ -79,13 +80,22 @@ public class AlunoController implements ActionListener, FocusListener {
         ideia = model.getListaIdeia().get(indice);
     }
 
-    public void atualizarTabelaIdeia(List<Ideia> listaIdeias) {
+    public void atualizarTabelaIdeiaFavoritas(List<Ideia> listaIdeias) {
         IdeiaGeralTableModel modelo = new IdeiaGeralTableModel();
         modelo.setListaIdeias(listaIdeias);
         cadAlunoView.getTbIdeia().setModel(modelo);
         cadAlunoView.getTbIdeia().getColumnModel().getColumn(0).setPreferredWidth(300);
-        cadAlunoView.getTbIdeia().getSelectedRows();
-
+    }
+    
+     public void atualizarTabelaIdeias(List<Ideia> listaIdeias) {
+        
+        IdeiaAlunoTableModel ideiaAlunoModelo = new IdeiaAlunoTableModel();
+        ideiaAlunoModelo.setListaIdeias(listaIdeias);
+        ideiaAlunoView.getTbPesquisa().setModel(ideiaAlunoModelo);
+        ideiaAlunoView.getTbPesquisa().getColumnModel().getColumn(0).setPreferredWidth(10);
+        ideiaAlunoView.getTbPesquisa().getColumnModel().getColumn(1).setPreferredWidth(150);
+                
+        
     }
 
     public void clearAll() {
@@ -135,11 +145,11 @@ public class AlunoController implements ActionListener, FocusListener {
 
         if (e.getActionCommand().equals("cancelar")) {
             System.out.println(e.getActionCommand());
-            cadAlunoView.getTelaPrincipalController().tpv.removeAll();
         }
 
         if (e.getActionCommand().equals("ideia")) {
             System.out.println(e.getActionCommand());
+            atualizarTabelaIdeias(listaIdeia);
             ideiaAlunoView.setVisible(true);
         }
         
