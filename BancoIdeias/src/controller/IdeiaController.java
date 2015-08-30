@@ -7,8 +7,14 @@ import entidade.Solicitante;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.IdeiaTableModel;
 import model.SolicitanteCBModel;
 import view.CadastroIdeiaView;
 
@@ -43,47 +49,73 @@ public class IdeiaController implements ActionListener{
         cadIdeiaView.getCbSolicitante().addActionListener(this);
         cadIdeiaView.getFtfData().addActionListener(this);
         
-        atualizarListaSolicitantes();
         atualizarSolicitanteComboBox();
     }
 
     public void atualizarViewParaIdeia() {
+        ideia = new Ideia();
 
         ideia.setTema(cadIdeiaView.getTfTema().getText());
-        ideia.setDtcadastro(Date.valueOf(cadIdeiaView.getFtfData().getText()));
+        ideia.setDtcadastro(BRtoUSdate(cadIdeiaView.getFtfData().getText())) ;
         ideia.setDescricao((cadIdeiaView.getTaDescricao().getText()));
-        //para teste
-        ideia.setSolicitante(null);
-        //ideia.setSolicitante(cadIdeiaView.getCbSolicitante().getSelectedObjects());
+        ideia.setSolicitante((Solicitante) cadIdeiaView.getCbSolicitante().getSelectedItem());
     }
 
-    public void atualizarIdeiaParaView() {
-
-        cadIdeiaView.getTfTema().setText(ideia.getTema());
-        cadIdeiaView.getFtfData().setText(String.valueOf(ideia.getDtcadastro()));
-        cadIdeiaView.getTaDescricao().setText(ideia.getDescricao());
-        //para teste
-        cadIdeiaView.getCbSolicitante().setSelectedIndex(-1);
-        //cadIdeiaView.getCbSolicitante().setSelectedIndex(solicitante.getId());
-
-    }
+//    public void atualizarIdeiaParaView() {
+//
+//        cadIdeiaView.getTfTema().setText(ideia.getTema());
+//        cadIdeiaView.getFtfData().setText(String.valueOf(ideia.getDtcadastro()));
+//        cadIdeiaView.getTaDescricao().setText(ideia.getDescricao());
+//        
+//    }
+    
     
     public void atualizarSolicitanteComboBox() {
-        
-        for (int i = 0; i < listaSolicitantes.size() ; i++) {
-            
-            System.out.println(listaSolicitantes.get(i).getNome());   
-            
-            }
-        
+             
         solicitanteCBModel = new SolicitanteCBModel(solicitanteDAO.listar());
         cadIdeiaView.getCbSolicitante().setModel(solicitanteCBModel);
 
     }
     
-    public void atualizarListaSolicitantes(){
-        listaSolicitantes = new ArrayList();
-        listaSolicitantes = solicitanteDAO.listar();
+//    public void atualizarListaSolicitantes(){
+//        listaSolicitantes = new ArrayList();
+//        listaSolicitantes = solicitanteDAO.listar();
+//    }
+    
+    public String UStoBRdate(java.util.Date data) {
+        String d = "";
+        SimpleDateFormat in = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            d = out.format(in.parse(data.toString()));
+        } catch (ParseException ex) {
+            Logger.getLogger(IdeiaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return d;
+    }
+
+    public java.util.Date BRtoUSdate(String data) {
+        DateFormat formatoBr = new SimpleDateFormat("dd/MM/yyyy");
+        java.util.Date d = null;
+        try {
+            d = (java.util.Date) formatoBr.parse(data);
+        } catch (ParseException ex) {
+            Logger.getLogger(IdeiaController.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return d;
+        
+    }
+    
+    public void clearAll(){
+        
+        ideia.setTema("");
+        ideia.setDtcadastro(null) ;
+        ideia.setDescricao("");
+        ideia.setSolicitante(null);
+        
     }
 
 
@@ -94,8 +126,9 @@ public class IdeiaController implements ActionListener{
             System.out.println(e.getActionCommand());
 
             atualizarViewParaIdeia();
-
+           
             if (ideiaDAO.salvar(ideia) == true) {
+                clearAll();
                 System.out.println("Salvo");
                 cadIdeiaView.getTelaPrincipalController().atualizarValores();
             } else {

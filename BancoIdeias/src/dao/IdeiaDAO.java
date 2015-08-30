@@ -32,7 +32,7 @@ public class IdeiaDAO {
                 stmt = conn.prepareStatement(QUERY_INSERT);
                 stmt.setString(1, ideia.getTema());
                 stmt.setString(2, ideia.getDescricao());
-                stmt.setDate(3, ideia.getDtcadastro());
+                stmt.setDate(3, new java.sql.Date(ideia.getDtcadastro().getTime()));
                 stmt.setInt(4, ideia.getSolicitante().getId());
 
             } else {
@@ -40,7 +40,7 @@ public class IdeiaDAO {
                 stmt = conn.prepareStatement(QUERY_UPDATE);
                 stmt.setString(1, ideia.getTema());
                 stmt.setString(2, ideia.getDescricao());
-                stmt.setDate(3, ideia.getDtcadastro());
+                stmt.setDate(3, new java.sql.Date(ideia.getDtcadastro().getTime()));
                 stmt.setInt(4, ideia.getSolicitante().getId());
                 stmt.setInt(5, ideia.getId());
 

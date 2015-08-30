@@ -47,7 +47,7 @@ public class ConsultaProfessorController implements ActionListener {
         consultaProfessorView.getBtnExcluir().addActionListener(this);
         consultaProfessorView.getTbPesquisa().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        professorLista = professorDao.listar();
+        atualizarTabelaProfessor(professorLista);
     }
 
     public void selecionarDaTabelaProfessores() {
@@ -63,7 +63,7 @@ public class ConsultaProfessorController implements ActionListener {
         cellRenderTitle.setFont(cellRenderTitle.getFont().deriveFont(Font.BOLD)); // Não Funciona, Deveria deixar os Nomes das Colunas em Negrito;
 
         ProfessorTableModel modelo = new ProfessorTableModel();
-        modelo.setListaprofessores(professorLista);
+        modelo.setListaprofessores(professorDao.listar());
         consultaProfessorView.getTbPesquisa().setModel(modelo);
         consultaProfessorView.getTbPesquisa().getColumnModel().getColumn(0).setPreferredWidth(10);
         consultaProfessorView.getTbPesquisa().getColumnModel().getColumn(1).setPreferredWidth(300);

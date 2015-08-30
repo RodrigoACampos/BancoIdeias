@@ -40,7 +40,7 @@ public class ConsultaIdeiaController implements ActionListener, MouseListener {
 
     public void iniciar() {
         montarEAssinar();
-        atualizarTabelaIdeia(ideiaLista);
+
     }
 
     public void montarEAssinar() {
@@ -49,8 +49,7 @@ public class ConsultaIdeiaController implements ActionListener, MouseListener {
         consultaIdeiaView.getBtnExcluir().addActionListener(this);
         consultaIdeiaView.getTbPesquisa().addMouseListener(this);
         consultaIdeiaView.getTbPesquisa().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-        ideiaLista = listaDao.listar();
+        atualizarTabelaIdeia(ideiaLista);
     }
 
     public void selecionarDaTabelaIdeias() {
@@ -66,7 +65,7 @@ public class ConsultaIdeiaController implements ActionListener, MouseListener {
         cellRenderTitle.setFont(cellRenderTitle.getFont().deriveFont(Font.BOLD)); // Não Funciona, Deveria deixar os Nomes das Colunas em Negrito;
 
         IdeiaTableModel modelo = new IdeiaTableModel(ideias);
-        modelo.setListaIdeias(ideiaLista);
+        modelo.setListaIdeias(listaDao.listar());
         consultaIdeiaView.getTbPesquisa().setModel(modelo);
         consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(0).setPreferredWidth(10);
         consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(1).setPreferredWidth(200);
@@ -79,9 +78,9 @@ public class ConsultaIdeiaController implements ActionListener, MouseListener {
         consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(2).setHeaderRenderer(cellRenderTitle);
         consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(2).setCellRenderer(cellRender);
     }
-    
-     private void atualizarDescricao() {
-         consultaIdeiaView.getTaDescricao().setText(ideia.getDescricao());
+
+    private void atualizarDescricao() {
+        consultaIdeiaView.getTaDescricao().setText(ideia.getDescricao());
     }
 
     @Override
@@ -103,7 +102,7 @@ public class ConsultaIdeiaController implements ActionListener, MouseListener {
     public void mouseClicked(MouseEvent e) {
         if (e.getClickCount() == 2) {
             selecionarDaTabelaIdeias();
-            atualizarDescricao();            
+            atualizarDescricao();
         }
     }
 
@@ -123,5 +122,4 @@ public class ConsultaIdeiaController implements ActionListener, MouseListener {
     public void mouseExited(MouseEvent e) {
     }
 
-   
 }
