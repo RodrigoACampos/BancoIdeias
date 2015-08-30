@@ -12,26 +12,34 @@ import javax.swing.table.AbstractTableModel;
 public class IdeiaTableModel extends AbstractTableModel{
     
     private List<Ideia> listaIdeias;
-    private Solicitante solicitante;
+    private List<Solicitante> listaSolicitante;
     
     public List<Ideia> getListaIdeia() {
         return listaIdeias;
     }
 
     //teste! Ao replicar, não copiar da linha 22 ate a 40
-    
-    public IdeiaTableModel(List<Ideia> listaIdeias, Solicitante solicitante) {
+
+    public IdeiaTableModel(List<Ideia> listaIdeias, List<Solicitante> listaSolicitante) {
         this.listaIdeias = listaIdeias;
-        this.solicitante = solicitante;
+        this.listaSolicitante = listaSolicitante;
     }
+    
+    
 
     public IdeiaTableModel(List<Ideia> listaIdeias) {
         this.listaIdeias = listaIdeias;
     }
 
-    public IdeiaTableModel(Solicitante solicitante) {
-        this.solicitante = solicitante;
+    public List<Solicitante> getListaSolicitante() {
+        return listaSolicitante;
     }
+
+    public void setListaSolicitante(List<Solicitante> listaSolicitante) {
+        this.listaSolicitante = listaSolicitante;
+    }
+
+    
     
     public void setListaIdeias(List<Ideia> listaIdeias) {
         this.listaIdeias = listaIdeias;
@@ -62,6 +70,7 @@ public class IdeiaTableModel extends AbstractTableModel{
         
         if (columnIndex == 1) {
             //valor = listaIdeias.get(rowIndex).getTema();
+            valor = listaSolicitante.get(rowIndex).getNome();
         }
         
         if (columnIndex == 2) {
@@ -84,14 +93,6 @@ public class IdeiaTableModel extends AbstractTableModel{
         }        
 
         return valor;
-    }
-
-    public Solicitante getSolicitante() {
-        return solicitante;
-    }
-
-    public void setCandidato(Solicitante solicitante) {
-        this.solicitante = solicitante;
-    }
+    }  
     
 }
