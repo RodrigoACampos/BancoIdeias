@@ -103,7 +103,6 @@ public class ConsultaIdeiaController implements ActionListener, MouseListener {
                 ideiaDao.deletar(ideia);
                 atualizarTabelaIdeia(ideiaLista); //  rodar em thread separada
                 consultaIdeiaView.getTelaPrincipalController().atualizarValores(); // rodar em thread separada
-//                JOptionPane.showMessageDialog(null, "Professor excluido com Sucesso!");
 
             }
 
