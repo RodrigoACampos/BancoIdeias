@@ -6,6 +6,8 @@ import entidade.Aluno;
 import entidade.Ideia;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ListSelectionModel;
@@ -16,8 +18,7 @@ import view.CadastroAlunoView;
  *
  * @author willyam_evangelista
  */
-
-    public class AlunoController implements ActionListener {
+public class AlunoController implements ActionListener, FocusListener {
 
     Aluno aluno = new Aluno();
     CadastroAlunoView cadAlunoView;
@@ -38,6 +39,10 @@ import view.CadastroAlunoView;
         cadAlunoView.getBtnSalvar().addActionListener(this);
         cadAlunoView.getBtnCancelar().addActionListener(this);
         cadAlunoView.getBtnIdeia().addActionListener(this);
+        cadAlunoView.getLbObrigatorioInfo().setVisible(false);
+        cadAlunoView.getTfNome().addFocusListener(this);
+        cadAlunoView.getTfEmail().addFocusListener(this);
+        cadAlunoView.getFtfTelefone().addFocusListener(this);
         cadAlunoView.getTbIdeia().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         listaIdeia = ideiaDAO.listar();
@@ -74,19 +79,47 @@ import view.CadastroAlunoView;
 
     }
 
+    public void clearAll() {
+        cadAlunoView.getTfNome().setText("");
+        cadAlunoView.getTfEmail().setText("");
+        cadAlunoView.getFtfTelefone().setText("");
+    }
+
+    public Boolean verificaCampo() {
+
+        Boolean emBranco = null;
+        String nome, email, telefone;
+        nome = cadAlunoView.getTfNome().getText();
+        email = cadAlunoView.getTfEmail().getText();
+        telefone = cadAlunoView.getFtfTelefone().getText().replaceAll("[ ()-]", "");
+
+        if (nome.equals(null) || nome.equals("") || email.equals(null)
+                || email.equals("") || telefone.equals(null) || telefone.equals("")) {
+            emBranco = true;
+            cadAlunoView.getLbObrigatorioInfo().setVisible(true);
+        } else {
+            cadAlunoView.getLbObrigatorioInfo().setVisible(false);
+            emBranco = false;
+        }
+
+        return emBranco;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getActionCommand().equals("salvar")) {
-            System.out.println(e.getActionCommand());
-
-            atualizarViewParaAluno();
-
-            if (alunoDAO.salvar(aluno) == true) {
-                System.out.println("Salvo");
-                cadAlunoView.getTelaPrincipalController().atualizarValores();
+            if (verificaCampo()) {
+                cadAlunoView.getLbObrigatorioInfo().setVisible(true);
+                System.out.println("Em Btanco? " + verificaCampo());
             } else {
-                System.out.println(" NAO SALVO! ");
+                atualizarViewParaAluno();
+                if (alunoDAO.salvar(aluno) == true) {
+                    System.out.println("Salvo");
+                    cadAlunoView.getTelaPrincipalController().atualizarValores();
+                } else {
+                    System.out.println(" NAO SALVO! ");
+                }
             }
         }
 
@@ -99,6 +132,13 @@ import view.CadastroAlunoView;
         }
     }
 
-}
-    
+    @Override
+    public void focusGained(FocusEvent e) {
+        verificaCampo();
+    }
 
+    @Override
+    public void focusLost(FocusEvent e) {
+        verificaCampo();
+    }
+}

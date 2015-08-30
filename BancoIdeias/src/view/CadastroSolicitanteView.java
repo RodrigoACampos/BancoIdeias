@@ -115,7 +115,6 @@ public class CadastroSolicitanteView extends javax.swing.JPanel {
                 "Tema"
             }
         ));
-        tbIdeia.setRowSelectionAllowed(true);
         jScrollPane1.setViewportView(tbIdeia);
 
         btnIdeia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ideia16x16.png"))); // NOI18N

@@ -6,18 +6,19 @@ import entidade.Ideia;
 import entidade.Professor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ListSelectionModel;
 import model.IdeiaGeralTableModel;
 import view.CadastroProfessorView;
 
-
 /**
  *
  * @author Willyam
  */
-public class ProfessorController implements ActionListener {
+public class ProfessorController implements ActionListener, FocusListener {
 
     Professor professor = new Professor();
     CadastroProfessorView cadProfessorView;
@@ -38,6 +39,10 @@ public class ProfessorController implements ActionListener {
         cadProfessorView.getBtnSalvar().addActionListener(this);
         cadProfessorView.getBtnCancelar().addActionListener(this);
         cadProfessorView.getBtnIdeia().addActionListener(this);
+        cadProfessorView.getLbObrigatorioInfo().setVisible(false);
+        cadProfessorView.getTfNome().addFocusListener(this);
+        cadProfessorView.getTfEmail().addFocusListener(this);
+        cadProfessorView.getFtfTelefone().addFocusListener(this);
         cadProfessorView.getTbIdeia().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         listaIdeia = ideiaDAO.listar();
@@ -71,19 +76,49 @@ public class ProfessorController implements ActionListener {
         cadProfessorView.getTbIdeia().setModel(modelo);
     }
 
+    public void clearAll() {
+        cadProfessorView.getTfNome().setText("");
+        cadProfessorView.getTfEmail().setText("");
+        cadProfessorView.getFtfTelefone().setText("");
+    }
+
+    public Boolean verificaCampo() {
+
+        Boolean emBranco = null;
+        String nome, email, telefone;
+        nome = cadProfessorView.getTfNome().getText();
+        email = cadProfessorView.getTfEmail().getText();
+        telefone = cadProfessorView.getFtfTelefone().getText().replaceAll("[ ()-]", "");
+
+        if (nome.equals(null) || nome.equals("") || email.equals(null)
+                || email.equals("") || telefone.equals(null) || telefone.equals("")) {
+            emBranco = true;
+            cadProfessorView.getLbObrigatorioInfo().setVisible(true);
+        } else {
+            cadProfessorView.getLbObrigatorioInfo().setVisible(false);
+            emBranco = false;
+        }
+
+        return emBranco;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getActionCommand().equals("salvar")) {
-            System.out.println(e.getActionCommand());
-
-            atualizarViewParaProfessor();
-
-            if (professorDAO.salvar(professor) == true) {
-                System.out.println("Salvo");
-                cadProfessorView.getTelaPrincipalController().atualizarValores();
+            if (verificaCampo()) {
+                cadProfessorView.getLbObrigatorioInfo().setVisible(true);
+                System.out.println("Em Btanco? " + verificaCampo());
             } else {
-                System.out.println(" NAO SALVO! ");
+                atualizarViewParaProfessor();
+
+                if (professorDAO.salvar(professor) == true) {
+                    System.out.println("Salvo");
+                    cadProfessorView.getTelaPrincipalController().atualizarValores();
+                    clearAll();
+                } else {
+                    System.out.println(" NAO SALVO! ");
+                }
             }
         }
 
@@ -94,6 +129,16 @@ public class ProfessorController implements ActionListener {
         if (e.getActionCommand().equals("ideia")) {
             System.out.println(e.getActionCommand());
         }
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        verificaCampo();
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        verificaCampo();
     }
 
 }
