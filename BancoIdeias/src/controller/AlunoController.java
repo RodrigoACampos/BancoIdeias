@@ -117,6 +117,7 @@ public class AlunoController implements ActionListener, FocusListener {
                 if (alunoDAO.salvar(aluno) == true) {
                     System.out.println("Salvo");
                     cadAlunoView.getTelaPrincipalController().atualizarValores();
+                    clearAll();
                 } else {
                     System.out.println(" NAO SALVO! ");
                 }
