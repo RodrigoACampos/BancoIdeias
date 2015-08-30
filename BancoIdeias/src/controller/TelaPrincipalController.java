@@ -21,6 +21,9 @@ import view.ConsultaAlunoView;
 import view.ConsultaIdeiaView;
 import view.ConsultaProfessorView;
 import view.ConsultaSolicitanteView;
+import view.IdeiaAlunoView;
+import view.IdeiaProfessorView;
+import view.IdeiaSolicitanteView;
 import view.TelaPrincipalView;
 
 public class TelaPrincipalController implements ActionListener, MouseListener {
@@ -28,10 +31,13 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
     TelaPrincipalView tpv;
     CadastroAlunoView cadastroAluno;
     ConsultaAlunoView consultaAluno;
+    IdeiaAlunoView ideiaAlunoView;
     CadastroProfessorView cadastroProfessor;
     ConsultaProfessorView consultaProfessor;
+    IdeiaProfessorView ideiaProfessorView;
     CadastroSolicitanteView cadastroSolicitante;
     ConsultaSolicitanteView consultaSolicitante;
+    IdeiaSolicitanteView ideiaSolicitanteView;
     CadastroIdeiaView cadastroIdeia;
     ConsultaIdeiaView consultaIdeia;
     private JButton botao;
@@ -147,7 +153,8 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         if (e.getActionCommand().equals("cadastroAluno")) {
             tpv.getJpfundo().removeAll();
             cadastroAluno = new CadastroAlunoView();
-            ac = new AlunoController(cadastroAluno);
+            ideiaAlunoView = new IdeiaAlunoView(null, true);
+            ac = new AlunoController(cadastroAluno,ideiaAlunoView);
             ac.iniciar();
             cadastroAluno.setTelaPrincipalController(this);
             tpv.getJpfundo().add(cadastroAluno);
@@ -166,8 +173,8 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         }
         if (e.getActionCommand().equals("menuCadAluno")) {
             tpv.getJpfundo().removeAll();
-            cadastroAluno = new CadastroAlunoView();
-            ac = new AlunoController(cadastroAluno);
+            ideiaAlunoView = new IdeiaAlunoView(null, true);
+            ac = new AlunoController(cadastroAluno,ideiaAlunoView);
             ac.iniciar();
             cadastroAluno.setTelaPrincipalController(this);
             tpv.getJpfundo().add(cadastroAluno);
