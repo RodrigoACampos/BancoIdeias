@@ -6,6 +6,7 @@
 
 package view;
 
+import controller.TelaPrincipalController;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -22,6 +23,16 @@ public class ConsultaIdeiaView extends javax.swing.JPanel {
      */
     public ConsultaIdeiaView() {
         initComponents();
+    }
+    
+    private TelaPrincipalController telaPrincipalController;
+
+    public TelaPrincipalController getTelaPrincipalController() {
+        return telaPrincipalController;
+    }
+
+    public void setTelaPrincipalController(TelaPrincipalController telaPrincipalController) {
+        this.telaPrincipalController = telaPrincipalController;
     }
 
     /**

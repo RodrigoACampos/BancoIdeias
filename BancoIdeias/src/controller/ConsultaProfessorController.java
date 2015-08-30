@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -38,7 +39,6 @@ public class ConsultaProfessorController implements ActionListener {
 
     public void iniciar() {
         montarEAssinar();
-        atualizarTabelaProfessor(professorLista);
     }
 
     public void montarEAssinar() {
@@ -46,8 +46,7 @@ public class ConsultaProfessorController implements ActionListener {
         consultaProfessorView.getBtnConsultar().addActionListener(this);
         consultaProfessorView.getBtnExcluir().addActionListener(this);
         consultaProfessorView.getTbPesquisa().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-        atualizarTabelaProfessor(professorLista);
+        atualizarTabelaProfessor();
     }
 
     public void selecionarDaTabelaProfessores() {
@@ -57,7 +56,7 @@ public class ConsultaProfessorController implements ActionListener {
         System.out.println(professor.getId());
     }
 
-    public void atualizarTabelaProfessor(List<Professor> professores) {
+    public void atualizarTabelaProfessor() {
         cellRender.setHorizontalAlignment(SwingConstants.CENTER);
         cellRenderTitle.setHorizontalAlignment(SwingConstants.CENTER);
         cellRenderTitle.setFont(cellRenderTitle.getFont().deriveFont(Font.BOLD)); // Não Funciona, Deveria deixar os Nomes das Colunas em Negrito;
@@ -87,8 +86,17 @@ public class ConsultaProfessorController implements ActionListener {
             System.out.println(e.getActionCommand());
         }
 
-        if (e.getActionCommand().equals("excluir")) {
-            //solicitanteDAO.deletar(solicitante);
+        if (e.getActionCommand().equals("Excluir")) {
+            if (consultaProfessorView.getTbPesquisa().getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, "Sem Professor selecionado, tente novamente...");
+            } else {
+                selecionarDaTabelaProfessores();
+                professorDao.deletar(professor);
+                atualizarTabelaProfessor();
+                consultaProfessorView.getTelaPrincipalController().atualizarValores();
+//                JOptionPane.showMessageDialog(null, "Professor excluido com Sucesso!");
+                
+            }
         }
     }
 }

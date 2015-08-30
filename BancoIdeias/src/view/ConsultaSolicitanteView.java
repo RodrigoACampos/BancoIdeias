@@ -6,6 +6,7 @@
 
 package view;
 
+import controller.TelaPrincipalController;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -21,6 +22,16 @@ public class ConsultaSolicitanteView extends javax.swing.JPanel {
      */
     public ConsultaSolicitanteView() {
         initComponents();
+    }
+    
+    private TelaPrincipalController telaPrincipalController;
+
+    public TelaPrincipalController getTelaPrincipalController() {
+        return telaPrincipalController;
+    }
+
+    public void setTelaPrincipalController(TelaPrincipalController telaPrincipalController) {
+        this.telaPrincipalController = telaPrincipalController;
     }
 
     /**
@@ -78,7 +89,6 @@ public class ConsultaSolicitanteView extends javax.swing.JPanel {
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Trash.png"))); // NOI18N
         btnExcluir.setText("Excluir");
-        btnExcluir.setActionCommand("excluir");
 
         btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Find.png"))); // NOI18N
         btnConsultar.setActionCommand("consultar");
