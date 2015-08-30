@@ -74,7 +74,7 @@ public class AlunoDAO {
             stmt.executeUpdate();
             conn.close();
 
-            JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
+            //JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
             resultado = true;
 
         } catch (Exception ex) {
