@@ -69,11 +69,9 @@ public class ConsultaIdeiaController implements ActionListener, MouseListener {
         modelo.setListaIdeias(ideiaLista);
         consultaIdeiaView.getTbPesquisa().setModel(modelo);
         consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(0).setPreferredWidth(10);
-        consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(0).setPreferredWidth(10);
         consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(1).setPreferredWidth(200);
         consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(2).setPreferredWidth(300);
 
-        consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(0).setHeaderRenderer(cellRenderTitle);
         consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(0).setHeaderRenderer(cellRenderTitle);
         consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(0).setCellRenderer(cellRender);
         consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(1).setHeaderRenderer(cellRenderTitle);

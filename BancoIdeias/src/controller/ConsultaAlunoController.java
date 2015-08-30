@@ -66,11 +66,9 @@ public class ConsultaAlunoController implements ActionListener {
         modelo.setListaAlunos(alunoLista);
         consultaAlunoView.getTbPesquisa().setModel(modelo);
         consultaAlunoView.getTbPesquisa().getColumnModel().getColumn(0).setPreferredWidth(10);
-        consultaAlunoView.getTbPesquisa().getColumnModel().getColumn(0).setPreferredWidth(10);
         consultaAlunoView.getTbPesquisa().getColumnModel().getColumn(1).setPreferredWidth(300);
         consultaAlunoView.getTbPesquisa().getColumnModel().getColumn(2).setPreferredWidth(200);
 
-        consultaAlunoView.getTbPesquisa().getColumnModel().getColumn(0).setHeaderRenderer(cellRenderTitle);
         consultaAlunoView.getTbPesquisa().getColumnModel().getColumn(0).setHeaderRenderer(cellRenderTitle);
         consultaAlunoView.getTbPesquisa().getColumnModel().getColumn(0).setCellRenderer(cellRender);
         consultaAlunoView.getTbPesquisa().getColumnModel().getColumn(1).setHeaderRenderer(cellRenderTitle);
