@@ -109,6 +109,8 @@ public class IdeiaController implements ActionListener, FocusListener {
         cadIdeiaView.getTfTema().setText("");
         cadIdeiaView.getFtfData().setText("");
         cadIdeiaView.getTaDescricao().setText("");
+        cadIdeiaView.repaint();
+        cadIdeiaView.revalidate();
     }
 
     public Boolean verificaCampo() {
