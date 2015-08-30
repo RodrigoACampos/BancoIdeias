@@ -111,7 +111,6 @@ public class ProfessorController implements ActionListener, FocusListener {
                 System.out.println("Em Btanco? " + verificaCampo());
             } else {
                 atualizarViewParaProfessor();
-
                 if (professorDAO.salvar(professor) == true) {
                     System.out.println("Salvo");
                     cadProfessorView.getTelaPrincipalController().atualizarValores();

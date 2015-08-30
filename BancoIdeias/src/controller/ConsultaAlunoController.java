@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -38,7 +39,7 @@ public class ConsultaAlunoController implements ActionListener {
 
     public void iniciar() {
         montarEAssinar();
-        atualizarTabelaAluno(alunoLista);
+
     }
 
     public void montarEAssinar() {
@@ -46,8 +47,7 @@ public class ConsultaAlunoController implements ActionListener {
         consultaAlunoView.getBtnConsultar().addActionListener(this);
         consultaAlunoView.getBtnExcluir().addActionListener(this);
         consultaAlunoView.getTbPesquisa().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-        alunoLista = alunoDao.listar();
+        atualizarTabelaAluno();
     }
 
     public void selecionarDaTabelaAlunos() {
@@ -57,13 +57,13 @@ public class ConsultaAlunoController implements ActionListener {
         System.out.println(aluno.getId());
     }
 
-    public void atualizarTabelaAluno(List<Aluno> alunos) {
+    public void atualizarTabelaAluno() {
         cellRender.setHorizontalAlignment(SwingConstants.CENTER);
         cellRenderTitle.setHorizontalAlignment(SwingConstants.CENTER);
         cellRenderTitle.setFont(cellRenderTitle.getFont().deriveFont(Font.BOLD)); // Não Funciona, Deveria deixar os Nomes das Colunas em Negrito;
 
         AlunoTableModel modelo = new AlunoTableModel();
-        modelo.setListaAlunos(alunoLista);
+        modelo.setListaAlunos(alunoDao.listar());
         consultaAlunoView.getTbPesquisa().setModel(modelo);
         consultaAlunoView.getTbPesquisa().getColumnModel().getColumn(0).setPreferredWidth(10);
         consultaAlunoView.getTbPesquisa().getColumnModel().getColumn(1).setPreferredWidth(300);
@@ -87,9 +87,16 @@ public class ConsultaAlunoController implements ActionListener {
             System.out.println(e.getActionCommand());
         }
 
-        if (e.getActionCommand().equals("excluir")) {
-            //solicitanteDAO.deletar(solicitante);
+        if (e.getActionCommand().equals("Excluir")) {
+            if (consultaAlunoView.getTbPesquisa().getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, "Sem Aluno selecionado, tente novamente...");
+            } else {
+                selecionarDaTabelaAlunos();
+                alunoDao.deletar(aluno);
+                atualizarTabelaAluno();
+                consultaAlunoView.getTelaPrincipalController().atualizarValores();
+//                JOptionPane.showMessageDialog(null, "Aluno excluido com Sucesso!");
+            }
         }
     }
-
 }
