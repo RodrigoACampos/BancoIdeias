@@ -50,14 +50,12 @@ public class ProfessorController implements ActionListener, FocusListener {
     }
 
     public void atualizarViewParaProfessor() {
-
         professor.setNome(cadProfessorView.getTfNome().getText());
         professor.setEmail(cadProfessorView.getTfEmail().getText());
         professor.setTelefone(cadProfessorView.getFtfTelefone().getText());
     }
 
     public void atualizarProfessorParaView() {
-
         cadProfessorView.getTfNome().setText(professor.getNome());
         cadProfessorView.getTfEmail().setText(professor.getEmail());
         cadProfessorView.getFtfTelefone().setText(professor.getTelefone());
@@ -83,13 +81,12 @@ public class ProfessorController implements ActionListener, FocusListener {
     }
 
     public Boolean verificaCampo() {
-
         Boolean emBranco = null;
         String nome, email, telefone;
         nome = cadProfessorView.getTfNome().getText();
         email = cadProfessorView.getTfEmail().getText();
         telefone = cadProfessorView.getFtfTelefone().getText().replaceAll("[ ()-]", "");
-
+        
         if (nome.equals(null) || nome.equals("") || email.equals(null)
                 || email.equals("") || telefone.equals(null) || telefone.equals("")) {
             emBranco = true;
@@ -98,13 +95,11 @@ public class ProfessorController implements ActionListener, FocusListener {
             cadProfessorView.getLbObrigatorioInfo().setVisible(false);
             emBranco = false;
         }
-
         return emBranco;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         if (e.getActionCommand().equals("salvar")) {
             if (verificaCampo()) {
                 cadProfessorView.getLbObrigatorioInfo().setVisible(true);
@@ -120,7 +115,6 @@ public class ProfessorController implements ActionListener, FocusListener {
                 }
             }
         }
-
         if (e.getActionCommand().equals("cancelar")) {
             System.out.println(e.getActionCommand());
         }
@@ -129,7 +123,6 @@ public class ProfessorController implements ActionListener, FocusListener {
             System.out.println(e.getActionCommand());
         }
     }
-
     @Override
     public void focusGained(FocusEvent e) {
         verificaCampo();
@@ -139,5 +132,4 @@ public class ProfessorController implements ActionListener, FocusListener {
     public void focusLost(FocusEvent e) {
         verificaCampo();
     }
-
 }
