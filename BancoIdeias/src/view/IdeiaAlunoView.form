@@ -143,6 +143,7 @@
               <Image iconType="3" name="/image/Cancel.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
+            <Property name="actionCommand" type="java.lang.String" value="CancelarIdeiaAluno"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnEscolher">
@@ -151,6 +152,7 @@
               <Image iconType="3" name="/image/Apply.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Escolher"/>
+            <Property name="actionCommand" type="java.lang.String" value="escolher"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">

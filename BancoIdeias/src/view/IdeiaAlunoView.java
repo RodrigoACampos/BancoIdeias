@@ -69,9 +69,11 @@ public class IdeiaAlunoView extends javax.swing.JDialog {
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.setActionCommand("CancelarIdeiaAluno");
 
         btnEscolher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Apply.png"))); // NOI18N
         btnEscolher.setText("Escolher");
+        btnEscolher.setActionCommand("escolher");
 
         jLabel2.setText("Descrição da Ideia:");
 

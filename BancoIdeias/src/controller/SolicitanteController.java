@@ -11,7 +11,6 @@ import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ListSelectionModel;
-import model.IdeiaAlunoTableModel;
 import model.IdeiaGeralTableModel;
 import view.CadastroSolicitanteView;
 import view.IdeiaSolicitanteView;

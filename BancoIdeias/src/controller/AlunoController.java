@@ -2,12 +2,16 @@ package controller;
 
 import dao.AlunoDAO;
 import dao.IdeiaDAO;
+import dao.InteresseDesenvolverDAO;
 import entidade.Aluno;
 import entidade.Ideia;
+import entidade.InteresseDesenvolver;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ListSelectionModel;
@@ -21,8 +25,11 @@ import view.IdeiaAlunoView;
  * @author willyam_evangelista
  * @author marcelo_t
  */
-public class AlunoController implements ActionListener, FocusListener {
-
+public class AlunoController implements ActionListener, FocusListener, MouseListener {
+    
+    //AlunoDAOMarceloTest alunoDaoTest;
+    InteresseDesenvolver interesseDesenvolver;
+    InteresseDesenvolverDAO interesseDesenvolverDAO;
     Aluno aluno = new Aluno();
     CadastroAlunoView cadAlunoView;
     IdeiaAlunoView ideiaAlunoView;
@@ -30,6 +37,8 @@ public class AlunoController implements ActionListener, FocusListener {
     IdeiaDAO ideiaDAO = new IdeiaDAO();
     Ideia ideia = new Ideia();
     List<Ideia> listaIdeia = new ArrayList();
+    List<Ideia> listaIdeiasFavoritas = new ArrayList();
+    //DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
 
     public AlunoController(CadastroAlunoView cadAlunoView, IdeiaAlunoView ideiaAlunoView) {
         this.cadAlunoView = cadAlunoView;
@@ -49,13 +58,14 @@ public class AlunoController implements ActionListener, FocusListener {
         cadAlunoView.getTfEmail().addFocusListener(this);
         cadAlunoView.getFtfTelefone().addFocusListener(this);
         cadAlunoView.getTbIdeia().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
+
         ideiaAlunoView.getBtnEscolher().addActionListener(this);
         ideiaAlunoView.getBtnCancelar().addActionListener(this);
+        ideiaAlunoView.getTbPesquisa().addMouseListener(this);
         ideiaAlunoView.getTbPesquisa().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         listaIdeia = ideiaDAO.listar();
-        atualizarTabelaIdeiaFavoritas(listaIdeia);
+        //atualizarTabelaIdeiaFavoritas(listaIdeia);
     }
 
     public void atualizarViewParaAluno() {
@@ -63,7 +73,7 @@ public class AlunoController implements ActionListener, FocusListener {
         aluno.setNome(cadAlunoView.getTfNome().getText());
         aluno.setEmail(cadAlunoView.getTfEmail().getText());
         aluno.setTelefone(cadAlunoView.getFtfTelefone().getText());
-        
+
     }
 
     public void atualizarAlunoParaView() {
@@ -85,17 +95,29 @@ public class AlunoController implements ActionListener, FocusListener {
         modelo.setListaIdeias(listaIdeias);
         cadAlunoView.getTbIdeia().setModel(modelo);
         cadAlunoView.getTbIdeia().getColumnModel().getColumn(0).setPreferredWidth(300);
+        cadAlunoView.getTbIdeia().setEnabled(false);
     }
-    
-     public void atualizarTabelaIdeias(List<Ideia> listaIdeias) {
-        
+
+    public void atualizarTabelaIdeias(List<Ideia> listaIdeiasFavoritas) {
+
         IdeiaAlunoTableModel ideiaAlunoModelo = new IdeiaAlunoTableModel();
-        ideiaAlunoModelo.setListaIdeias(listaIdeias);
+        ideiaAlunoModelo.setListaIdeias(listaIdeiasFavoritas);
         ideiaAlunoView.getTbPesquisa().setModel(ideiaAlunoModelo);
-        ideiaAlunoView.getTbPesquisa().getColumnModel().getColumn(0).setPreferredWidth(10);
-        ideiaAlunoView.getTbPesquisa().getColumnModel().getColumn(1).setPreferredWidth(150);
-                
-        
+
+        ideiaAlunoView.getTbPesquisa().getColumnModel().getColumn(0).setPreferredWidth(5);
+        ideiaAlunoView.getTbPesquisa().getColumnModel().getColumn(1).setPreferredWidth(350);
+
+    }
+
+    private void atualizarDescricao() {
+        ideiaAlunoView.getTaDescricaoIdeia().setText(ideia.getDescricao());
+    }
+
+    public void selecionarDaTabelaIdeias() {
+        int indice = ideiaAlunoView.getTbPesquisa().getSelectedRow();
+        IdeiaAlunoTableModel model = (IdeiaAlunoTableModel) ideiaAlunoView.getTbPesquisa().getModel();
+        ideia = model.getListaIdeia().get(indice);
+        System.out.println(ideia.getId());
     }
 
     public void clearAll() {
@@ -145,20 +167,30 @@ public class AlunoController implements ActionListener, FocusListener {
 
         if (e.getActionCommand().equals("cancelar")) {
             System.out.println(e.getActionCommand());
+            //clearAll();
+            cadAlunoView.removeAll(); //podemos Limpar a Tela (ela "sai" da tela Principal) ou
+            cadAlunoView.repaint();   //podemos Limpar os campos da tela apenas
+            cadAlunoView.revalidate();
         }
 
         if (e.getActionCommand().equals("ideia")) {
             System.out.println(e.getActionCommand());
-            atualizarTabelaIdeias(listaIdeia);
+            atualizarTabelaIdeias(listaIdeia);            
             ideiaAlunoView.setVisible(true);
         }
-        
-        if (e.getActionCommand().equals("i")) {
+
+        if (e.getActionCommand().equals("escolher")) {
             System.out.println(e.getActionCommand());
+            interesseDesenvolver = new InteresseDesenvolver();
+            atualizarViewParaAluno();
+            selecionarDaTabelaIdeias();
+            interesseDesenvolver.setAluno(aluno);
+            interesseDesenvolver.setIdeia(ideia);  
         }
-        
-        if (e.getActionCommand().equals("id")) {
+
+        if (e.getActionCommand().equals("CancelarIdeiaAluno")) {
             System.out.println(e.getActionCommand());
+            ideiaAlunoView.setVisible(false);
         }
     }
 
@@ -170,5 +202,33 @@ public class AlunoController implements ActionListener, FocusListener {
     @Override
     public void focusLost(FocusEvent e) {
         verificaCampo();
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getClickCount() == 1) {
+            selecionarDaTabelaIdeias();
+            atualizarDescricao();
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }
