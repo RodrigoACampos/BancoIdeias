@@ -17,6 +17,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.ProfessorTableModel;
+import view.AlterarAlunoView;
 import view.ConsultaProfessorView;
 
 /**
@@ -29,6 +30,8 @@ public class ConsultaProfessorController implements ActionListener {
     ConsultaProfessorView consultaProfessorView;
     ProfessorDAO professorDao = new ProfessorDAO();
     List<Professor> professorLista = new ArrayList();
+    
+    AlterarAlunoView alterarAluno;
 
     DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
     DefaultTableCellRenderer cellRenderTitle = new DefaultTableCellRenderer();
@@ -83,7 +86,7 @@ public class ConsultaProfessorController implements ActionListener {
         }
 
         if (e.getActionCommand().equals("alterar")) {
-            System.out.println(e.getActionCommand());
+            alterarAluno.setVisible(true);
         }
 
         if (e.getActionCommand().equals("Excluir")) {

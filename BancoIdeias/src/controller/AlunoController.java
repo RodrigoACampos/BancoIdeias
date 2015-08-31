@@ -149,7 +149,7 @@ public class AlunoController implements ActionListener, FocusListener, MouseList
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getActionCommand().equals("salvar")) {
+        if (e.getActionCommand().equals("Salvar")) {
             if (verificaCampo()) {
                 cadAlunoView.getLbObrigatorioInfo().setVisible(true);
                 System.out.println("Em Btanco? " + verificaCampo());
