@@ -13,6 +13,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import view.AlterarAlunoView;
 import view.CadastroAlunoView;
 import view.CadastroIdeiaView;
 import view.CadastroProfessorView;
@@ -48,6 +49,7 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
     ConsultaProfessorController cpc;
     ConsultaAlunoController cac;
     ConsultaIdeiaController cic;
+    AlterarAlunoView alterarAlunoView;
 
     AlunoDAO alunoDao;
     AlunoController ac;
@@ -163,8 +165,9 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         }
         if (e.getActionCommand().equals("consultaAluno")) {
             tpv.getJpfundo().removeAll();
+            alterarAlunoView = new AlterarAlunoView(null, true);
             consultaAluno = new ConsultaAlunoView();
-            cac = new ConsultaAlunoController(consultaAluno);
+            cac = new ConsultaAlunoController(consultaAluno, alterarAlunoView);
             cac.iniciar();
             consultaAluno.setTelaPrincipalController(this);
             tpv.getJpfundo().add(consultaAluno);
@@ -183,8 +186,9 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         }
         if (e.getActionCommand().equals("menuConAluno")) {
             tpv.getJpfundo().removeAll();
+            alterarAlunoView = new AlterarAlunoView(null, true);
             consultaAluno = new ConsultaAlunoView();
-            cac = new ConsultaAlunoController(consultaAluno);
+            cac = new ConsultaAlunoController(consultaAluno, alterarAlunoView);
             cac.iniciar();
             consultaAluno.setTelaPrincipalController(this);
             tpv.getJpfundo().add(consultaAluno);
