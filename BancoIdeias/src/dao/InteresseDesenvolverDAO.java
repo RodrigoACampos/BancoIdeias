@@ -32,17 +32,17 @@ public class InteresseDesenvolverDAO {
             String QUERY_INSERT = "insert into interesse_desenvolver (idideia, idaluno) values (?, ?)";
             String QUERY_UPDATE = "update aluno set idideia = ?, idaluno = ? where idideia = ? and idaluno = ?";
 
-            if (GetById(interesseDesenvolver) == null) {
+            //if (GetById(interesseDesenvolver) == null) {
                 stmt = conn.prepareStatement(QUERY_INSERT);
                 stmt.setInt(1, interesseDesenvolver.getIdeia().getId());
                 stmt.setInt(2, interesseDesenvolver.getAluno().getId());
-            } else {
-                stmt = conn.prepareStatement(QUERY_UPDATE);
-                stmt.setInt(1, interesseDesenvolver.getIdeia().getId());
-                stmt.setInt(2, interesseDesenvolver.getAluno().getId());
-                stmt.setInt(3, interesseDesenvolver.getIdeia().getId());
-                stmt.setInt(4, interesseDesenvolver.getAluno().getId());
-            }
+            //} else {
+//                stmt = conn.prepareStatement(QUERY_UPDATE);
+//                stmt.setInt(1, interesseDesenvolver.getIdeia().getId());
+//                stmt.setInt(2, interesseDesenvolver.getAluno().getId());
+//                stmt.setInt(3, interesseDesenvolver.getIdeia().getId());
+//                stmt.setInt(4, interesseDesenvolver.getAluno().getId());
+            //}
 
             stmt.executeUpdate();
             conn.close();
@@ -90,7 +90,7 @@ public class InteresseDesenvolverDAO {
 
     public InteresseDesenvolver GetById(InteresseDesenvolver pInteresseDesenvolver) {
 
-        InteresseDesenvolver interesseDesenvolver = null;
+        InteresseDesenvolver retornoInteresseDesenvolver = null;
 
         try {
             String QUERY_DETALHE = "select * from interesse_desenvolver where idideia = ? and idaluno = ?";
@@ -100,29 +100,29 @@ public class InteresseDesenvolverDAO {
             ResultSet rs = null;
 
             stmt = conn.prepareStatement(QUERY_DETALHE);
-            stmt.setInt(1, interesseDesenvolver.getIdeia().getId());
-            stmt.setInt(2, interesseDesenvolver.getAluno().getId());
+            stmt.setInt(1, retornoInteresseDesenvolver.getIdeia().getId());
+            stmt.setInt(2, retornoInteresseDesenvolver.getAluno().getId());
 
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                interesseDesenvolver = new InteresseDesenvolver();
+                retornoInteresseDesenvolver = new InteresseDesenvolver();
                 IdeiaDAO ideiaDAO = new IdeiaDAO();
-                interesseDesenvolver.setIdeia(ideiaDAO.GetById(rs.getInt("IDIDEIA")));
+                retornoInteresseDesenvolver.setIdeia(ideiaDAO.GetById(rs.getInt("IDIDEIA")));
                 AlunoDAO alunoDAO = new AlunoDAO();
-                interesseDesenvolver.setAluno(alunoDAO.GetById(rs.getInt("IDALUNO")));
+                retornoInteresseDesenvolver.setAluno(alunoDAO.GetById(rs.getInt("IDALUNO")));
             }
             conn.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();
-            interesseDesenvolver = null;
+            retornoInteresseDesenvolver = null;
         }
 
-        return interesseDesenvolver;
+        return retornoInteresseDesenvolver;
     }
 
-    public List<InteresseDesenvolver> listarByIdeia(int id) {
+    public List<InteresseDesenvolver> listarByAluno(int id) {
 
         List<InteresseDesenvolver> lista = new ArrayList<InteresseDesenvolver>();
         try {

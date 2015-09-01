@@ -1,6 +1,7 @@
 package controller;
 
 import dao.AlunoDAO;
+import dao.AlunoDAOMarceloTest;
 import dao.IdeiaDAO;
 import dao.InteresseDesenvolverDAO;
 import entidade.Aluno;
@@ -12,8 +13,12 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import model.IdeiaAlunoTableModel;
 import model.IdeiaGeralTableModel;
@@ -26,10 +31,10 @@ import view.IdeiaAlunoView;
  * @author marcelo_t
  */
 public class AlunoController implements ActionListener, FocusListener, MouseListener {
-    
+
     //AlunoDAOMarceloTest alunoDaoTest;
     InteresseDesenvolver interesseDesenvolver;
-    InteresseDesenvolverDAO interesseDesenvolverDAO;
+    InteresseDesenvolverDAO interesseDesenvolverDAO = new InteresseDesenvolverDAO();
     Aluno aluno = new Aluno();
     CadastroAlunoView cadAlunoView;
     IdeiaAlunoView ideiaAlunoView;
@@ -38,11 +43,19 @@ public class AlunoController implements ActionListener, FocusListener, MouseList
     Ideia ideia = new Ideia();
     List<Ideia> listaIdeia = new ArrayList();
     List<Ideia> listaIdeiasFavoritas = new ArrayList();
+    List<Ideia> listaIdeiasEscolhidas = new ArrayList();
+    Boolean trocarTela;
     //DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
 
     public AlunoController(CadastroAlunoView cadAlunoView, IdeiaAlunoView ideiaAlunoView) {
         this.cadAlunoView = cadAlunoView;
         this.ideiaAlunoView = ideiaAlunoView;
+    }
+
+    public AlunoController(CadastroAlunoView cadAlunoView, IdeiaAlunoView ideiaAlunoView, Aluno aluno) {
+        this.cadAlunoView = cadAlunoView;
+        this.ideiaAlunoView = ideiaAlunoView;
+        this.aluno = aluno;
     }
 
     public void iniciar() {
@@ -81,7 +94,13 @@ public class AlunoController implements ActionListener, FocusListener, MouseList
         cadAlunoView.getTfNome().setText(aluno.getNome());
         cadAlunoView.getTfEmail().setText(aluno.getEmail());
         cadAlunoView.getFtfTelefone().setText(aluno.getTelefone());
+//        listaIdeiasFavoritas = 
+        for (int i = 0; i < interesseDesenvolverDAO.listarByAluno(aluno.getId()).size(); i++) {
 
+            listaIdeiasEscolhidas.add(interesseDesenvolverDAO.listarByAluno(aluno.getId()).get(i).getIdeia());
+        }
+        
+        atualizarTabelaIdeiaFavoritas(listaIdeiasEscolhidas);
     }
 
     public void selecionarDaTabelaProfessor() {
@@ -90,18 +109,18 @@ public class AlunoController implements ActionListener, FocusListener, MouseList
         ideia = model.getListaIdeia().get(indice);
     }
 
-    public void atualizarTabelaIdeiaFavoritas(List<Ideia> listaIdeias) {
+    public void atualizarTabelaIdeiaFavoritas(List<Ideia> listaIdeiasFavoritas) {
         IdeiaGeralTableModel modelo = new IdeiaGeralTableModel();
-        modelo.setListaIdeias(listaIdeias);
+        modelo.setListaIdeias(listaIdeiasFavoritas);
         cadAlunoView.getTbIdeia().setModel(modelo);
         cadAlunoView.getTbIdeia().getColumnModel().getColumn(0).setPreferredWidth(300);
         cadAlunoView.getTbIdeia().setEnabled(false);
     }
 
-    public void atualizarTabelaIdeias(List<Ideia> listaIdeiasFavoritas) {
+    public void atualizarTabelaIdeias(List<Ideia> listaIdeias) {
 
         IdeiaAlunoTableModel ideiaAlunoModelo = new IdeiaAlunoTableModel();
-        ideiaAlunoModelo.setListaIdeias(listaIdeiasFavoritas);
+        ideiaAlunoModelo.setListaIdeias(listaIdeias);
         ideiaAlunoView.getTbPesquisa().setModel(ideiaAlunoModelo);
 
         ideiaAlunoView.getTbPesquisa().getColumnModel().getColumn(0).setPreferredWidth(5);
@@ -150,42 +169,87 @@ public class AlunoController implements ActionListener, FocusListener, MouseList
     public void actionPerformed(ActionEvent e) {
 
         if (e.getActionCommand().equals("Salvar")) {
+//            if (verificaCampo()) {
+//                cadAlunoView.getLbObrigatorioInfo().setVisible(true);
+//                System.out.println("Em Btanco? " + verificaCampo());
+//            } else {
+//                atualizarViewParaAluno();
+//                if (alunoDAO.salvar(aluno) == true) {
+//                    System.out.println("Salvo");
+//                    cadAlunoView.getTelaPrincipalController().atualizarValores();
+//                    clearAll();
+//                    listaIdeiasFavoritas.clear();
+//                    atualizarTabelaIdeiaFavoritas(listaIdeiasFavoritas);
+//                } else {
+//                    System.out.println(" NAO SALVO! ");
+//                }
+//            }
+
             if (verificaCampo()) {
                 cadAlunoView.getLbObrigatorioInfo().setVisible(true);
                 System.out.println("Em Btanco? " + verificaCampo());
             } else {
                 atualizarViewParaAluno();
-                if (alunoDAO.salvar(aluno) == true) {
-                    System.out.println("Salvo");
-                    cadAlunoView.getTelaPrincipalController().atualizarValores();
-                    clearAll();
-                } else {
-                    System.out.println(" NAO SALVO! ");
+
+                try {
+                    AlunoDAOMarceloTest.salvar(aluno);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                //interesseDesenvolver.setAluno(aluno);
+                //interesseDesenvolver.setIdeia(ideia);
+                //System.out.println("idaluno "+interesseDesenvolver.getAluno().getId()+" "+ "idIdeia "+interesseDesenvolver.getIdeia().getId());
+                for (int i = 0; i < listaIdeiasFavoritas.size(); i++) {
+                    System.out.println("lista de ideias favoritas vazia? " + listaIdeiasFavoritas.isEmpty());
+                    ideia = listaIdeiasFavoritas.get(i);
+                    interesseDesenvolver.setAluno(aluno);
+                    interesseDesenvolver.setIdeia(ideia);
+                    System.out.println("idaluno " + interesseDesenvolver.getAluno().getId() + "\n "
+                            + "idIdeia " + interesseDesenvolver.getIdeia().getId());
+                    interesseDesenvolverDAO.salvar(interesseDesenvolver);
+                }
+
+                System.out.println("Salvo");
+                cadAlunoView.getTelaPrincipalController().atualizarValores();
+                clearAll();
+                listaIdeiasFavoritas.clear();
+                atualizarTabelaIdeiaFavoritas(listaIdeiasFavoritas);
+                JOptionPane.showMessageDialog(null, "Salvo Aluno e suas Idéias Selecionadas com sucesso!");
+                if (cadAlunoView.getTelaPrincipalController().getTrocarTela()){
+                    
+                    cadAlunoView.getTelaPrincipalController().trocarTela("ConsultaAlunoView", null, false);
                 }
             }
         }
 
         if (e.getActionCommand().equals("cancelar")) {
             System.out.println(e.getActionCommand());
-            //clearAll();
-            cadAlunoView.removeAll(); //podemos Limpar a Tela (ela "sai" da tela Principal) ou
-            cadAlunoView.repaint();   //podemos Limpar os campos da tela apenas
+            //clearAll();             //podemos Limpar os campos da tela apenas ou
+            cadAlunoView.removeAll(); //podemos Limpar a Tela (ela "sai" da tela Principal) 
+            cadAlunoView.repaint();
             cadAlunoView.revalidate();
         }
 
         if (e.getActionCommand().equals("ideia")) {
             System.out.println(e.getActionCommand());
-            atualizarTabelaIdeias(listaIdeia);            
+            atualizarTabelaIdeias(listaIdeia);
             ideiaAlunoView.setVisible(true);
         }
 
         if (e.getActionCommand().equals("escolher")) {
             System.out.println(e.getActionCommand());
-            interesseDesenvolver = new InteresseDesenvolver();
-            atualizarViewParaAluno();
-            selecionarDaTabelaIdeias();
-            interesseDesenvolver.setAluno(aluno);
-            interesseDesenvolver.setIdeia(ideia);  
+            interesseDesenvolver = new InteresseDesenvolver(); // entidade instanciada;
+            atualizarViewParaAluno();//metodo que pega os dados digitados nos campos e passa para os atributos da entidade Aluno;
+            selecionarDaTabelaIdeias();//metodo que pega a linha e seus objetos ,selecionados na tabela do JDialog e atribui os objetos na entidade Aluno e Ideia.
+            
+            listaIdeiasFavoritas.clear();
+            listaIdeiasFavoritas.add(ideia);//Array recebe ideia escolhida na jdialog;
+            listaIdeiasEscolhidas.add(ideia);//Array recebe ideia escolhida na jdialog;
+            atualizarTabelaIdeiaFavoritas(listaIdeiasEscolhidas);//meto que atualiza a tabela da viw de cadastro com a ideia selecionada pelo aluno;
+            ideiaAlunoView.setVisible(false);
         }
 
         if (e.getActionCommand().equals("CancelarIdeiaAluno")) {

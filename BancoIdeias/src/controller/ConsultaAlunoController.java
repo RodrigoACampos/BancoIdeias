@@ -6,7 +6,9 @@
 package controller;
 
 import dao.AlunoDAO;
+import dao.InteresseDesenvolverDAO;
 import entidade.Aluno;
+import entidade.InteresseDesenvolver;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,7 +32,9 @@ public class ConsultaAlunoController implements ActionListener {
     ConsultaAlunoView consultaAlunoView;
     AlunoDAO alunoDao = new AlunoDAO();
     List<Aluno> alunoLista = new ArrayList();
+    List<InteresseDesenvolver> listaInteresseDesenvolver = new ArrayList();
     AlterarAlunoView alterarAlunoView;
+    InteresseDesenvolverDAO interesseDesenvolverDAO = new InteresseDesenvolverDAO();
 
     DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
     DefaultTableCellRenderer cellRenderTitle = new DefaultTableCellRenderer();
@@ -38,6 +42,11 @@ public class ConsultaAlunoController implements ActionListener {
     public ConsultaAlunoController(ConsultaAlunoView consultaAlunoView, AlterarAlunoView alterarAluno) {
         this.consultaAlunoView = consultaAlunoView;
         this.alterarAlunoView = alterarAluno;
+    }
+    
+     public ConsultaAlunoController(ConsultaAlunoView consultaAlunoView, Aluno aluno) {
+        this.consultaAlunoView = consultaAlunoView;
+        this.aluno = aluno;
     }
 
     public void iniciar() {
@@ -61,7 +70,7 @@ public class ConsultaAlunoController implements ActionListener {
         aluno = model.getListaAlunos().get(indice);
         System.out.println(aluno.getId());
     }
-   
+
     public void atualizarTabelaAluno() {
         cellRender.setHorizontalAlignment(SwingConstants.CENTER);
         cellRenderTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -81,19 +90,19 @@ public class ConsultaAlunoController implements ActionListener {
         consultaAlunoView.getTbPesquisa().getColumnModel().getColumn(2).setHeaderRenderer(cellRenderTitle);
         consultaAlunoView.getTbPesquisa().getColumnModel().getColumn(2).setCellRenderer(cellRender);
     }
-    
-     private void atualizarAlunoParaView() {
+
+    private void atualizarAlunoParaView() {
         alterarAlunoView.getTfNome().setText(aluno.getNome());
         alterarAlunoView.getTfEmail().setText(aluno.getEmail());
         alterarAlunoView.getFtfTelefone().setText(aluno.getTelefone());
     }
-    
+
     public void atualizarViewParaAluno() {
         aluno.setNome(alterarAlunoView.getTfNome().getText());
         aluno.setEmail(alterarAlunoView.getTfEmail().getText());
-        aluno.setTelefone(alterarAlunoView.getFtfTelefone().getText());        
-    }   
-    
+        aluno.setTelefone(alterarAlunoView.getFtfTelefone().getText());
+    }
+
     public Boolean verificaCampo() {
         Boolean emBranco = null;
         String nome, email, telefone;
@@ -119,30 +128,47 @@ public class ConsultaAlunoController implements ActionListener {
         }
 
         if (e.getActionCommand().equals("Alterar")) {
-            if (consultaAlunoView.getTbPesquisa().getSelectedRow() == -1) {
-                JOptionPane.showMessageDialog(null, "Sem aluno selecionado, tente novamente...");
-            } else {
-                selecionarDaTabelaAlunos();
-                atualizarAlunoParaView();
-                alterarAlunoView.setVisible(true);
-            }
+//            if (consultaAlunoView.getTbPesquisa().getSelectedRow() == -1) {
+//                JOptionPane.showMessageDialog(null, "Sem aluno selecionado, tente novamente...");
+//            } else {
+//                selecionarDaTabelaAlunos();
+//                atualizarAlunoParaView();
+//                alterarAlunoView.setVisible(true);
+//            }
+            selecionarDaTabelaAlunos();
+            consultaAlunoView.getTelaPrincipalController().trocarTela("CadastroAlunoView", aluno, true);
         }
 
         if (e.getActionCommand().equals("Excluir")) {
             if (consultaAlunoView.getTbPesquisa().getSelectedRow() == -1) {
                 JOptionPane.showMessageDialog(null, "Sem Aluno selecionado, tente novamente...");
             } else {
+
+            }
+            Integer resposta = (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este Aluno e suas Ideias escolhidas?"));
+            if (resposta == 0) {
                 selecionarDaTabelaAlunos();
+
+                //**teste do Marcelo
+                listaInteresseDesenvolver = interesseDesenvolverDAO.listarByAluno(aluno.getId());
+                for (int i = 0; i < listaInteresseDesenvolver.size(); i++) {
+                    interesseDesenvolverDAO.deletar(listaInteresseDesenvolver.get(i));
+                }
+                //*/fim teste do Marcelo
+
                 if (alunoDao.deletar(aluno)) {
                     atualizarTabelaAluno();
                     consultaAlunoView.getTelaPrincipalController().atualizarValores();
                     JOptionPane.showMessageDialog(null, "Deletado com sucesso!");
                 }
+            }else{
+                JOptionPane.showMessageDialog(null, "Cancelado exclusão do Aluno "+aluno.getNome());
             }
+
         }
         if (e.getActionCommand().equals("Salvar")) {
             System.out.println(e.getActionCommand());
-              if (verificaCampo()) {
+            if (verificaCampo()) {
                 alterarAlunoView.getLbObrigatorioInfo().setVisible(true);
                 System.out.println("Em Btanco? " + verificaCampo());
             } else {
@@ -150,15 +176,15 @@ public class ConsultaAlunoController implements ActionListener {
                 if (alunoDao.salvar(aluno) == true) {
                     System.out.println("Salvo");
                     atualizarTabelaAluno();
-                    alterarAlunoView.setVisible(false);                    
+                    alterarAlunoView.setVisible(false);
                 } else {
                     System.out.println(" NAO SALVO! ");
                 }
             }
         }
-        
+
         if (e.getActionCommand().equals("cancelar")) {
-            System.out.println(e.getActionCommand());   
+            System.out.println(e.getActionCommand());
             alterarAlunoView.setVisible(false);
         }
     }

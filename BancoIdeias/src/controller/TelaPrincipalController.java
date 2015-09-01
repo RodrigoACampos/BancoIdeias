@@ -4,6 +4,7 @@ import dao.AlunoDAO;
 import dao.IdeiaDAO;
 import dao.ProfessorDAO;
 import dao.SolicitanteDAO;
+import entidade.Aluno;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -50,6 +51,9 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
     ConsultaAlunoController cac;
     ConsultaIdeiaController cic;
     AlterarAlunoView alterarAlunoView;
+    
+    Aluno aluno;
+    Boolean trocarTela;
 
     AlunoDAO alunoDao;
     AlunoController ac;
@@ -123,6 +127,39 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
     private void repintarTela() {
         tpv.repaint();
         tpv.revalidate();
+    }
+    
+    public void trocarTela(String tela, Object entidade, Boolean trocarTela){
+        if (tela.equals("CadastroAlunoView")){
+            
+            tpv.getJpfundo().removeAll();
+            cadastroAluno = new CadastroAlunoView();
+            ideiaAlunoView = new IdeiaAlunoView(null, true);
+            this.aluno = (Aluno) entidade;
+            this.trocarTela = trocarTela;
+            ac = new AlunoController(cadastroAluno, ideiaAlunoView, aluno);
+            ac.iniciar();
+            ac.atualizarAlunoParaView();
+            cadastroAluno.setTelaPrincipalController(this);
+            tpv.getJpfundo().add(cadastroAluno);
+            cadastroAluno.setVisible(true);
+            repintarTela();   
+           
+        }
+        
+        if(tela.equals("ConsultaAlunoView")){
+            tpv.getJpfundo().removeAll();
+            alterarAlunoView = new AlterarAlunoView(null, true);
+            consultaAluno = new ConsultaAlunoView();
+            cac = new ConsultaAlunoController(consultaAluno, alterarAlunoView);
+            cac.iniciar();
+            consultaAluno.setTelaPrincipalController(this);
+            tpv.getJpfundo().add(consultaAluno);
+            consultaAluno.setVisible(true);
+            repintarTela();
+            
+        }
+        
     }
 
     public void atualizarValores() {
@@ -411,5 +448,14 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         repintarTela();
 
     }
+
+    public Boolean getTrocarTela() {
+        return trocarTela;
+    }
+
+    public void setTrocarTela(Boolean trocarTela) {
+        this.trocarTela = trocarTela;
+    }
+    
 
 }
