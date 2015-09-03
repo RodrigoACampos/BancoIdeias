@@ -184,6 +184,13 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
 
         }
 
+        if (e.getActionCommand().equals("AlunoConsulta")) {
+
+            //pedindo para o controller do professor mostrar a janela de consulta
+            alunocontroller.ShowConsultaAluno();
+
+        }
+
         if (e.getActionCommand().equals("AlunoCadastrar")) {
 
             //pedindo para o controller do professor mostrar a janela de cadastro
