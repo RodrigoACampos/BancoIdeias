@@ -7,6 +7,7 @@ package view;
 
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -32,6 +33,10 @@ public class IdeiaProfessorView extends javax.swing.JDialog {
 
     public JTable getTbPesquisa() {
         return tbPesquisa;
+    }
+
+    public JTextArea getTaDescricaoIdeia() {
+        return taDescricaoIdeia;
     }
 
     /**

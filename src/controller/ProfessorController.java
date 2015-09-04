@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -27,7 +29,7 @@ import view.IdeiaProfessorView;
  *
  * @author Willyam
  */
-public class ProfessorController implements ActionListener, FocusListener {
+public class ProfessorController implements ActionListener, FocusListener, MouseListener {
 
     //Declarando os objetos 
     private Professor professor = new Professor();
@@ -46,7 +48,6 @@ public class ProfessorController implements ActionListener, FocusListener {
 
     //Construtor do controller, ele instancia os objetos para acesso a qualquer momento
     public ProfessorController(TelaPrincipalController telaPrincipalController) {
-
         this.telaPrincipalController = telaPrincipalController;
 
         this.cadastroProfessorView = new CadastroProfessorView();
@@ -56,110 +57,81 @@ public class ProfessorController implements ActionListener, FocusListener {
         AssinarListener();
         ClearCadastroProfessor();
         ClearConsultaProfessor();
-
     }
 
     //retorna o objeto da tela de cadastrado do professor
     public CadastroProfessorView getCadastroProfessorView() {
-
         return this.cadastroProfessorView;
-
     }
 
     //retorna o objeto da tela de consulta do professor
     public ConsultaProfessorView GetConsultaProfessorView() {
-
         return this.consultaProfessorView;
-
     }
 
     //Implementando metodo para abrir janela de cadastro de professor
     public void AddCadastroProfessor() {
-
         ClearCadastroProfessor();
         this.telaPrincipalController.GetTelaPrincipal().getJpfundo().removeAll();
         this.telaPrincipalController.GetTelaPrincipal().getJpfundo().add(this.cadastroProfessorView);
         this.cadastroProfessorView.setVisible(true);
         this.telaPrincipalController.repintarTela();
-
     }
 
     public void UpdateCadastroProfessor() {
-
         AddCadastroProfessor();
         //localizando o professor
         int indice = consultaProfessorView.getTbPesquisa().getSelectedRow();
         ProfessorTableModel model = (ProfessorTableModel) consultaProfessorView.getTbPesquisa().getModel();
         professor = model.getListaprofessores().get(indice);
-
         //verificando se o dao conseguir localizar a partir do id
         if (professor != null) {
-
             // mostrando a tela de cadastro do professor
             IdeiaListar();
-
             //atualizando os valores da tela
             this.cadastroProfessorView.getTfNome().setText(professor.getNome());
             this.cadastroProfessorView.getTfEmail().setText(professor.getEmail());
             this.cadastroProfessorView.getFtfTelefone().setText(professor.getTelefone());
-
         } else {
             JOptionPane.showMessageDialog(null, "Não foi possivel obter os dados do professor selecionado");
         }
-
         //Atualizando a tela principal
         telaPrincipalController.repintarTela();
-
     }
 
     //Implementando metodo para abrir janela de consulta de professor
     public void ShowConsultaProfessor() {
-
         this.telaPrincipalController.GetTelaPrincipal().getJpfundo().removeAll();
         this.telaPrincipalController.GetTelaPrincipal().getJpfundo().add(this.consultaProfessorView);
         this.consultaProfessorView.setVisible(true);
-
         ProfessorListar();
-
         //Atualizando a tela principal
         telaPrincipalController.repintarTela();
-
     }
 
     public void ShowListasIdeiasDisponiveis() {
-
         if (this.professor.getId() == null) {
-
             if (this.telaPrincipalController.Perguntar("Para adicionar uma ideia é necessário salvar o professor antes. Deseja salvar agora?")) {
-
                 //pegando os valores de cada campo da tela de cadastro
                 this.professor.setNome(cadastroProfessorView.getTfNome().getText());
                 this.professor.setEmail(cadastroProfessorView.getTfEmail().getText());
                 this.professor.setTelefone(cadastroProfessorView.getFtfTelefone().getText());
-
                 //passando os valores para o DAO
                 int chave = this.professorDAO.salvar(this.professor);
                 if (chave != -1) {
-
                     this.professor.setId(chave);
                     IdeiaDisponiveisListar();
                     this.ideiaProfessorView.setVisible(true);
                 }
-                
             }
-
         } else {
-
             IdeiaDisponiveisListar();
             this.ideiaProfessorView.setVisible(true);
-
         }
-
     }
 
     //Metodo de controle de eventos
     private void AssinarListener() {
-
         this.cadastroProfessorView.getBtnSalvar().addActionListener(this);
         this.cadastroProfessorView.getBtnCancelar().addActionListener(this);
         this.cadastroProfessorView.getBtnAdiconarIdeia().addActionListener(this);
@@ -173,45 +145,40 @@ public class ProfessorController implements ActionListener, FocusListener {
         this.consultaProfessorView.getBtnExcluir().addActionListener(this);
         this.consultaProfessorView.getBtnCancelar().addActionListener(this);
 
+        this.ideiaProfessorView.getTbPesquisa().addMouseListener(this);
+
         this.cadastroProfessorView.getTbIdeia().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.consultaProfessorView.getTbPesquisa().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.ideiaProfessorView.getTbPesquisa().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         this.ideiaProfessorView.getBtnCancelar().addActionListener(this);
         this.ideiaProfessorView.getBtnEscolher().addActionListener(this);
-
+        this.cadastroProfessorView.getLbObrigatorioInfo().setVisible(false);
     }
 
     //Limpar tela de cadastro do professor
     public void ClearCadastroProfessor() {
-
         professor = new Professor();
         this.cadastroProfessorView.getTfNome().setText("");
         this.cadastroProfessorView.getTfEmail().setText("");
         this.cadastroProfessorView.getFtfTelefone().setText("");
-        
-        
+
         List<InteresseOrientar> listatemp = new ArrayList<InteresseOrientar>();
         InteresseOrientarTableModel modelo = new InteresseOrientarTableModel();
         modelo.setListaInteresses(listatemp);
         this.cadastroProfessorView.getTbIdeia().setModel(modelo);
-    
     }
 
     //Limpar tela de consulta do professor
     public void ClearConsultaProfessor() {
-
         this.consultaProfessorView.getTfConsulta().setText("");
-
     }
 
     private void ProfessorSalvar() {
-
         //pegando os valores de cada campo da tela de cadastro
         this.professor.setNome(cadastroProfessorView.getTfNome().getText());
         this.professor.setEmail(cadastroProfessorView.getTfEmail().getText());
         this.professor.setTelefone(cadastroProfessorView.getFtfTelefone().getText());
-
         //passando os valores para o DAO
         int chave = this.professorDAO.salvar(this.professor);
 
@@ -221,11 +188,9 @@ public class ProfessorController implements ActionListener, FocusListener {
             //chamando a tela de consulta do professor
             ShowConsultaProfessor();
         }
-
     }
 
     private void ProfessorExcluir() {
-        
         //localizando o professor
         int indice = consultaProfessorView.getTbPesquisa().getSelectedRow();
         ProfessorTableModel model = (ProfessorTableModel) consultaProfessorView.getTbPesquisa().getModel();
@@ -234,27 +199,20 @@ public class ProfessorController implements ActionListener, FocusListener {
 
         //verificando se o dao conseguir localizar a partir do id
         if (professor != null) {
-
             // mostrando a tela de cadastro do professor
             professorDAO.deletar(professor);
-
         }
-
         //chamando a tela de consulta do professor
         ShowConsultaProfessor();
-
         //Atualizando a tela principal
         telaPrincipalController.repintarTela();
-        
     }
 
     private void InteresseOrientarSalvar() {
-
         //localizando o professor
         int indice = ideiaProfessorView.getTbPesquisa().getSelectedRow();
         IdeiaTableModel model = (IdeiaTableModel) ideiaProfessorView.getTbPesquisa().getModel();
         Ideia ideia = model.getListaideia().get(indice);
-
         //verificando se o dao conseguir localizar a partir do id
         if (ideia != null) {
             interesseOrientar.setIdeia(ideia);
@@ -262,44 +220,32 @@ public class ProfessorController implements ActionListener, FocusListener {
 
             // mostrando a tela de cadastro do professor
             interesseOrientarDAO.salvar(interesseOrientar);
-
         }
-
         this.ideiaProfessorView.setVisible(false);
         //chamando a tela de consulta do professor
         IdeiaListar();
-
         //Atualizando a tela principal
         telaPrincipalController.repintarTela();
-
     }
 
     private void ExcluirIdeiaSelecionada() {
-
         //localizando o professor
         int indice = cadastroProfessorView.getTbIdeia().getSelectedRow();
         InteresseOrientarTableModel model = (InteresseOrientarTableModel) cadastroProfessorView.getTbIdeia().getModel();
         InteresseOrientar interesseOrientar = model.getListaInteresses().get(indice);
-
         //verificando se o dao conseguir localizar a partir do id
         if (interesseOrientar != null) {
-
             // mostrando a tela de cadastro do professor
             interesseOrientarDAO.deletar(interesseOrientar);
-
         }
-
         this.ideiaProfessorView.setVisible(false);
         //chamando a tela de consulta do professor
         IdeiaListar();
-
         //Atualizando a tela principal
         telaPrincipalController.repintarTela();
-
     }
 
     private void ProfessorListar() {
-
         DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
         DefaultTableCellRenderer cellRenderTitle = new DefaultTableCellRenderer();
 
@@ -320,11 +266,9 @@ public class ProfessorController implements ActionListener, FocusListener {
         this.consultaProfessorView.getTbPesquisa().getColumnModel().getColumn(1).setCellRenderer(cellRender);
         this.consultaProfessorView.getTbPesquisa().getColumnModel().getColumn(2).setHeaderRenderer(cellRenderTitle);
         this.consultaProfessorView.getTbPesquisa().getColumnModel().getColumn(2).setCellRenderer(cellRender);
-
     }
 
     private void IdeiaListar() {
-
         DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
         DefaultTableCellRenderer cellRenderTitle = new DefaultTableCellRenderer();
 
@@ -343,11 +287,9 @@ public class ProfessorController implements ActionListener, FocusListener {
         this.cadastroProfessorView.getTbIdeia().getColumnModel().getColumn(1).setPreferredWidth(500);
         this.cadastroProfessorView.getTbIdeia().getColumnModel().getColumn(1).setHeaderRenderer(cellRenderTitle);
         this.cadastroProfessorView.getTbIdeia().getColumnModel().getColumn(1).setCellRenderer(cellRender);
-
     }
 
     private void IdeiaDisponiveisListar() {
-
         DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
         DefaultTableCellRenderer cellRenderTitle = new DefaultTableCellRenderer();
 
@@ -368,14 +310,34 @@ public class ProfessorController implements ActionListener, FocusListener {
         this.ideiaProfessorView.getTbPesquisa().getColumnModel().getColumn(1).setCellRenderer(cellRender);
         this.ideiaProfessorView.getTbPesquisa().getColumnModel().getColumn(2).setHeaderRenderer(cellRenderTitle);
         this.ideiaProfessorView.getTbPesquisa().getColumnModel().getColumn(2).setCellRenderer(cellRender);
+    }
 
+    public Boolean verificaCampo() {
+        Boolean emBranco = null;
+        String nome, email, telefone;
+        nome = cadastroProfessorView.getTfNome().getText();
+        email = cadastroProfessorView.getTfEmail().getText();
+        telefone = cadastroProfessorView.getFtfTelefone().getText().replaceAll(" [ ()-]", "");
+        if (nome.equals(null) || nome.equals("") || email.equals(null) || email.equals("")
+                || telefone.equals(null) || telefone.equals("")) {
+            emBranco = true;
+            cadastroProfessorView.getLbObrigatorioInfo().setVisible(true);
+        } else {
+            cadastroProfessorView.getLbObrigatorioInfo().setVisible(false);
+            emBranco = false;
+        }
+        return emBranco;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         if (e.getActionCommand().equals("ProfessorCadastroSalvar")) {
-            ProfessorSalvar();
+            if (verificaCampo()) {
+                cadastroProfessorView.getLbObrigatorioInfo().setVisible(true);
+                System.out.println("Em branco" + verificaCampo());
+            } else {
+                ProfessorSalvar();
+            }
         }
 
         if (e.getActionCommand().equals("ProfessorCancelar")) {
@@ -388,11 +350,21 @@ public class ProfessorController implements ActionListener, FocusListener {
         }
 
         if (e.getActionCommand().equals("ProfessorCadastroAddIdeia")) {
-            ShowListasIdeiasDisponiveis();
+            ideiaProfessorView.getTaDescricaoIdeia().setText(null);
+            if (verificaCampo()) {
+                cadastroProfessorView.getLbObrigatorioInfo().setVisible(true);
+                System.out.println("Em branco" + verificaCampo());
+            } else {
+                ShowListasIdeiasDisponiveis();
+            }
         }
 
         if (e.getActionCommand().equals("ProfessorCadastroDelIdeia")) {
-            ExcluirIdeiaSelecionada();
+            if (cadastroProfessorView.getTbIdeia().getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, "Sem ideia selecionada, tente novamente!");
+            } else {
+                ExcluirIdeiaSelecionada();
+            }
         }
 
         if (e.getActionCommand().equals("ProfessorConsultaAlterar")) {
@@ -407,20 +379,44 @@ public class ProfessorController implements ActionListener, FocusListener {
             this.ideiaProfessorView.setVisible(false);
             //chamando a tela de consulta do professor
             IdeiaListar();
-
             //Atualizando a tela principal
             telaPrincipalController.repintarTela();
         }
-
     }
 
     @Override
     public void focusGained(FocusEvent e) {
-        //verificaCampo();
+        verificaCampo();
     }
 
     @Override
     public void focusLost(FocusEvent e) {
-        //verificaCampo();
+        verificaCampo();
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getClickCount() == 1) {
+            int indice = ideiaProfessorView.getTbPesquisa().getSelectedRow();
+            IdeiaTableModel model = (IdeiaTableModel) ideiaProfessorView.getTbPesquisa().getModel();
+            Ideia ideia = model.getListaideia().get(indice);
+            this.ideiaProfessorView.getTaDescricaoIdeia().setText(ideia.getDescricao());
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
 }
