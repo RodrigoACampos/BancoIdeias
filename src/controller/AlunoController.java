@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -27,7 +29,7 @@ import view.IdeiaAlunoView;
  *
  * @author Willyam
  */
-public class AlunoController implements ActionListener, FocusListener {
+public class AlunoController implements ActionListener, FocusListener, MouseListener {
 
     //Declarando os objetos 
     private Aluno aluno = new Aluno();
@@ -416,11 +418,37 @@ public class AlunoController implements ActionListener, FocusListener {
 
     @Override
     public void focusGained(FocusEvent e) {
-        //verificaCampo();
+//        verificaCampo();
     }
 
     @Override
     public void focusLost(FocusEvent e) {
-        //verificaCampo();
+//        verificaCampo();
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+         if (e.getClickCount() == 1) {
+            int indice = ideiaAlunoView.getTbPesquisa().getSelectedRow();
+            IdeiaTableModel model = (IdeiaTableModel) ideiaAlunoView.getTbPesquisa().getModel();
+            Ideia ideia = model.getListaideia().get(indice);
+            this.ideiaAlunoView.getTaDescricaoIdeia().setText(ideia.getDescricao());
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
 }

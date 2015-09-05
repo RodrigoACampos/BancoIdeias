@@ -317,7 +317,8 @@ public class ProfessorController implements ActionListener, FocusListener, Mouse
         String nome, email, telefone;
         nome = cadastroProfessorView.getTfNome().getText();
         email = cadastroProfessorView.getTfEmail().getText();
-        telefone = cadastroProfessorView.getFtfTelefone().getText().replaceAll(" [ ()-]", "");
+        telefone = cadastroProfessorView.getFtfTelefone().getText().replaceAll("[ ()-]", "");
+        System.out.println(telefone);
         if (nome.equals(null) || nome.equals("") || email.equals(null) || email.equals("")
                 || telefone.equals(null) || telefone.equals("")) {
             emBranco = true;
@@ -346,7 +347,11 @@ public class ProfessorController implements ActionListener, FocusListener, Mouse
         }
 
         if (e.getActionCommand().equals("ProfessorExcluir")) {
-            ProfessorExcluir();
+            if (consultaProfessorView.getTbPesquisa().getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, "Sem Professor selecionado, tente novamente!");
+            } else {
+                ProfessorExcluir();
+            }
         }
 
         if (e.getActionCommand().equals("ProfessorCadastroAddIdeia")) {
@@ -368,7 +373,11 @@ public class ProfessorController implements ActionListener, FocusListener, Mouse
         }
 
         if (e.getActionCommand().equals("ProfessorConsultaAlterar")) {
-            UpdateCadastroProfessor();
+            if (consultaProfessorView.getTbPesquisa().getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, "Sem Professor selecionado, tente novamente!");
+            } else {
+                UpdateCadastroProfessor();
+            }
         }
 
         if (e.getActionCommand().equals("EscolherIdeia")) {
