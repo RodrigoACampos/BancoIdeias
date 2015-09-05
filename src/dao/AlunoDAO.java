@@ -48,7 +48,7 @@ public class AlunoDAO {
                 stmt.setInt(4, aluno.getId());
 
                 stmt.executeUpdate();
-                
+                resultado = aluno.getId(); // alterei aqui pra ficar igual ao do ProfessorDAO
             }
 
             conn.close();

@@ -48,7 +48,6 @@ public class AlunoController implements ActionListener, FocusListener, MouseList
 
     //Construtor do controller, ele instancia os objetos para acesso a qualquer momento
     public AlunoController(TelaPrincipalController telaPrincipalController) {
-
         this.telaPrincipalController = telaPrincipalController;
 
         this.cadastroAlunoView = new CadastroAlunoView();
@@ -58,110 +57,86 @@ public class AlunoController implements ActionListener, FocusListener, MouseList
         AssinarListener();
         ClearCadastroAluno();
         ClearConsultaAluno();
-
     }
 
     //retorna o objeto da tela de cadastrado do aluno
+
     public CadastroAlunoView getCadastroAlunoView() {
-
         return this.cadastroAlunoView;
-
     }
 
     //retorna o objeto da tela de consulta do aluno
+
     public ConsultaAlunoView GetConsultaAlunoView() {
-
         return this.consultaAlunoView;
-
     }
 
     //Implementando metodo para abrir janela de cadastro de aluno
-    public void AddCadastroAluno() {
 
+    public void AddCadastroAluno() {
         ClearCadastroAluno();
         this.telaPrincipalController.GetTelaPrincipal().getJpfundo().removeAll();
         this.telaPrincipalController.GetTelaPrincipal().getJpfundo().add(this.cadastroAlunoView);
         this.cadastroAlunoView.setVisible(true);
         this.telaPrincipalController.repintarTela();
-
     }
 
     public void UpdateCadastroAluno() {
-
         AddCadastroAluno();
         //localizando o aluno
         int indice = consultaAlunoView.getTbPesquisa().getSelectedRow();
         AlunoTableModel model = (AlunoTableModel) consultaAlunoView.getTbPesquisa().getModel();
         aluno = model.getListaAlunos().get(indice);
-
         //verificando se o dao conseguir localizar a partir do id
         if (aluno != null) {
-
             // mostrando a tela de cadastro do aluno
             IdeiaListar();
-
             //atualizando os valores da tela
             this.cadastroAlunoView.getTfNome().setText(aluno.getNome());
             this.cadastroAlunoView.getTfEmail().setText(aluno.getEmail());
             this.cadastroAlunoView.getFtfTelefone().setText(aluno.getTelefone());
-
         } else {
             JOptionPane.showMessageDialog(null, "Não foi possivel obter os dados do aluno selecionado");
         }
-
         //Atualizando a tela principal
         telaPrincipalController.repintarTela();
-
     }
 
     //Implementando metodo para abrir janela de consulta de aluno
-    public void ShowConsultaAluno() {
 
+    public void ShowConsultaAluno() {
         this.telaPrincipalController.GetTelaPrincipal().getJpfundo().removeAll();
         this.telaPrincipalController.GetTelaPrincipal().getJpfundo().add(this.consultaAlunoView);
         this.consultaAlunoView.setVisible(true);
-
         AlunoListar();
-
         //Atualizando a tela principal
         telaPrincipalController.repintarTela();
-
     }
 
     public void ShowListasIdeiasDisponiveis() {
-
         if (this.aluno.getId() == null) {
-
             if (this.telaPrincipalController.Perguntar("Para adicionar uma ideia é necessário salvar o aluno antes. Deseja salvar agora?")) {
-
                 //pegando os valores de cada campo da tela de cadastro
                 this.aluno.setNome(cadastroAlunoView.getTfNome().getText());
                 this.aluno.setEmail(cadastroAlunoView.getTfEmail().getText());
                 this.aluno.setTelefone(cadastroAlunoView.getFtfTelefone().getText());
-
                 //passando os valores para o DAO
                 int chave = this.alunoDAO.salvar(this.aluno);
                 if (chave != -1) {
-
                     this.aluno.setId(chave);
                     IdeiaDisponiveisListar();
                     this.ideiaAlunoView.setVisible(true);
                 }
-                
             }
-
         } else {
-
             IdeiaDisponiveisListar();
             this.ideiaAlunoView.setVisible(true);
-
         }
-
     }
 
     //Metodo de controle de eventos
-    private void AssinarListener() {
 
+    private void AssinarListener() {
         this.cadastroAlunoView.getBtnSalvar().addActionListener(this);
         this.cadastroAlunoView.getBtnCancelar().addActionListener(this);
         this.cadastroAlunoView.getBtnAdiconarIdeia().addActionListener(this);
@@ -175,45 +150,43 @@ public class AlunoController implements ActionListener, FocusListener, MouseList
         this.consultaAlunoView.getBtnExcluir().addActionListener(this);
         this.consultaAlunoView.getBtnCancelar().addActionListener(this);
 
+        this.ideiaAlunoView.getTbPesquisa().addMouseListener(this);
+
         this.cadastroAlunoView.getTbIdeia().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.consultaAlunoView.getTbPesquisa().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.ideiaAlunoView.getTbPesquisa().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         this.ideiaAlunoView.getBtnCancelar().addActionListener(this);
         this.ideiaAlunoView.getBtnEscolher().addActionListener(this);
-
+        
+        this.cadastroAlunoView.getLbObrigatorioInfo().setVisible(false);
     }
 
     //Limpar tela de cadastro do aluno
-    public void ClearCadastroAluno() {
 
+    public void ClearCadastroAluno() {
         aluno = new Aluno();
         this.cadastroAlunoView.getTfNome().setText("");
         this.cadastroAlunoView.getTfEmail().setText("");
         this.cadastroAlunoView.getFtfTelefone().setText("");
-        
-        
+
         List<InteresseDesenvolver> listatemp = new ArrayList<InteresseDesenvolver>();
         InteresseDesenvolverTableModel modelo = new InteresseDesenvolverTableModel();
         modelo.setListaInteresses(listatemp);
         this.cadastroAlunoView.getTbIdeia().setModel(modelo);
-    
     }
 
     //Limpar tela de consulta do aluno
+
     public void ClearConsultaAluno() {
-
         this.consultaAlunoView.getTfConsulta().setText("");
-
     }
 
     private void AlunoSalvar() {
-
         //pegando os valores de cada campo da tela de cadastro
         this.aluno.setNome(cadastroAlunoView.getTfNome().getText());
         this.aluno.setEmail(cadastroAlunoView.getTfEmail().getText());
         this.aluno.setTelefone(cadastroAlunoView.getFtfTelefone().getText());
-
         //passando os valores para o DAO
         int chave = this.alunoDAO.salvar(this.aluno);
 
@@ -223,85 +196,62 @@ public class AlunoController implements ActionListener, FocusListener, MouseList
             //chamando a tela de consulta do aluno
             ShowConsultaAluno();
         }
-
     }
 
     private void AlunoExcluir() {
-        
         //localizando o aluno
         int indice = consultaAlunoView.getTbPesquisa().getSelectedRow();
         AlunoTableModel model = (AlunoTableModel) consultaAlunoView.getTbPesquisa().getModel();
         aluno = model.getListaAlunos().get(indice);
         System.out.println(aluno.getId());
-
         //verificando se o dao conseguir localizar a partir do id
         if (aluno != null) {
-
             // mostrando a tela de cadastro do aluno
             alunoDAO.deletar(aluno);
-
         }
-
         //chamando a tela de consulta do aluno
         ShowConsultaAluno();
-
         //Atualizando a tela principal
         telaPrincipalController.repintarTela();
-        
     }
 
     private void InteresseDesenvolverSalvar() {
-
         //localizando o aluno
         int indice = ideiaAlunoView.getTbPesquisa().getSelectedRow();
         IdeiaTableModel model = (IdeiaTableModel) ideiaAlunoView.getTbPesquisa().getModel();
         Ideia ideia = model.getListaideia().get(indice);
-
         //verificando se o dao conseguir localizar a partir do id
         if (ideia != null) {
             interesseDesenvolver.setIdeia(ideia);
             interesseDesenvolver.setAluno(aluno);
-
             // mostrando a tela de cadastro do aluno
             interesseDesenvolverDAO.salvar(interesseDesenvolver);
-
         }
-
         this.ideiaAlunoView.setVisible(false);
         //chamando a tela de consulta do aluno
         IdeiaListar();
-
         //Atualizando a tela principal
         telaPrincipalController.repintarTela();
-
     }
 
     private void ExcluirIdeiaSelecionada() {
-
         //localizando o aluno
         int indice = cadastroAlunoView.getTbIdeia().getSelectedRow();
         InteresseDesenvolverTableModel model = (InteresseDesenvolverTableModel) cadastroAlunoView.getTbIdeia().getModel();
         InteresseDesenvolver interesseDesenvolver = model.getListaInteresses().get(indice);
-
         //verificando se o dao conseguir localizar a partir do id
         if (interesseDesenvolver != null) {
-
             // mostrando a tela de cadastro do aluno
             interesseDesenvolverDAO.deletar(interesseDesenvolver);
-
         }
-
         this.ideiaAlunoView.setVisible(false);
         //chamando a tela de consulta do aluno
         IdeiaListar();
-
         //Atualizando a tela principal
         telaPrincipalController.repintarTela();
-
     }
 
     private void AlunoListar() {
-
         DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
         DefaultTableCellRenderer cellRenderTitle = new DefaultTableCellRenderer();
 
@@ -322,11 +272,9 @@ public class AlunoController implements ActionListener, FocusListener, MouseList
         this.consultaAlunoView.getTbPesquisa().getColumnModel().getColumn(1).setCellRenderer(cellRender);
         this.consultaAlunoView.getTbPesquisa().getColumnModel().getColumn(2).setHeaderRenderer(cellRenderTitle);
         this.consultaAlunoView.getTbPesquisa().getColumnModel().getColumn(2).setCellRenderer(cellRender);
-
     }
 
     private void IdeiaListar() {
-
         DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
         DefaultTableCellRenderer cellRenderTitle = new DefaultTableCellRenderer();
 
@@ -345,11 +293,9 @@ public class AlunoController implements ActionListener, FocusListener, MouseList
         this.cadastroAlunoView.getTbIdeia().getColumnModel().getColumn(1).setPreferredWidth(500);
         this.cadastroAlunoView.getTbIdeia().getColumnModel().getColumn(1).setHeaderRenderer(cellRenderTitle);
         this.cadastroAlunoView.getTbIdeia().getColumnModel().getColumn(1).setCellRenderer(cellRender);
-
     }
 
     private void IdeiaDisponiveisListar() {
-
         DefaultTableCellRenderer cellRender = new DefaultTableCellRenderer();
         DefaultTableCellRenderer cellRenderTitle = new DefaultTableCellRenderer();
 
@@ -370,14 +316,35 @@ public class AlunoController implements ActionListener, FocusListener, MouseList
         this.ideiaAlunoView.getTbPesquisa().getColumnModel().getColumn(1).setCellRenderer(cellRender);
         this.ideiaAlunoView.getTbPesquisa().getColumnModel().getColumn(2).setHeaderRenderer(cellRenderTitle);
         this.ideiaAlunoView.getTbPesquisa().getColumnModel().getColumn(2).setCellRenderer(cellRender);
+    }
 
+    public Boolean verificaCampo() {
+        Boolean emBranco = null;
+        String nome, email, telefone;
+        nome = cadastroAlunoView.getTfNome().getText();
+        email = cadastroAlunoView.getTfEmail().getText();
+        telefone = cadastroAlunoView.getFtfTelefone().getText().replaceAll("[ ()-]", "");
+        System.out.println(telefone);
+        if (nome.equals(null) || nome.equals("") || email.equals(null) || email.equals("")
+                || telefone.equals(null) || telefone.equals("")) {
+            emBranco = true;
+            cadastroAlunoView.getLbObrigatorioInfo().setVisible(true);
+        } else {
+            cadastroAlunoView.getLbObrigatorioInfo().setVisible(false);
+            emBranco = false;
+        }
+        return emBranco;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         if (e.getActionCommand().equals("AlunoCadastroSalvar")) {
-            AlunoSalvar();
+            if (verificaCampo()) {
+                cadastroAlunoView.getLbObrigatorioInfo().setVisible(true);
+                System.out.println("Em branco" + verificaCampo());
+            } else {
+                AlunoSalvar();
+            }
         }
 
         if (e.getActionCommand().equals("AlunoCancelar")) {
@@ -386,19 +353,37 @@ public class AlunoController implements ActionListener, FocusListener, MouseList
         }
 
         if (e.getActionCommand().equals("AlunoExcluir")) {
-            AlunoExcluir();
+            if (consultaAlunoView.getTbPesquisa().getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, "Sem Aluno selecionado, tente novamente!");
+            } else {
+                AlunoExcluir();
+            }
         }
 
         if (e.getActionCommand().equals("AlunoCadastroAddIdeia")) {
-            ShowListasIdeiasDisponiveis();
+            ideiaAlunoView.getTaDescricaoIdeia().setText(null);
+            if (verificaCampo()) {
+                cadastroAlunoView.getLbObrigatorioInfo().setVisible(true);
+                System.out.println("Em branco" + verificaCampo());
+            } else {
+                ShowListasIdeiasDisponiveis();
+            }
         }
 
         if (e.getActionCommand().equals("AlunoCadastroDelIdeia")) {
-            ExcluirIdeiaSelecionada();
+           if (cadastroAlunoView.getTbIdeia().getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, "Sem ideia selecionada, tente novamente!");
+            } else {
+                ExcluirIdeiaSelecionada();
+            }
         }
 
         if (e.getActionCommand().equals("AlunoConsultaAlterar")) {
-            UpdateCadastroAluno();
+             if (consultaAlunoView.getTbPesquisa().getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, "Sem Aluno selecionado, tente novamente!");
+            } else {
+                UpdateCadastroAluno();
+            }            
         }
 
         if (e.getActionCommand().equals("EscolherIdeia")) {
@@ -409,26 +394,24 @@ public class AlunoController implements ActionListener, FocusListener, MouseList
             this.ideiaAlunoView.setVisible(false);
             //chamando a tela de consulta do aluno
             IdeiaListar();
-
             //Atualizando a tela principal
             telaPrincipalController.repintarTela();
         }
-
     }
 
     @Override
     public void focusGained(FocusEvent e) {
-//        verificaCampo();
+        verificaCampo();
     }
 
     @Override
     public void focusLost(FocusEvent e) {
-//        verificaCampo();
+        verificaCampo();
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-         if (e.getClickCount() == 1) {
+        if (e.getClickCount() == 1) {
             int indice = ideiaAlunoView.getTbPesquisa().getSelectedRow();
             IdeiaTableModel model = (IdeiaTableModel) ideiaAlunoView.getTbPesquisa().getModel();
             Ideia ideia = model.getListaideia().get(indice);
