@@ -2,6 +2,7 @@ package dao;
 
 import conexao.ConnectionManager;
 import entidade.Ideia;
+import entidade.Solicitante;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,7 +62,7 @@ public class IdeiaDAO {
             ex.printStackTrace();
             resultado = -1;
             JOptionPane.showMessageDialog(null, "Não foi possível salvar o dados da ideia!");
-            
+
         }
 
         return resultado;
@@ -72,7 +73,7 @@ public class IdeiaDAO {
         boolean resultado = false;
 
         try {
-            
+
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
@@ -88,7 +89,7 @@ public class IdeiaDAO {
             JOptionPane.showMessageDialog(null, "Ideia excluída com sucesso!");
 
         } catch (Exception ex) {
-            
+
             ex.printStackTrace();
             resultado = false;
             JOptionPane.showMessageDialog(null, "Não foi possível excluir a ideia selecionada!");
@@ -126,11 +127,11 @@ public class IdeiaDAO {
             conn.close();
 
         } catch (Exception ex) {
-            
+
             ex.printStackTrace();
             ideia = null;
             JOptionPane.showMessageDialog(null, "Não foi localizar os dados da ideia selecionada!");
-            
+
         }
 
         return ideia;
@@ -166,14 +167,47 @@ public class IdeiaDAO {
             conn.close();
 
         } catch (Exception ex) {
-            
+
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Não foi localizar as ideias cadastradas!");
-            
+            JOptionPane.showMessageDialog(null, "Não foi possivel localizar as ideias cadastradas!");
+
         } finally {
-            
+
             return lista;
-            
         }
+
+    }
+
+    public List<Ideia> GetByIdSolicitante(int idsolicitante) {
+        List<Ideia> lista = new ArrayList<Ideia>();
+
+        try {
+            String QUERY_DETALHE = "select * from ideia where idideia = ?";
+
+            PreparedStatement stmt = null;
+            Connection conn = ConnectionManager.getConnection();
+
+            ResultSet rs = null;
+
+            stmt = conn.prepareStatement(QUERY_DETALHE);
+            stmt.setInt(1, idsolicitante);
+            rs = stmt.executeQuery();
+            Ideia ideia = new Ideia();
+            while (rs.next()) {
+                ideia.setId(rs.getInt("idideia"));
+                ideia.setTema(rs.getString("tema"));
+                ideia.setDescricao(rs.getString("descricao"));
+                ideia.setDtcadastro(rs.getDate("dt_cadastro"));
+                SolicitanteDAO solicitanteDAO = new SolicitanteDAO();
+                ideia.setSolicitante(solicitanteDAO.GetById(idsolicitante));
+                lista.add(ideia);
+            }
+            conn.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+//            ideia = null;
+            JOptionPane.showMessageDialog(null, "Não foi possivel localizar os dados da ideia selecionada!");
+        }
+        return lista;
     }
 }

@@ -290,7 +290,8 @@ public class SolicitanteController implements ActionListener, FocusListener {
         if (chave != -1) {
             //Limpando a tela de cadastro
             ClearIdeiaSolicitante();
-            this.ideiaSolicitanteView.setVisible(false);
+            IdeiaListar();
+            this.ideiaSolicitanteView.setVisible(false);            
         }
     }
 
@@ -303,7 +304,8 @@ public class SolicitanteController implements ActionListener, FocusListener {
         cellRenderTitle.setFont(cellRenderTitle.getFont().deriveFont(Font.BOLD)); // Não Funciona, Deveria deixar os Nomes das Colunas em Negrito;
         IdeiaTableModel modelo = new IdeiaTableModel();
 //        InteresseDesenvolverTableModel modelo = new InteresseDesenvolverTableModel();
-        //modelo.setListaInteresses(this.interesseDesenvolverDAO.listarByIdSolicitante(this.solicitante.getId()));
+//        modelo.setListaInteresses(this.ideiaDao.listar(this.solicitante.getId()));
+        modelo.setListaideias(this.ideiaDao.GetByIdSolicitante(this.solicitante.getId()));
         this.cadastroSolicitanteView.getTbIdeia().setModel(modelo);
 
         this.cadastroSolicitanteView.getTbIdeia().getColumnModel().getColumn(0).setPreferredWidth(10);

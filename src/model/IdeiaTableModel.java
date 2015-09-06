@@ -77,7 +77,7 @@ public class IdeiaTableModel extends AbstractTableModel {
         }
 
         if (column == 2) {
-            valor = "Dt. Caadastro";
+            valor = "Dt. Cadastro";
         }
 
         return valor;

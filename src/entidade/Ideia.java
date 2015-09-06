@@ -8,7 +8,7 @@ public class Ideia {
     private String tema;
     private String descricao;
     private Date dtcadastro;
-    private Solicitante solicitante;
+    private Solicitante solicitante;       
     
     public Integer getId() {
         return id;
