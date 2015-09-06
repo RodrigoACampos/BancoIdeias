@@ -10,8 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -33,8 +38,8 @@ public class SolicitanteController implements ActionListener, FocusListener {
     //Declarando os objetos 
     private Solicitante solicitante = new Solicitante();
     private SolicitanteDAO solicitanteDAO = new SolicitanteDAO();
-//    private Ideia ideia = new Ideia();
-//    private IdeiaDAO ideiaDao = new IdeiaDAO();
+    private Ideia ideia = new Ideia();
+    private IdeiaDAO ideiaDao = new IdeiaDAO();
 
     //Declarando objeto de controle da tela principal
     private TelaPrincipalController telaPrincipalController;
@@ -58,19 +63,16 @@ public class SolicitanteController implements ActionListener, FocusListener {
     }
 
     //retorna o objeto da tela de cadastrado do solicitante
-
     public CadastroSolicitanteView2 getCadastroSolicitanteView() {
         return this.cadastroSolicitanteView;
     }
 
     //retorna o objeto da tela de consulta do solicitante
-
     public ConsultaSolicitanteView GetConsultaSolicitanteView() {
         return this.consultaSolicitanteView;
     }
 
     //Implementando metodo para abrir janela de cadastro de solicitante
-
     public void AddCadastroSolicitante() {
         ClearCadastroSolicitante();
         this.telaPrincipalController.GetTelaPrincipal().getJpfundo().removeAll();
@@ -161,11 +163,17 @@ public class SolicitanteController implements ActionListener, FocusListener {
         this.cadastroSolicitanteView.getTfEmail().setText("");
         this.cadastroSolicitanteView.getFtfTelefone().setText("");
 
-        List<InteresseDesenvolver> listatemp = new ArrayList<InteresseDesenvolver>();
-        InteresseDesenvolverTableModel modelo = new InteresseDesenvolverTableModel();
-        modelo.setListaInteresses(listatemp);
+        List<Ideia> listatemp = new ArrayList<Ideia>();
+        IdeiaTableModel modelo = new IdeiaTableModel();
+        modelo.setListaideias(listatemp);
         this.cadastroSolicitanteView.getTbIdeia().setModel(modelo);
 
+    }
+    //Limpar tela de ideia
+    private void ClearIdeiaSolicitante() {
+        this.ideiaSolicitanteView.getTfTema().setText("");
+        this.ideiaSolicitanteView.getTaDescricao().setText("");
+        this.ideiaSolicitanteView.getFtfData().setText("");
     }
 
     //Limpar tela de consulta do solicitante
@@ -214,7 +222,7 @@ public class SolicitanteController implements ActionListener, FocusListener {
         //verificando se o dao conseguir localizar a partir do id
         if (ideia != null) {
             // mostrando a tela de cadastro do solicitante
-//            ideiaDao.deletar(ideia);
+            ideiaDao.deletar(ideia);
         }
         this.ideiaSolicitanteView.setVisible(false);
         //chamando a tela de consulta do solicitante
@@ -244,6 +252,46 @@ public class SolicitanteController implements ActionListener, FocusListener {
         this.consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(1).setCellRenderer(cellRender);
         this.consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(2).setHeaderRenderer(cellRenderTitle);
         this.consultaSolicitanteView.getTbPesquisa().getColumnModel().getColumn(2).setCellRenderer(cellRender);
+    }
+
+    public String UStoBRdate(java.util.Date data) {
+        String d = "";
+        SimpleDateFormat in = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            d = out.format(in.parse(data.toString()));
+        } catch (ParseException ex) {
+            Logger.getLogger(SolicitanteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return d;
+    }
+
+    public java.util.Date BRtoUSdate(String data) {
+        DateFormat formatoBr = new SimpleDateFormat("dd/MM/yyyy");
+        java.util.Date d = null;
+        try {
+            d = (java.util.Date) formatoBr.parse(data);
+        } catch (ParseException ex) {
+            Logger.getLogger(SolicitanteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return d;
+    }
+
+    private void IdeiaSalvar() {
+        //pegando os valores de cada campo da tela de cadastro
+        this.ideia.setTema(ideiaSolicitanteView.getTfTema().getText());
+        this.ideia.setDtcadastro(BRtoUSdate(ideiaSolicitanteView.getFtfData().getText()));
+        this.ideia.setDescricao((ideiaSolicitanteView.getTaDescricao().getText()));
+        this.ideia.setSolicitante(solicitante);
+        //passando os valores para o DAO
+        int chave = this.ideiaDao.salvar(this.ideia);
+
+        if (chave != -1) {
+            //Limpando a tela de cadastro
+            ClearIdeiaSolicitante();
+            this.ideiaSolicitanteView.setVisible(false);
+        }
     }
 
     private void IdeiaListar() {
@@ -294,6 +342,7 @@ public class SolicitanteController implements ActionListener, FocusListener {
             UpdateCadastroSolicitante();
         }
         if (e.getActionCommand().equals("SalvarIdeia")) {
+            IdeiaSalvar();
 
         }
         if (e.getActionCommand().equals("CancelarIdeia")) {
@@ -309,5 +358,5 @@ public class SolicitanteController implements ActionListener, FocusListener {
     @Override
     public void focusLost(FocusEvent e) {
         //verificaCampo();
-    }
+    }    
 }
