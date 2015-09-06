@@ -182,7 +182,7 @@ public class IdeiaDAO {
         List<Ideia> lista = new ArrayList<Ideia>();
 
         try {
-            String QUERY_DETALHE = "select * from ideia where idideia = ?";
+            String QUERY_DETALHE = "select * from ideia where idsolicitante = ?";
 
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
