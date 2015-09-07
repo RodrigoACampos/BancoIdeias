@@ -192,8 +192,9 @@ public class IdeiaDAO {
             stmt = conn.prepareStatement(QUERY_DETALHE);
             stmt.setInt(1, idsolicitante);
             rs = stmt.executeQuery();
-            Ideia ideia = new Ideia();
+
             while (rs.next()) {
+                Ideia ideia = new Ideia();
                 ideia.setId(rs.getInt("idideia"));
                 ideia.setTema(rs.getString("tema"));
                 ideia.setDescricao(rs.getString("descricao"));
@@ -202,12 +203,17 @@ public class IdeiaDAO {
                 ideia.setSolicitante(solicitanteDAO.GetById(idsolicitante));
                 lista.add(ideia);
             }
+
             conn.close();
+
         } catch (Exception ex) {
+
             ex.printStackTrace();
-//            ideia = null;
-            JOptionPane.showMessageDialog(null, "Não foi possivel localizar os dados da ideia selecionada!");
+            JOptionPane.showMessageDialog(null, "Não foi possivel localizar as ideias cadastradas!");
+
+        } finally {
+
+            return lista;
         }
-        return lista;
     }
 }

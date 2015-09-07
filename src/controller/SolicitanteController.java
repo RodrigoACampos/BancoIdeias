@@ -411,6 +411,7 @@ public class SolicitanteController implements ActionListener, FocusListener {
             } else {
                 IdeiaSalvar();                
             }
+            telaPrincipalController.repintarTela();
         }
         if (e.getActionCommand().equals("CancelarIdeia")) {
             this.ideiaSolicitanteView.setVisible(false);

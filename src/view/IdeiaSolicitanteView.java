@@ -259,21 +259,38 @@ public class IdeiaSolicitanteView extends javax.swing.JDialog {
         return tfTema;
     }
 
+    public JLabel getLbObrigatorioDescricao() {
+        return lbObrigatorioDescricao;
+    }
+
+    public void setLbObrigatorioDescricao(JLabel lbObrigatorioDescricao) {
+        this.lbObrigatorioDescricao = lbObrigatorioDescricao;
+    }
+
     public JLabel getLbObrigatorioData() {
         return lbObrigatorioData;
     }
 
-    public JLabel getLbObrigatorioDescricao() {
-        return lbObrigatorioDescricao;
+    public void setLbObrigatorioData(JLabel lbObrigatorioData) {
+        this.lbObrigatorioData = lbObrigatorioData;
     }
 
     public JLabel getLbObrigatorioInfo() {
         return lbObrigatorioInfo;
     }
 
+    public void setLbObrigatorioInfo(JLabel lbObrigatorioInfo) {
+        this.lbObrigatorioInfo = lbObrigatorioInfo;
+    }
+
     public JLabel getLbObrigatorioTema() {
         return lbObrigatorioTema;
     }
+
+    public void setLbObrigatorioTema(JLabel lbObrigatorioTema) {
+        this.lbObrigatorioTema = lbObrigatorioTema;
+    }
+
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
