@@ -142,7 +142,7 @@ public class CadastroSolicitanteView2 extends javax.swing.JPanel {
 
         btnRemoverIdeia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ideia16x16.png"))); // NOI18N
         btnRemoverIdeia.setText("Remover Ideia");
-        btnRemoverIdeia.setActionCommand("AlunoCadastroDelIdeia");
+        btnRemoverIdeia.setActionCommand("SolicitanteCadastroDelIdeia");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

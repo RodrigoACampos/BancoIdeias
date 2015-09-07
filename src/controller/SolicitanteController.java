@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -142,7 +144,7 @@ public class SolicitanteController implements ActionListener, FocusListener {
         this.cadastroSolicitanteView.getBtnRemoverIdeia().addActionListener(this);
         this.cadastroSolicitanteView.getTfNome().addFocusListener(this);
         this.cadastroSolicitanteView.getTfEmail().addFocusListener(this);
-        this.cadastroSolicitanteView.getFtfTelefone().addFocusListener(this);
+        this.cadastroSolicitanteView.getFtfTelefone().addFocusListener(this);       
 
         this.consultaSolicitanteView.getBtnAlterar().addActionListener(this);
         this.consultaSolicitanteView.getBtnConsultar().addActionListener(this);
@@ -154,6 +156,7 @@ public class SolicitanteController implements ActionListener, FocusListener {
         this.cadastroSolicitanteView.getTbIdeia().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.consultaSolicitanteView.getTbPesquisa().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        this.cadastroSolicitanteView.getLbObrigatorioInfo().setVisible(false);       
     }
 
     //Limpar tela de cadastro do solicitante
@@ -167,7 +170,6 @@ public class SolicitanteController implements ActionListener, FocusListener {
         IdeiaTableModel modelo = new IdeiaTableModel();
         modelo.setListaideias(listatemp);
         this.cadastroSolicitanteView.getTbIdeia().setModel(modelo);
-
     }
     //Limpar tela de ideia
     private void ClearIdeiaSolicitante() {
@@ -175,7 +177,6 @@ public class SolicitanteController implements ActionListener, FocusListener {
         this.ideiaSolicitanteView.getTaDescricao().setText("");
         this.ideiaSolicitanteView.getFtfData().setText("");
     }
-
     //Limpar tela de consulta do solicitante
     public void ClearConsultaSolicitante() {
         this.consultaSolicitanteView.getTfConsulta().setText("");
@@ -222,6 +223,7 @@ public class SolicitanteController implements ActionListener, FocusListener {
         //verificando se o dao conseguir localizar a partir do id
         if (ideia != null) {
             // mostrando a tela de cadastro do solicitante
+//            solicitanteDAO.deletar(solicitante);
             ideiaDao.deletar(ideia);
         }
         this.ideiaSolicitanteView.setVisible(false);
@@ -291,7 +293,7 @@ public class SolicitanteController implements ActionListener, FocusListener {
             //Limpando a tela de cadastro
             ClearIdeiaSolicitante();
             IdeiaListar();
-            this.ideiaSolicitanteView.setVisible(false);            
+            this.ideiaSolicitanteView.setVisible(false);
         }
     }
 
@@ -303,8 +305,7 @@ public class SolicitanteController implements ActionListener, FocusListener {
         cellRenderTitle.setHorizontalAlignment(SwingConstants.CENTER);
         cellRenderTitle.setFont(cellRenderTitle.getFont().deriveFont(Font.BOLD)); // Não Funciona, Deveria deixar os Nomes das Colunas em Negrito;
         IdeiaTableModel modelo = new IdeiaTableModel();
-//        InteresseDesenvolverTableModel modelo = new InteresseDesenvolverTableModel();
-//        modelo.setListaInteresses(this.ideiaDao.listar(this.solicitante.getId()));
+
         modelo.setListaideias(this.ideiaDao.GetByIdSolicitante(this.solicitante.getId()));
         this.cadastroSolicitanteView.getTbIdeia().setModel(modelo);
 
@@ -317,10 +318,51 @@ public class SolicitanteController implements ActionListener, FocusListener {
         this.cadastroSolicitanteView.getTbIdeia().getColumnModel().getColumn(1).setCellRenderer(cellRender);
     }
 
+    public Boolean verificaCampo() {
+        Boolean emBranco = null;
+        String nome, email, telefone;
+        nome = cadastroSolicitanteView.getTfNome().getText();
+        email = cadastroSolicitanteView.getTfEmail().getText();
+        telefone = cadastroSolicitanteView.getFtfTelefone().getText().replaceAll("[ ()-]", "");
+        System.out.println(telefone);
+        if (nome.equals(null) || nome.equals("") || email.equals(null) || email.equals("")
+                || telefone.equals(null) || telefone.equals("")) {
+            emBranco = true;
+            cadastroSolicitanteView.getLbObrigatorioInfo().setVisible(true);
+        } else {
+            cadastroSolicitanteView.getLbObrigatorioInfo().setVisible(false);
+            emBranco = false;
+        }
+        return emBranco;
+    }
+
+    public Boolean verificaCampoIdeia() {
+        Boolean emBranco = null;
+        String tema, descricao, data;
+        tema = ideiaSolicitanteView.getTfTema().getText();
+        descricao = ideiaSolicitanteView.getTaDescricao().getText();
+        data = ideiaSolicitanteView.getFtfData().getText().replaceAll("[ //]", "");
+        System.out.println(data);
+        if (tema.equals(null) || tema.equals("") || descricao.equals(null) || descricao.equals("")
+                || data.equals(null) || data.equals("")) {
+            emBranco = true;
+            ideiaSolicitanteView.getLbObrigatorioInfo().setVisible(true);
+        } else {
+            ideiaSolicitanteView.getLbObrigatorioInfo().setVisible(false);
+            emBranco = false;
+        }
+        return emBranco;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("SolicitanteCadastroSalvar")) {
-            SolicitanteSalvar();
+            if (verificaCampo()) {
+                cadastroSolicitanteView.getLbObrigatorioInfo().setVisible(true);
+                System.out.println("Em branco" + verificaCampo());
+            } else {
+                SolicitanteSalvar();
+            }
         }
 
         if (e.getActionCommand().equals("SolicitanteCancelar")) {
@@ -329,36 +371,66 @@ public class SolicitanteController implements ActionListener, FocusListener {
         }
 
         if (e.getActionCommand().equals("SolicitanteExcluir")) {
-            SolicitanteExcluir();
+            if (consultaSolicitanteView.getTbPesquisa().getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, "Sem Professor selecionado, tente novamente!");
+            } else {
+                SolicitanteExcluir();
+            }
         }
 
-        if (e.getActionCommand().equals("SolicitanteCadastroAddIdeia")) {
-            ShowListasIdeiasDisponiveis();
+        if (e.getActionCommand().equals("SolicitanteCadastroAddIdeia")) {            
+            if (verificaCampo()) {
+                cadastroSolicitanteView.getLbObrigatorioInfo().setVisible(true);
+                System.out.println("Em branco" + verificaCampo());
+            } else {
+                ShowListasIdeiasDisponiveis();
+                telaPrincipalController.repintarTela();
+            }
         }
 
         if (e.getActionCommand().equals("SolicitanteCadastroDelIdeia")) {
-            ExcluirIdeiaSelecionada();
+            if (cadastroSolicitanteView.getTbIdeia().getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, "Sem ideia selecionada, tente novamente!");
+            } else {
+                ExcluirIdeiaSelecionada();
+            }
         }
 
         if (e.getActionCommand().equals("SolicitanteConsultaAlterar")) {
-            UpdateCadastroSolicitante();
+            if (consultaSolicitanteView.getTbPesquisa().getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, "Sem Professor selecionado, tente novamente!");
+            } else {
+                UpdateCadastroSolicitante();
+            }
         }
-        if (e.getActionCommand().equals("SalvarIdeia")) {
-            IdeiaSalvar();
 
+        if (e.getActionCommand().equals("SalvarIdeia")) {            
+            if (verificaCampoIdeia()) {
+                ideiaSolicitanteView.getLbObrigatorioInfo().setVisible(true);
+                System.out.println("Em branco" + verificaCampo());
+            } else {
+                IdeiaSalvar();                
+            }
         }
         if (e.getActionCommand().equals("CancelarIdeia")) {
-
+            this.ideiaSolicitanteView.setVisible(false);
+            //chamando a tela de consulta do professor
+            IdeiaListar();
+            //Atualizando a tela principal
+            telaPrincipalController.repintarTela();
         }
     }
 
     @Override
     public void focusGained(FocusEvent e) {
-        //verificaCampo();
+        verificaCampo();
+        
     }
 
     @Override
     public void focusLost(FocusEvent e) {
-        //verificaCampo();
-    }    
+        verificaCampo();
+        
+    }
+    
 }
