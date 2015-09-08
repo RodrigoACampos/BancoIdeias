@@ -22,7 +22,7 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
     private ProfessorController professorcontroller;
     private AlunoController alunocontroller;
     private SolicitanteController solicitantecontroller;
-    //private IdeiaController ideiacontroller;
+    private IdeiaController ideiacontroller;
 
     //declarando a tela principal
     TelaPrincipalView telaPrincipalView;
@@ -38,7 +38,7 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         this.professorcontroller = new ProfessorController(this);
         this.alunocontroller = new AlunoController(this);
         this.solicitantecontroller = new SolicitanteController(this);
-        //this.ideiacontroller = new IdeiaController(this);
+        this.ideiacontroller = new IdeiaController(this);
 
         Assinar();
     }
@@ -55,11 +55,10 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
         return this.solicitantecontroller;
     }
 
-/*
     public IdeiaController getIdeiaController() {
         return this.ideiacontroller;
     }
-*/
+
     public void Assinar() {
         
         telaPrincipalView.addWindowListener(new WindowAdapter() {
@@ -209,6 +208,23 @@ public class TelaPrincipalController implements ActionListener, MouseListener {
 
             //pedindo para o controller do professor mostrar a janela de cadastro
             solicitantecontroller.AddCadastroSolicitante();
+
+        }
+        
+        if (e.getActionCommand().equals("IdeiaConsultar")) {
+
+            //pedindo para o controller do professor mostrar a janela de consulta
+//            ideiacontroller.ClearDescricao();
+            ideiacontroller.atualizarSolicitanteComboBox();
+            ideiacontroller.ShowConsultaIdeia();
+
+        }
+
+        if (e.getActionCommand().equals("IdeiaCadastrar")) {
+
+            //pedindo para o controller do professor mostrar a janela de cadastro
+            ideiacontroller.atualizarSolicitanteComboBox();
+            ideiacontroller.AddCadastroSolicitante();
 
         }
 

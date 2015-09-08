@@ -74,13 +74,13 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuCadastroIdeia">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastro"/>
-                <Property name="actionCommand" type="java.lang.String" value="menuCadIdeia"/>
+                <Property name="actionCommand" type="java.lang.String" value="IdeiaCadastrar"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuConsultaIdeia">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consulta"/>
-                <Property name="actionCommand" type="java.lang.String" value="menuConIdeia"/>
+                <Property name="actionCommand" type="java.lang.String" value="IdeiaConsultar"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -416,7 +416,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/image/Consulta.png"/>
             </Property>
-            <Property name="actionCommand" type="java.lang.String" value="consultaIdeias"/>
+            <Property name="actionCommand" type="java.lang.String" value="IdeiaConsultar"/>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="bgBotoesIniciar"/>
             </Property>
@@ -428,7 +428,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/image/jabber.png"/>
             </Property>
-            <Property name="actionCommand" type="java.lang.String" value="cadastroIdeia"/>
+            <Property name="actionCommand" type="java.lang.String" value="IdeiaCadastrar"/>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="bgBotoesIniciar"/>
             </Property>

@@ -7,33 +7,26 @@ import javax.swing.ComboBoxModel;
 
 public class SolicitanteCBModel extends AbstractListModel implements ComboBoxModel{
     
-    Solicitante solicitante;
-    List<Solicitante> listaSolicitantes;
-
-    public Solicitante getSolicitante() {
-        return solicitante;
+    private Solicitante solicitante;
+    private List<Solicitante> listaSolicitante;
+    
+     public SolicitanteCBModel(List<Solicitante> listaSolicitante) {
+        this.listaSolicitante = listaSolicitante;
     }
 
-    public void setSolicitante(Solicitante solicitante) {
+    public SolicitanteCBModel(Solicitante solicitante) {
         this.solicitante = solicitante;
     }
 
-    public List<Solicitante> getListaSolicitantes() {
-        return listaSolicitantes;
-    }
-
-    public void setListaSolicitantes(List<Solicitante> listaSolicitantes) {
-        this.listaSolicitantes = listaSolicitantes;
-    }
-
+       
     @Override
     public int getSize() {
-        return listaSolicitantes.size();
+        return listaSolicitante.size();
     }
 
     @Override
     public Object getElementAt(int index) {
-        return listaSolicitantes.get(index);
+        return listaSolicitante.get(index);
     }
 
     @Override

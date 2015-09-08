@@ -6,6 +6,11 @@ public class Solicitante {
     private String nome;
     private String email;
     private String telefone;
+    private Solicitante solicitante;
+
+    public Solicitante getSolicitante() {
+        return solicitante;
+    }
 
     public Integer getId() {
         return id;

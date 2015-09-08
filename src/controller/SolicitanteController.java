@@ -194,7 +194,7 @@ public class SolicitanteController implements ActionListener, FocusListener {
             //Limpando a tela de cadastro
             ClearCadastroSolicitante();
             //chamando a tela de consulta do solicitante
-            ShowConsultaSolicitante();
+            ShowConsultaSolicitante();            
         }
     }
 

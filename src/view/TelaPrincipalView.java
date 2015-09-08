@@ -153,12 +153,12 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         });
 
         btnConsultaIdeias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Consulta.png"))); // NOI18N
-        btnConsultaIdeias.setActionCommand("consultaIdeias");
+        btnConsultaIdeias.setActionCommand("IdeiaConsultar");
         bgBotoesIniciar.add(btnConsultaIdeias);
         btnConsultaIdeias.setContentAreaFilled(false);
 
         btnCadastroIdeia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/jabber.png"))); // NOI18N
-        btnCadastroIdeia.setActionCommand("cadastroIdeia");
+        btnCadastroIdeia.setActionCommand("IdeiaCadastrar");
         bgBotoesIniciar.add(btnCadastroIdeia);
         btnCadastroIdeia.setContentAreaFilled(false);
         btnCadastroIdeia.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -444,11 +444,11 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         ideias.setText("Ideias");
 
         menuCadastroIdeia.setText("Cadastro");
-        menuCadastroIdeia.setActionCommand("menuCadIdeia");
+        menuCadastroIdeia.setActionCommand("IdeiaCadastrar");
         ideias.add(menuCadastroIdeia);
 
         menuConsultaIdeia.setText("Consulta");
-        menuConsultaIdeia.setActionCommand("menuConIdeia");
+        menuConsultaIdeia.setActionCommand("IdeiaConsultar");
         ideias.add(menuConsultaIdeia);
 
         jMenuBar1.add(ideias);
