@@ -372,7 +372,7 @@ public class SolicitanteController implements ActionListener, FocusListener {
 
         if (e.getActionCommand().equals("SolicitanteExcluir")) {
             if (consultaSolicitanteView.getTbPesquisa().getSelectedRow() == -1) {
-                JOptionPane.showMessageDialog(null, "Sem Professor selecionado, tente novamente!");
+                JOptionPane.showMessageDialog(null, "Sem Solicitante selecionado, tente novamente!");
             } else {
                 SolicitanteExcluir();
             }
@@ -398,7 +398,7 @@ public class SolicitanteController implements ActionListener, FocusListener {
 
         if (e.getActionCommand().equals("SolicitanteConsultaAlterar")) {
             if (consultaSolicitanteView.getTbPesquisa().getSelectedRow() == -1) {
-                JOptionPane.showMessageDialog(null, "Sem Professor selecionado, tente novamente!");
+                JOptionPane.showMessageDialog(null, "Sem Solicitante selecionado, tente novamente!");
             } else {
                 UpdateCadastroSolicitante();
             }
