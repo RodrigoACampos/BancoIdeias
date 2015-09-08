@@ -57,6 +57,7 @@ public class IdeiaController implements ActionListener, FocusListener, MouseList
         AssinarListener();
         ClearCadastroIdeia();
         ClearConsultaIdeia();
+        atualizarSolicitanteComboBox();
     }
 
     private void AssinarListener() {
@@ -79,7 +80,7 @@ public class IdeiaController implements ActionListener, FocusListener, MouseList
 
         atualizarSolicitanteComboBox();
         solicitanteDao.listar();
-        
+
     }
 
     public void ShowConsultaIdeia() {
@@ -114,6 +115,7 @@ public class IdeiaController implements ActionListener, FocusListener, MouseList
     }
 
     private void ClearCadastroIdeia() {
+        ideia = new Ideia();
         this.cadastroIdeiaView.getCbSolicitante().setSelectedIndex(-1);
         this.cadastroIdeiaView.getTfTema().setText("");
         this.cadastroIdeiaView.getFtfData().setText("");
@@ -125,7 +127,7 @@ public class IdeiaController implements ActionListener, FocusListener, MouseList
     }
 
     private void SalvarIdeia() {
-//        ideia = new Ideia();
+        //ideia = new Ideia();
         //pegando os valores de cada campo da tela de cadastro
         this.ideia.setTema(cadastroIdeiaView.getTfTema().getText());
         this.ideia.setDtcadastro(BRtoUSdate(cadastroIdeiaView.getFtfData().getText()));
@@ -133,16 +135,16 @@ public class IdeiaController implements ActionListener, FocusListener, MouseList
         this.ideia.setSolicitante((Solicitante) cadastroIdeiaView.getCbSolicitante().getSelectedItem());
         //passando os valores para o DAO
         int chave = this.ideiaDao.salvar(this.ideia);
-        
+
         if (chave != -1) {
             //Limpando a tela de cadastro
             ClearCadastroIdeia();
             ShowConsultaIdeia();
+        } else {
+            ClearCadastroIdeia();
+            ShowConsultaIdeia();
         }
-//        else {
-//            ClearCadastroIdeia();
-//            ShowConsultaIdeia();
-//        }
+
     }
 
     private void ExcluirIdeia() {
@@ -190,16 +192,25 @@ public class IdeiaController implements ActionListener, FocusListener, MouseList
         //verificando se o dao conseguir localizar a partir do id
         if (ideia != null) {
             // mostrando a tela de cadastro da ideia
-            IdeiaListar();
+            //IdeiaListar();
             //atualizando os valores da tela
             this.cadastroIdeiaView.getTfTema().setText(ideia.getTema());
             this.cadastroIdeiaView.getTaDescricao().setText(ideia.getDescricao());
             this.cadastroIdeiaView.getFtfData().setText((UStoBRdate(ideia.getDtcadastro())));
 //             this.ideia.setSolicitante((Solicitante) cadastroIdeiaView.getCbSolicitante().getSelectedItem());
 //             this.cadastroIdeiaView.getCbSolicitante().setSelectedItem();
-            this.cadastroIdeiaView.getCbSolicitante().setSelectedIndex(indice);
-//            this.cadastroIdeiaView.getCbSolicitante().setSelectedIndex();              
-
+            solicitante = ideia.getSolicitante();
+            List<Solicitante> lista =  new ArrayList();
+            lista = solicitanteDao.listar();
+            int indiceCB = -1;
+            for (int i = 0; i < lista.size(); i++) {
+                System.out.println(lista.get(i).getId() == solicitante.getId());
+                if (lista.get(i).getId() == solicitante.getId()){
+                    indiceCB = i;
+                }
+            }
+            this.cadastroIdeiaView.getCbSolicitante().setSelectedIndex(indiceCB);
+//             this.cadastroIdeiaView.getCbSolicitante().setSelectedIndex(0);
         } else {
             JOptionPane.showMessageDialog(null, "Não foi possivel obter os dados da ideia selecionada");
         }
@@ -230,7 +241,8 @@ public class IdeiaController implements ActionListener, FocusListener, MouseList
         }
         return d;
     }
-    public void ClearDescricao(){
+
+    public void ClearDescricao() {
         this.consultaIdeiaView.getTaDescricao().setText(null);
     }
 
@@ -265,6 +277,7 @@ public class IdeiaController implements ActionListener, FocusListener, MouseList
                 SalvarIdeia();
             }
         }
+
         if (e.getActionCommand().equals("CancelarIdeia")) {
             this.telaPrincipalController.GetTelaPrincipal().getJpfundo().removeAll();
             this.telaPrincipalController.repintarTela();
@@ -277,6 +290,7 @@ public class IdeiaController implements ActionListener, FocusListener, MouseList
                 ExcluirIdeia();
             }
         }
+
         if (e.getActionCommand().equals("AlterarIdeia")) {
             ClearDescricao();
             if (consultaIdeiaView.getTbPesquisa().getSelectedRow() == -1) {
@@ -284,10 +298,11 @@ public class IdeiaController implements ActionListener, FocusListener, MouseList
             } else {
                 UpdateCadastroIdeia();
             }
-            if (e.getActionCommand().equals("ConsultaCancelar")) {
-                this.telaPrincipalController.GetTelaPrincipal().getJpfundo().removeAll();
-                this.telaPrincipalController.repintarTela();
-            }
+        }
+
+        if (e.getActionCommand().equals("ConsultaCancelar")) {
+            this.telaPrincipalController.GetTelaPrincipal().getJpfundo().removeAll();
+            this.telaPrincipalController.repintarTela();
         }
 
     }
@@ -310,7 +325,7 @@ public class IdeiaController implements ActionListener, FocusListener, MouseList
             Ideia ideia = model.getListaideia().get(indice);
             this.consultaIdeiaView.getTaDescricao().setText(ideia.getDescricao());
         }
-        
+
     }
 
     @Override
