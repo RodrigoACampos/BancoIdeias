@@ -22,8 +22,8 @@ public class IdeiaDAO {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
-            String QUERY_INSERT = "insert into ideia (tema, descricao, dt_cadastro, idsolicitante) values(?,?,?,?)";
-            String QUERY_UPDATE = "update ideia set tema = ?, descricao = ?, dt_cadastro = ?, idsolicitante = ? where idideia = ?";
+            String QUERY_INSERT = "insert into IDEIA (tema, descricao, dt_cadastro, idsolicitante) values(?,?,?,?)";
+            String QUERY_UPDATE = "update IDEIA set tema = ?, descricao = ?, dt_cadastro = ?, idsolicitante = ? where idideia = ?";
 
             if (ideia.getId() == null) {
 
@@ -77,7 +77,7 @@ public class IdeiaDAO {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
-            String QUERY_DELETE = "delete from ideia where idideia = ?";
+            String QUERY_DELETE = "delete from IDEIA where idideia = ?";
 
             stmt = conn.prepareStatement(QUERY_DELETE);
             stmt.setInt(1, ideia.getId());
@@ -104,7 +104,7 @@ public class IdeiaDAO {
         Ideia ideia = new Ideia();
 
         try {
-            String QUERY_DETALHE = "select * from ideia where idideia = ?";
+            String QUERY_DETALHE = "select * from IDEIA where idideia = ?";
 
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
@@ -143,7 +143,7 @@ public class IdeiaDAO {
         List<Ideia> lista = new ArrayList<Ideia>();
 
         try {
-            String QUERY_DETALHE = "select * from ideia";
+            String QUERY_DETALHE = "select * from IDEIA";
 
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();

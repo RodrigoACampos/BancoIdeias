@@ -22,8 +22,8 @@ public class SolicitanteDAO {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
-            String QUERY_INSERT = "insert into solicitante (nome, email, telefone) values (?, ?, ?)";
-            String QUERY_UPDATE = "update solicitante set nome = ?, email = ?, telefone = ? where idsolicitante = ? ";
+            String QUERY_INSERT = "insert into SOLICITANTE (nome, email, telefone) values (?, ?, ?)";
+            String QUERY_UPDATE = "update SOLICITANTE set nome = ?, email = ?, telefone = ? where idsolicitante = ? ";
 
             if (solicitante.getId() == null) {
                 
@@ -75,7 +75,7 @@ public class SolicitanteDAO {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
-            String QUERY_DELETE = "delete from solicitante where idsolicitante = ?";
+            String QUERY_DELETE = "delete from SOLICITANTE where idsolicitante = ?";
 
             stmt = conn.prepareStatement(QUERY_DELETE);
             stmt.setInt(1, solicitante.getId());
@@ -103,7 +103,7 @@ public class SolicitanteDAO {
         
         try {
 
-            String QUERY_DETALHE = "select * from solicitante where idsolicitante = ?";
+            String QUERY_DETALHE = "select * from SOLICITANTE where idsolicitante = ?";
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
@@ -140,7 +140,7 @@ public class SolicitanteDAO {
         
         try {
             
-            String QUERY_DETALHE = "select * from solicitante";
+            String QUERY_DETALHE = "select * from SOLICITANTE";
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 

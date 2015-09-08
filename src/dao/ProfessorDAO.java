@@ -22,8 +22,8 @@ public class ProfessorDAO {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
-            String QUERY_INSERT = "insert into professor (nome, email, telefone) values (?, ?, ?)";
-            String QUERY_UPDATE = "update professor set nome = ?, email = ?, telefone = ? where idprofessor = ? ";
+            String QUERY_INSERT = "insert into PROFESSOR (nome, email, telefone) values (?, ?, ?)";
+            String QUERY_UPDATE = "update PROFESSOR set nome = ?, email = ?, telefone = ? where idprofessor = ? ";
 
             if (professor.getId() == null) {
 
@@ -76,7 +76,7 @@ public class ProfessorDAO {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
-            String QUERY_DELETE = "delete from professor where idprofessor = ?";
+            String QUERY_DELETE = "delete from PROFESSOR where idprofessor = ?";
 
             stmt = conn.prepareStatement(QUERY_DELETE);
             stmt.setInt(1, professor.getId());
@@ -104,7 +104,7 @@ public class ProfessorDAO {
 
         try {
 
-            String QUERY_DETALHE = "select * from professor where idprofessor = ?";
+            String QUERY_DETALHE = "select * from PROFESSOR where idprofessor = ?";
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
@@ -141,7 +141,7 @@ public class ProfessorDAO {
         
         try {
             
-            String QUERY_DETALHE = "select * from professor";
+            String QUERY_DETALHE = "select * from PROFESSOR";
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 

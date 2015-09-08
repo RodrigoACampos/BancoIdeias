@@ -21,8 +21,8 @@ public class AlunoDAO {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
-            String QUERY_INSERT = "insert into aluno (nome, email, telefone) values (?, ?, ?)";
-            String QUERY_UPDATE = "update aluno set nome = ?, email = ?, telefone = ? where idaluno = ? ";
+            String QUERY_INSERT = "insert into ALUNO (nome, email, telefone) values (?, ?, ?)";
+            String QUERY_UPDATE = "update ALUNO set nome = ?, email = ?, telefone = ? where idaluno = ? ";
 
             if (aluno.getId() == null) {
                 
@@ -74,7 +74,7 @@ public class AlunoDAO {
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
-            String QUERY_DELETE = "delete from aluno where idaluno = ?";
+            String QUERY_DELETE = "delete from ALUNO where idaluno = ?";
 
             stmt = conn.prepareStatement(QUERY_DELETE);
             stmt.setInt(1, aluno.getId());
@@ -100,7 +100,7 @@ public class AlunoDAO {
         
         try {
 
-            String QUERY_DETALHE = "select * from aluno where idaluno = ?";
+            String QUERY_DETALHE = "select * from ALUNO where idaluno = ?";
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
@@ -134,7 +134,7 @@ public class AlunoDAO {
     public List<Aluno> listar() {
         List<Aluno> lista = new ArrayList<Aluno>();
         try {
-            String QUERY_DETALHE = "select * from aluno";
+            String QUERY_DETALHE = "select * from ALUNO";
             PreparedStatement stmt = null;
             Connection conn = ConnectionManager.getConnection();
 
