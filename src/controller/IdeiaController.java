@@ -288,7 +288,7 @@ public class IdeiaController implements ActionListener, FocusListener, MouseList
 
         if (e.getActionCommand().equals("ExcluirIdeia")) {
             if (consultaIdeiaView.getTbPesquisa().getSelectedRow() == -1) {
-                JOptionPane.showMessageDialog(null, "Sem Ideia selecionado, tente novamente!");
+                JOptionPane.showMessageDialog(null, "Sem Ideia selecionada, tente novamente!");
             } else {
                 ExcluirIdeia();
             }
@@ -297,7 +297,7 @@ public class IdeiaController implements ActionListener, FocusListener, MouseList
         if (e.getActionCommand().equals("AlterarIdeia")) {
             ClearDescricao();
             if (consultaIdeiaView.getTbPesquisa().getSelectedRow() == -1) {
-                JOptionPane.showMessageDialog(null, "Sem Professor selecionado, tente novamente!");
+                JOptionPane.showMessageDialog(null, "Sem Ideia selecionada, tente novamente!");
             } else {
                 UpdateCadastroIdeia();
             }
