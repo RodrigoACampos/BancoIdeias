@@ -4,7 +4,6 @@ import dao.IdeiaDAO;
 import dao.SolicitanteDAO;
 import entidade.Ideia;
 import entidade.Solicitante;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -109,9 +108,13 @@ public class IdeiaController implements ActionListener, FocusListener, MouseList
         this.consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(0).setHeaderRenderer(cellRenderTitle);
         this.consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(0).setCellRenderer(cellRender);
 
-        this.consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(1).setPreferredWidth(500);
+        this.consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(1).setPreferredWidth(450);
         this.consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(1).setHeaderRenderer(cellRenderTitle);
         this.consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(1).setCellRenderer(cellRender);
+        
+        this.consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(2).setPreferredWidth(50);
+        this.consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(2).setHeaderRenderer(cellRenderTitle);
+        this.consultaIdeiaView.getTbPesquisa().getColumnModel().getColumn(2).setCellRenderer(cellRender);
     }
 
     private void ClearCadastroIdeia() {

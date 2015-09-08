@@ -1,7 +1,13 @@
 package model;
 
+import controller.SolicitanteController;
 import entidade.Ideia;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -57,7 +63,7 @@ public class IdeiaTableModel extends AbstractTableModel {
         }
 
         if (columnIndex == 2) {
-            valor = String.valueOf(listaIdeias.get(rowIndex).getDtcadastro().toString());
+            valor = UStoBRdate(listaIdeias.get(rowIndex).getDtcadastro());
         }
         
         return valor;
@@ -82,6 +88,18 @@ public class IdeiaTableModel extends AbstractTableModel {
 
         return valor;
         
+    }
+    public String UStoBRdate(java.util.Date data) {
+        String d = "";
+        SimpleDateFormat in = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat out = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            d = out.format(in.parse(data.toString()));
+        } catch (ParseException ex) {
+            Logger.getLogger(SolicitanteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return d;
     }
 
 }
